@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bahan;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class BahanController extends Controller
@@ -70,9 +71,53 @@ class BahanController extends Controller
     }
 
 
-    public function login(bahan $bahan, Request $request)
+    public function login(Request $request)
     {
-        dd($request->all());
+        // $request->validate([
+        //     'username' => 'required',
+        //     'password' => 'required'
+        // ]);
+        // dd($request->all());
+        // return User::all();
+
+        // $user = User::all(); // Retrieve the authenticated user
+
+        // Return a JSON response
+        // return response()->json(User::all());
+        // return response()->json([User::all()]);
+
+        //  $data = User::where('nama', $request->username)->where('prodi', $prodi)->get();
+        //         $d_nim = $data->value('nim');
+        //         $d_nama = $data->value('nama');
+        //         $d_prodi = $data->value('prodi');
+
+        //         $d = [
+        //             'nim' => $d_nim,
+        //             'nama' => $d_nama,
+        //             'prodi' => $d_prodi,
+        //         ];
+        //         return $d;
+
+        $data = User::all();
+        $d_nama = $data->value('name');
+        $d_password = $data->value('password');
+
+        $d = [
+            'nama' => $d_nama,
+            'password' => $d_password
+        ];
+        // return $d;
+
+        return response()->json($d);
+    }
+    public function auth(user $user, Request $request)
+    {
+        return response()->json(User::all());
+        // $request->validate([
+        //     'username' => 'required',
+        //     'password' => 'required'
+        // ]);
+        // dd($request->all());
     }
 
     /**

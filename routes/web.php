@@ -21,3 +21,4 @@ use App\Http\Controllers\BahanController;
 Route::get('/', [BahanController::class, 'showCair']);
 Route::get('/take/{id}', [BahanController::class, 'upCair'])->name('takeCair');
 Route::get('/login', [BahanController::class, 'login'])->name('login');
+// Route::post('/login', [BahanController::class, 'login'])->name('login');
