@@ -1,0 +1,431 @@
+-- --------------------------------------------------------
+-- Host:                         127.0.0.1
+-- Server version:               5.6.51 - MySQL Community Server (GPL)
+-- Server OS:                    Win32
+-- HeidiSQL Version:             10.2.0.5599
+-- --------------------------------------------------------
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+
+-- Dumping database structure for depo
+CREATE DATABASE IF NOT EXISTS `depo` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `depo`;
+
+-- Dumping structure for table depo.bahans
+CREATE TABLE IF NOT EXISTS `bahans` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `nama` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `stok` double(8,2) NOT NULL,
+  `lokasi` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `jenis` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=302 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Dumping data for table depo.bahans: ~300 rows (approximately)
+DELETE FROM `bahans`;
+/*!40000 ALTER TABLE `bahans` DISABLE KEYS */;
+INSERT INTO `bahans` (`id`, `nama`, `stok`, `lokasi`, `jenis`, `created_at`, `updated_at`) VALUES
+	(1, 'Alkohol 70%', 0.00, '-', 'Cair', NULL, NULL),
+	(2, 'Alkohol 96%', 0.00, '-', 'Cair', NULL, NULL),
+	(3, 'Alkohol 98%', 0.00, '-', 'Cair', NULL, NULL),
+	(4, 'Amil alkohol', 0.00, '-', 'Cair', NULL, NULL),
+	(5, 'Amoniak', 3000.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(6, 'Amonium cair', 100.00, 'Rak Besi', 'Cair', NULL, NULL),
+	(7, 'Amonium hydroxide', 2000.00, 'Rak Besi', 'Cair', NULL, '2024-02-01 07:27:01'),
+	(8, 'Amonium oxalat', 1000.00, 'Rak Besi', 'Cair', NULL, NULL),
+	(9, 'Anisi oil', 0.00, '-', 'Cair', NULL, NULL),
+	(10, 'Aqua pro injeksi', 0.00, '-', 'Cair', NULL, NULL),
+	(11, 'Aquadest', 0.00, '-', 'Cair', NULL, NULL),
+	(12, 'Asam Asetat 6%', 250.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(13, 'Asam asetat anhidrat', 0.00, '-', 'Cair', NULL, NULL),
+	(14, 'Asam asetat glasial', 800.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(15, 'Asam asetik anhidrat', 0.00, '-', 'Cair', NULL, NULL),
+	(16, 'Asam formic (CHOOH)', 0.00, '-', 'Cair', NULL, NULL),
+	(17, 'Asam fosfat', 1000.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(18, 'Asam Nitrat', 1000.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(19, 'Asam Sitrat', 1700.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(20, 'Aseton p.a', 1500.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(21, 'Aseton teknis', 2800.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(22, 'Benedict', 900.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(23, 'Benzalkonium', 2900.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(24, 'Benzen', 0.00, '-', 'Cair', NULL, NULL),
+	(25, 'Ca(OH)2 40%', 1000.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(26, 'Citrate saline', 300.00, 'Rak Besi + Rak Besi Stok', 'Cair', NULL, NULL),
+	(27, 'Diazo B', 500.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(28, 'Dietil eter', 0.00, '-', 'Cair', NULL, NULL),
+	(29, 'Dragendorff', 150.00, 'Rak Besi + Rak Besi Stok', 'Cair', NULL, NULL),
+	(30, 'Eosin 2%', 0.00, '-', 'Cair', NULL, NULL),
+	(31, 'Etanol 96%', 5000.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(32, 'Eter', 400.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(33, 'Ethylene', 500.00, 'Rak Besi + Rak Besi Stok', 'Cair', NULL, NULL),
+	(34, 'Etil asetat', 5950.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(35, 'Etil Eter', 800.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(36, 'Fehling A', 1300.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(37, 'Fehling B', 2000.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(38, 'Fenol', 1000.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(39, 'Formalin', 7000.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(40, 'Fuchsin', 0.00, '-', 'Cair', NULL, NULL),
+	(41, 'Fuhsin', 0.00, '-', 'Cair', NULL, NULL),
+	(42, 'Gentian violet', 100.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(43, 'Giemsa', 0.00, '-', 'Cair', NULL, NULL),
+	(44, 'Gliserin', 3500.00, 'Rak Besi + Rak Besi Stok', 'Cair', NULL, NULL),
+	(45, 'Gliserin/gliserol', 14700.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(46, 'H2SO4', 9000.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(47, 'HCl', 3000.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(48, 'Hemoglobin C', 500.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(49, 'HNO3', 4000.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(50, 'I-Butanol', 0.00, '-', 'Cair', NULL, NULL),
+	(51, 'Isopropyl Myristate', 6700.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(52, 'Karbopol', 1000.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(53, 'Kloroform', 0.00, '-', 'Cair', NULL, NULL),
+	(54, 'Lactophenol cotton blue', 0.00, '-', 'Cair', NULL, NULL),
+	(55, 'LB', 0.00, '-', 'Cair', NULL, NULL),
+	(56, 'Lugol', 0.00, '-', 'Cair', NULL, NULL),
+	(57, 'Malachite green oxalate', 0.00, '-', 'Cair', NULL, NULL),
+	(58, 'Mayer', 0.00, '-', 'Cair', NULL, NULL),
+	(59, 'Metanol p.a', 0.00, '-', 'Cair', NULL, NULL),
+	(60, 'Metanol teknis', 4000.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(61, 'Metil Etil Keton', 1000.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(62, 'Metil salisilat', 3000.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(63, 'N-Heksan', 0.00, '-', 'Cair', NULL, NULL),
+	(64, 'NaCl fis', 1000.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(65, 'Ol. Anisi', 1200.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(66, 'Ol. Arachidisi', 1000.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(67, 'Ol. Cesami', 1400.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(68, 'Ol. Cinnamomi', 2750.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(69, 'Ol. Citrus', 1000.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(70, 'Ol. Coconut', 3500.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(71, 'Ol. Cocos', 250.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(72, 'Ol. Iecoris Aseli', 4200.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(73, 'Ol. Menthae', 4000.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(74, 'Ol. Olivarum', 2000.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(75, 'Ol. Olive', 750.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(76, 'Ol. Ricini', 1400.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(77, 'Ol. Rosemary', 500.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(78, 'Parafin liquid', 13000.00, 'Rak Besi + Rak Besi Stok', 'Cair', NULL, NULL),
+	(79, 'PEG 1000', 4000.00, 'Rak Besi + Rak Besi Stok', 'Cair', NULL, NULL),
+	(80, 'PEG 400', 2200.00, 'Rak Besi + Rak Besi Stok', 'Cair', NULL, NULL),
+	(81, 'PEG 600', 1000.00, 'Rak Besi + Rak Besi Stok', 'Cair', NULL, NULL),
+	(82, 'Potasium alum', 0.00, '-', 'Cair', NULL, NULL),
+	(83, 'PPC', 0.00, '-', 'Cair', NULL, NULL),
+	(84, 'Propilen glikol', 16200.00, 'Rak Besi + Rak Besi Stok', 'Cair', NULL, NULL),
+	(85, 'Rees ecker', 0.00, '-', 'Cair', NULL, NULL),
+	(86, 'SASA', 1000.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(87, 'Sirup simplex', 0.00, '-', 'Cair', NULL, NULL),
+	(88, 'Sorbitol', 4050.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(89, 'Sorbitol 70%', 0.00, '-', 'Cair', NULL, NULL),
+	(90, 'Span 20', 0.00, '-', 'Cair', NULL, NULL),
+	(91, 'Span 80', 12800.00, 'Rak Besi + Rak Besi Stok', 'Cair', NULL, NULL),
+	(92, 'Spiritus', 12000.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(93, 'Tapol', 500.00, 'Rak Besi Stok', 'Cair', NULL, NULL),
+	(94, 'TCA 10%', 0.00, '-', 'Cair', NULL, NULL),
+	(95, 'TEA', 9500.00, 'Rak Besi + Rak Besi Stok', 'Cair', NULL, NULL),
+	(96, 'Turk', 300.00, 'Rak Besi + Rak Besi Stok', 'Cair', NULL, NULL),
+	(97, 'Tween 60', 1000.00, 'Rak Besi + Rak Besi Stok', 'Cair', NULL, NULL),
+	(98, 'Tween 80', 5700.00, 'Rak Besi + Rak Besi Stok', 'Cair', NULL, NULL),
+	(99, 'Wagner', 150.00, 'Rak Besi + Rak Besi Stok', 'Cair', NULL, NULL),
+	(100, '1-Naftol', 0.00, '-', 'Padat', NULL, NULL),
+	(101, 'Acetanilide', 400.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(102, 'Adeps lanae', 4000.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(103, 'Aerosil', 300.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(104, 'AgNO3', 310.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(105, 'Aluminium Potasium', 500.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(106, 'Aluminium Powder', 0.00, '-', 'Padat', NULL, NULL),
+	(107, 'Ambroxol', 0.00, '-', 'Padat', NULL, NULL),
+	(108, 'Amilum Manihot', 5900.00, 'Rak Besi + Rak Stok (Kayu Putih)', 'Padat', NULL, NULL),
+	(109, 'Amilum Oryzae', 1300.00, 'Rak Besi + Rak Stok (Kayu Putih)', 'Padat', NULL, NULL),
+	(110, 'Aminofilin', 600.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(111, 'Amoksilin serbuk', 1000.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(112, 'Amonium asetat', 1500.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(113, 'Amonium klorida', 6200.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(114, 'Amonium sulfat', 700.00, 'Rak Besi Stok', 'Padat', NULL, NULL),
+	(115, 'Amprotab', 0.00, '-', 'Padat', NULL, NULL),
+	(116, 'Antalgin', 250.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(117, 'Asam askorbat', 1800.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(118, 'Asam benzoat', 0.00, '-', 'Padat', NULL, NULL),
+	(119, 'Asam borat', 780.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(120, 'Asam kromat', 0.00, '-', 'Padat', NULL, NULL),
+	(121, 'Asam Mefenamat', 1750.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(122, 'Asam Oksalat', 2300.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(123, 'Asam pikrat', 0.00, '-', 'Padat', NULL, NULL),
+	(124, 'Asam salisilat', 6000.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(125, 'Asam sitrat', 6500.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(126, 'Asam stearat', 3800.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(127, 'Asetosal', 750.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(128, 'Aspirin', 2000.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(129, 'Avicel 101', 1000.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(130, 'Avicel 102', 1500.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(131, 'Avicel ph 102', 700.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(132, 'B12', 200.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(133, 'Barium cloride 2-hydrate', 1000.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(134, 'Benedict', 500.00, 'Rak Besi Stok', 'Padat', NULL, NULL),
+	(135, 'C8H8N6O6', 0.00, '-', 'Padat', NULL, NULL),
+	(136, 'Caffein', 1000.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(137, 'Calamin', 500.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(138, 'Calsium Carbonate', 3000.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(139, 'Calsium cloride dyhidrate', 1300.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(140, 'Carbokyl Metyl Cellulosa', 0.00, '-', 'Padat', NULL, NULL),
+	(141, 'Carbopol', 4000.00, 'Rak Besi + Rak Stok (Kayu Putih)', 'Padat', NULL, NULL),
+	(142, 'Cera alba', 4350.00, 'Rak Besi + Rak Stok (Kayu Putih)', 'Padat', NULL, NULL),
+	(143, 'Cera Flava', 7000.00, 'Rak Besi + Rak Stok (Kayu Putih)', 'Padat', NULL, NULL),
+	(144, 'Cetil Alkohol', 3800.00, 'Rak Besi + Rak Stok (Kayu Putih)', 'Padat', NULL, NULL),
+	(145, 'Champora', 1800.00, 'Rak Besi + Rak Stok (Kayu Putih)', 'Padat', NULL, NULL),
+	(146, 'Chloramphenicol', 700.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(147, 'CMC Na', 700.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(148, 'Copper (II) asetat', 0.00, '-', 'Padat', NULL, NULL),
+	(149, 'Copper (III) Acetate M.', 0.00, '-', 'Padat', NULL, NULL),
+	(150, 'CuSO4', 1000.00, 'Rak Besi Stok', 'Padat', NULL, NULL),
+	(151, 'Dextrosa', 0.00, '-', 'Padat', NULL, NULL),
+	(152, 'D-Glucose anhydrous', 200.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(153, 'Dinatrium EDTA', 1000.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(154, 'di-Potassium hydrogen', 0.00, '-', 'Padat', NULL, NULL),
+	(155, 'di-Potassium hydrogen phosphat', 0.00, '-', 'Padat', NULL, NULL),
+	(156, 'FeCl3', 2400.00, 'Rak Besi + Rak Stok (Kayu Putih)', 'Padat', NULL, NULL),
+	(157, 'FeNO3', 90.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(158, 'Ferrous Sulphate', 500.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(159, 'FeSO4', 0.00, '-', 'Padat', NULL, NULL),
+	(160, 'Gelatin', 1400.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(161, 'Gliserin Guaia', 500.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(162, 'Glukosa', 800.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(163, 'GOM', 2800.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(164, 'Hancol', 0.00, '-', 'Padat', NULL, NULL),
+	(165, 'HPMC', 0.00, '-', 'Padat', NULL, NULL),
+	(166, 'Hydrocortisone', 800.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(167, 'Ibuprofen', 2500.00, 'Rak Besi + Rak Stok (Kayu Putih)', 'Padat', NULL, NULL),
+	(168, 'Iodium', 1950.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(169, 'Iron (III) Amonium Sulfate', 1000.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(170, 'K2CrO4', 0.00, '-', 'Padat', NULL, NULL),
+	(171, 'Kalium Bromat', 100.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(172, 'Kalium dikromat', 0.00, '-', 'Padat', NULL, NULL),
+	(173, 'Kalium permanganat', 700.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(174, 'Karagenin', 800.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(175, 'Karbon aktif', 2500.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(176, 'Karmin', 1000.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(177, 'KCl', 350.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(178, 'KH2PO4', 0.00, '-', 'Padat', NULL, NULL),
+	(179, 'KMnO4', 1500.00, 'Rak Besi + Rak Stok (Kayu Putih)', 'Padat', NULL, NULL),
+	(180, 'KOH', 0.00, '-', 'Padat', NULL, NULL),
+	(181, 'Laktosa', 1300.00, 'Rak Besi + Rak Stok (Kayu Putih)', 'Padat', NULL, NULL),
+	(182, 'Lanolin', 2200.00, 'Rak Besi + Rak Stok (Kayu Putih)', 'Padat', NULL, NULL),
+	(183, 'Lead (II) Acetat Trihydrate', 250.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(184, 'Lead (II) Nitrat', 50.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(185, 'Logam Al', 0.00, '-', 'Padat', NULL, NULL),
+	(186, 'Magnesium', 300.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(187, 'Magnesium ribbon', 0.00, '-', 'Padat', NULL, NULL),
+	(188, 'Magnesium serbuk', 0.00, '-', 'Padat', NULL, NULL),
+	(189, 'Magnesium stearat', 5500.00, 'Rak Besi + Rak Stok (Kayu Putih)', 'Padat', NULL, NULL),
+	(190, 'Magnesium sulfat', 0.00, '-', 'Padat', NULL, NULL),
+	(191, 'Magnesium sulfat heptahidrat', 0.00, '-', 'Padat', NULL, NULL),
+	(192, 'Menthol', 500.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(193, 'Mercury (II) Chloride', 0.00, '-', 'Padat', NULL, NULL),
+	(194, 'Mercury (II) Nitrat', 0.00, '-', 'Padat', NULL, NULL),
+	(195, 'Methyl red', 25.00, 'Rak Besi Stok', 'Padat', NULL, NULL),
+	(196, 'Metyl morfin', 0.00, '-', 'Padat', NULL, NULL),
+	(197, 'Metyl paraben', 3200.00, 'Rak Besi + Rak Stok (Kayu Putih)', 'Padat', NULL, NULL),
+	(198, 'Na Carbonate', 0.00, '-', 'Padat', NULL, NULL),
+	(199, 'Na CMC', 1700.00, 'Rak Besi + Rak Stok (Kayu Putih)', 'Padat', NULL, NULL),
+	(200, 'Na EDTA', 1000.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(201, 'Na2S2O2', 1000.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(202, 'NaCl', 0.00, '-', 'Padat', NULL, NULL),
+	(203, 'NaOH', 3200.00, 'Rak Besi + Rak Stok (Kayu Putih)', 'Padat', NULL, NULL),
+	(204, 'NaOH 98%', 3400.00, 'Rak Besi + Rak Stok (Kayu Putih)', 'Padat', NULL, NULL),
+	(205, 'Natrium tiosulfat', 1200.00, 'Rak Besi + Rak Stok (Kayu Putih)', 'Padat', NULL, NULL),
+	(206, 'Natrium asetat', 150.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(207, 'Natrium Benzoat', 2700.00, 'Rak Besi + Rak Stok (Kayu Putih)', 'Padat', NULL, NULL),
+	(208, 'Natrium bikarbonat', 2650.00, 'Rak Besi + Rak Stok (Kayu Putih)', 'Padat', NULL, NULL),
+	(209, 'Natrium karbonat', 0.00, '-', 'Padat', NULL, NULL),
+	(210, 'Natrium lauril sulfat', 1400.00, 'Rak Besi + Rak Stok (Kayu Putih)', 'Padat', NULL, NULL),
+	(211, 'Natrium nitrat', 550.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(212, 'Natrium nitrit', 500.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(213, 'Natrium oksalat', 2000.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(214, 'Natrium sub carbonate', 500.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(215, 'Natrium sulfat', 0.00, '-', 'Padat', NULL, NULL),
+	(216, 'Nipagin', 3200.00, 'Rak Besi + Rak Stok (Kayu Putih)', 'Padat', NULL, NULL),
+	(217, 'Nipasol', 2500.00, '-', 'Padat', NULL, NULL),
+	(218, 'Norit', 2300.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(219, 'Ortho phosphoric acid 99%', 300.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(220, 'p-Anisidine', 0.00, '-', 'Padat', NULL, NULL),
+	(221, 'Parafin solid', 0.00, '-', 'Padat', NULL, NULL),
+	(222, 'PCT', 2100.00, 'Rak Besi + Rak Stok (Kayu Putih)', 'Padat', NULL, NULL),
+	(223, 'PEG', 3000.00, 'Rak Besi + Rak Stok (Kayu Putih)', 'Padat', NULL, NULL),
+	(224, 'PGA', 1000.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(225, 'PGS', 1000.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(226, 'Phenolphthalein (Indikator PP)', 0.00, '-', 'Padat', NULL, NULL),
+	(227, 'Phloroglucinol', 105.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(228, 'Piridoksin', 770.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(229, 'Potassium acetate', 1000.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(230, 'Potassium bichromate', 0.00, '-', 'Padat', NULL, NULL),
+	(231, 'Potassium bromate', 0.00, '-', 'Padat', NULL, NULL),
+	(232, 'Potassium Dicromate', 750.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(233, 'Potassium dyhidrogen phosphate', 2650.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(234, 'Potassium iodida', 1200.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(235, 'Povidon', 0.00, '-', 'Padat', NULL, NULL),
+	(236, 'Prokain HCl', 2000.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(237, 'PVP', 0.00, '-', 'Padat', NULL, NULL),
+	(238, 'Resorcinol', 100.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(239, 'Saccharum Lactis', 14000.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(240, 'Sakarin', 400.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(241, 'Silica gel', 1200.00, 'Rak Besi + Rak Stok (Kayu Putih)', 'Padat', NULL, NULL),
+	(242, 'SLS Powder', 0.00, '-', 'Padat', NULL, NULL),
+	(243, 'Sodium acetate anhydrous', 1200.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(244, 'Sodium carbonate', 450.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(245, 'Sodium nitrite p.a smart lab', 500.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(246, 'Sodium nitroprusside dihydrate', 0.00, '-', 'Padat', NULL, NULL),
+	(247, 'Sukrosa', 2250.00, 'Rak Besi + Rak Stok (Kayu Putih)', 'Padat', NULL, NULL),
+	(248, 'Sulfur praeciptatum', 1700.00, 'Rak Besi + Rak Stok (Kayu Putih)', 'Padat', NULL, NULL),
+	(249, 'Talk', 8750.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(250, 'Teophylin', 100.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(251, 'Tetra', 0.00, '-', 'Padat', NULL, NULL),
+	(252, 'Tetrakain HCl', 1000.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(253, 'Tetrasiklin', 1500.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(254, 'Tragakan', 1750.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(255, 'Urea', 200.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(256, 'Vanilin', 1000.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(257, 'Vaselin', 0.00, '-', 'Padat', NULL, NULL),
+	(258, 'Vaselin (petrolatum) white', 0.00, '-', 'Padat', NULL, NULL),
+	(259, 'Vaselin album', 12200.00, 'Rak Besi + Rak Stok (Kayu Putih)', 'Padat', NULL, NULL),
+	(260, 'Vaselin flavum', 10700.00, 'Rak Besi + Rak Stok (Kayu Putih)', 'Padat', NULL, NULL),
+	(261, 'Vit. B6', 0.00, '-', 'Padat', NULL, NULL),
+	(262, 'Vit. C uncoated', 0.00, '-', 'Padat', NULL, NULL),
+	(263, 'Zinc', 800.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(264, 'Zinc logam', 0.00, '-', 'Padat', NULL, NULL),
+	(265, 'Zinc okide', 4500.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(266, 'Zinc sulfat', 0.00, '-', 'Padat', NULL, NULL),
+	(267, 'ZnO', 2200.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(268, 'ZnSO4', 1900.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(269, 'Amylum Tritici', 500.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(270, 'Amylum ', 1500.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(271, 'Ammonium Perusulphate', 1000.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(272, 'Amylum Solami', 500.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(273, 'Albumin', 200.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(274, 'Ammonium Molybolate', 100.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(275, 'Asam Tatrat', 1000.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(276, 'Bentonit Magma', 1000.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(277, 'BHT', 2500.00, 'Rak Besi + Rak Stok (Kayu Putih)', 'Padat', NULL, NULL),
+	(278, 'Benziden', 1000.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(279, 'Carmin', 1000.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(280, 'Cetostearyl ', 1000.00, 'Rak Stok (Kayu Putih)', 'Padat', NULL, NULL),
+	(281, 'Iron (II) Chloride', 250.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(282, 'Mangan Sulfat (MnSO4)', 1000.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(283, 'Mercury (II) Sulfate', 50.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(284, 'Pottasium Cromate', 1000.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(285, 'Propylene Paraben', 1000.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(286, 'Sodium Oxalate (Na2C2O4)', 1000.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(287, 'C6H6O2 Hidrokuinon', 50.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(288, 'D-Glucose Monohydrate', 1000.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(289, 'Maltosa', 1000.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(290, 'Asam Silicat', 1000.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(291, 'Lactose Broth', 500.00, 'Rak Besi Stok', 'Padat', NULL, NULL),
+	(292, 'EMB Agar', 500.00, 'Rak Besi Stok', 'Padat', NULL, NULL),
+	(293, 'BGLB', 500.00, 'Rak Besi Stok', 'Padat', NULL, NULL),
+	(294, 'Muller Hinton Agar', 500.00, 'Rak Besi Stok', 'Padat', NULL, NULL),
+	(295, 'Simon Citrate Agar', 500.00, 'Rak Besi Stok', 'Padat', NULL, NULL),
+	(296, 'Trypthone Soya Broth', 500.00, 'Rak Besi Stok', 'Padat', NULL, NULL),
+	(297, 'Nutrient Agar', 500.00, 'Rak Besi Stok', 'Padat', NULL, NULL),
+	(298, 'Metyl Morfin', 500.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(299, 'Oleum Cacao', 300.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(300, 'P Amadup', 40.00, 'Rak Besi', 'Padat', NULL, NULL),
+	(301, 'Gum Arabicum', 1000.00, 'Rak Besi', 'Padat', NULL, NULL);
+/*!40000 ALTER TABLE `bahans` ENABLE KEYS */;
+
+-- Dumping structure for table depo.failed_jobs
+CREATE TABLE IF NOT EXISTS `failed_jobs` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `uuid` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Dumping data for table depo.failed_jobs: ~0 rows (approximately)
+DELETE FROM `failed_jobs`;
+/*!40000 ALTER TABLE `failed_jobs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `failed_jobs` ENABLE KEYS */;
+
+-- Dumping structure for table depo.migrations
+CREATE TABLE IF NOT EXISTS `migrations` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Dumping data for table depo.migrations: ~5 rows (approximately)
+DELETE FROM `migrations`;
+/*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+	(1, '2014_10_12_000000_create_users_table', 1),
+	(2, '2014_10_12_100000_create_password_reset_tokens_table', 1),
+	(3, '2019_08_19_000000_create_failed_jobs_table', 1),
+	(4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+	(5, '2024_01_29_010750_create_bahans_table', 1);
+/*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
+
+-- Dumping structure for table depo.password_reset_tokens
+CREATE TABLE IF NOT EXISTS `password_reset_tokens` (
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Dumping data for table depo.password_reset_tokens: ~0 rows (approximately)
+DELETE FROM `password_reset_tokens`;
+/*!40000 ALTER TABLE `password_reset_tokens` DISABLE KEYS */;
+/*!40000 ALTER TABLE `password_reset_tokens` ENABLE KEYS */;
+
+-- Dumping structure for table depo.personal_access_tokens
+CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tokenable_type` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `tokenable_id` bigint(20) unsigned NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8_unicode_ci,
+  `last_used_at` timestamp NULL DEFAULT NULL,
+  `expires_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
+  KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Dumping data for table depo.personal_access_tokens: ~0 rows (approximately)
+DELETE FROM `personal_access_tokens`;
+/*!40000 ALTER TABLE `personal_access_tokens` DISABLE KEYS */;
+/*!40000 ALTER TABLE `personal_access_tokens` ENABLE KEYS */;
+
+-- Dumping structure for table depo.users
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_email_unique` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Dumping data for table depo.users: ~0 rows (approximately)
+DELETE FROM `users`;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
