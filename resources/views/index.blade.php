@@ -622,9 +622,7 @@
         }
     </script>
 
-    <script>
-        alert();
-    </script>
+
 
 
 
