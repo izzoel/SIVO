@@ -44,8 +44,17 @@ class BahanController extends Controller
         $alat = Bahan::where('jenis', 'Alat')->get();
         $lokasi = Bahan::distinct()->pluck('lokasi');
 
-        return view('index')->with(['dcair' => $cair, 'dpadat' => $padat, 'dalat' => $alat, 'selectedTabId'  => 'nav-cair-tab', 'nameValue' => session()->get('nameValue') ?? '', 'lokasi' => $lokasi]);
+        return view('index')->with([
+            'dcair' => $cair,
+            'dpadat' => $padat,
+            'dalat' => $alat,
+            // 'selectedTabId'  => 'nav-cair-tab',
+            'nameValue' => session()->get('nameValue') ?? '',
+            'TabValue' => session()->get('tabValue') ?? 'Bahan Cair',
+            'lokasi' => $lokasi
+        ]);
     }
+
 
     public function showCair(bahan $bahan, Request $request)
     {
@@ -73,6 +82,7 @@ class BahanController extends Controller
 
         $bahan = Bahan::find($request->id);
         Session::put('nameValue', $bahan->nama);
+        Session::put('tabValue', $request->tab);
 
         return redirect()->route('show');
     }
@@ -88,6 +98,7 @@ class BahanController extends Controller
 
         $bahan = Bahan::find($request->id);
         Session::put('nameValue', $bahan->nama);
+        Session::put('tabValue', $request->tab);
 
         return redirect()->route('show');
     }

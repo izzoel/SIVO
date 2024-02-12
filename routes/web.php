@@ -19,9 +19,15 @@ use App\Http\Controllers\BahanController;
 // });
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin', [BahanController::class, 'show'])->name('show');
+    Route::post('/admin', [BahanController::class, 'show'])->name('show');
     Route::get('/logout', [BahanController::class, 'logout'])->name('logout');
     Route::get('/take/{id}', [BahanController::class, 'upCair'])->name('takeCair');
     Route::get('/put/{id}', [BahanController::class, 'restokCair'])->name('restokCair');
+    // Route::post('/saveActiveTab', function (Request $request) {
+    // $activeTabText = $request->input('activeTabText');
+    // session()->put('activeTabText', $activeTabText);
+    // return response()->json(['status' => 'success']);
+    // });
 });
 Route::group(['middleware' => ['guest']], function () {
     Route::get('/', [BahanController::class, 'showCair'])->name('home');

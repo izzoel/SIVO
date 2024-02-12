@@ -112,12 +112,13 @@
                             data-bs-target="#nav-cair" type="button" role="tab" aria-controls="nav-cair"
                             aria-selected="true">Bahan Cair</button>
                         <button class="nav-link" id="nav-padat-tab" data-bs-toggle="tab" data-bs-target="#nav-padat"
-                            type="button" role="tab" aria-controls="nav-padat" aria-selected="false">Bahan
-                            Padat</button>
+                            type="button" role="tab" aria-controls="nav-padat"
+                            aria-selected="false">Bahan&nbsp;Padat</button>
                         <button class="nav-link" id="nav-alat-tab" data-bs-toggle="tab" data-bs-target="#nav-alat"
                             type="button" role="tab" aria-controls="nav-alat" aria-selected="false">Alat</button>
                     </div>
                 </nav>
+
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-cair" role="tabpanel"
                         aria-labelledby="nav-cair-tab">
@@ -324,6 +325,7 @@
                                         <input type="hidden" name="id" value="{{ $m->id }}">
                                         <input type="hidden" name="stok" value="{{ $m->stok }}">
                                         <input type="hidden" name="lokas" value="{{ $m->stok }}">
+                                        <input type="hidden" name="tab" value="cair">
                                     </tr>
                                     <tr>
                                         <td>Lokasi</td>
@@ -373,6 +375,7 @@
                                             <td><span class="badge bg-primary">{{ $m->stok . ' ml' }}</span></td>
                                             <input type="hidden" name="id" value="{{ $m->id }}">
                                             <input type="hidden" name="stok" value="{{ $m->stok }}">
+                                            <input type="hidden" name="tab" value="cair">
                                         </tr>
                                         <tr>
                                             <td>Lokasi</td>
@@ -433,6 +436,7 @@
                                         <td><span class="badge bg-primary">{{ $n->stok . ' ml' }}</span></td>
                                         <input type="hidden" name="id" value="{{ $n->id }}">
                                         <input type="hidden" name="stok" value="{{ $n->stok }}">
+                                        <input type="hidden" name="tab" value="padat">
                                     </tr>
                                     <tr>
                                         <td>Lokasi</td>
@@ -482,6 +486,7 @@
                                             <td><span class="badge bg-primary">{{ $n->stok . ' ml' }}</span></td>
                                             <input type="hidden" name="id" value="{{ $n->id }}">
                                             <input type="hidden" name="stok" value="{{ $n->stok }}">
+                                            <input type="hidden" name="tab" value="padat">
                                         </tr>
                                         <tr>
                                             <td>Lokasi</td>
@@ -603,92 +608,29 @@
         new DataTable('#alat');
     </script>
 
-
     <script>
-        var selectedTabId = @json($selectedTabId);
-        var nameValue = @json($nameValue);
-
-        if (selectedTabId) {
-            var tab = $('#' + selectedTabId);
-            var element = $('#about');
-            var table = $('#cair').DataTable();
-            if (tab.length) {
-                tab.click();
-                element[0].scrollIntoView({
-                    behavior: 'smooth'
-                });
-                table.search(nameValue).draw();
-            }
-        }
-    </script>
-
-
-
-
-
-    {{-- <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Get the selectedTabId from the PHP variable
-            var selectedTabId = @json($selectedTabId);
+        $(document).ready(function() {
+            var selectedTabId = @json($TabValue);
             var nameValue = @json($nameValue);
 
-            // alert(selectedTabId);
+            if (selectedTabId === @json($TabValue)) {
+                $('#nav-' + selectedTabId + '-tab').tab('show');
 
-            // Open the tab based on the selectedTabId
-            if (selectedTabId) {
-                var tab = document.getElementById(selectedTabId);
-                var element = document.getElementById('about');
-                var table = $('#cair').DataTable();
-                if (tab) {
-                    tab.click(); // Assuming you have a function to handle tab clicks
-                    // if (element) {
-                    element.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-
+                setTimeout(function() {
+                    var tab = $('#' + selectedTabId);
+                    var element = $('#about');
+                    var table = $('#' + selectedTabId).DataTable();
+                    if (element.length) {
+                        element[0].scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
                     table.search(nameValue).draw();
-                }
+                }, 100);
             }
         });
-    </script> --}}
+    </script>
 
-    {{-- <script>
-        $('#login').on('submit', function(e) {
-            e.preventDefault();
-            routeLogin = "{{ route('login') }}";
-
-            $.get(routeLogin, function(data) {
-                if (data.nama == $('#username').val() && $('#password').val() == 'nimda') {
-                    $("#login").unbind('submit');
-                    Swal.fire({
-                        title: 'Login Berhasil',
-                        icon: 'success',
-                    });
-                    $("#admin").modal('hide');
-
-                } else {
-                    Swal.fire({
-                        title: 'Login Gagal',
-                        text: "Username atau Password Salah!",
-                        icon: 'error',
-                    })
-                }
-                // alert(data.password);
-                // console.log(data.nama);
-            });
-
-
-            // Swal.fire({
-            //     title: 'Data Tidak Ditemukan',
-            //     text: "NIM/Nama tidak ditemukan",
-            //     icon: 'error',
-            // })
-
-
-            // alert(routeLogin);
-
-        });
-    </script> --}}
 
 
 
