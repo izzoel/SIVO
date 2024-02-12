@@ -143,6 +143,13 @@
                                                     {{ $d->stok <= 0 ? 'disabled' : '' }}>
                                                     <i class='bx bxs-donate-blood'></i>
                                                 </button>
+                                                @auth
+                                                    <button type="button" class="btn btn-success btn-sm"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#restok_cair{{ $d->id }}">
+                                                        <i class='bx bxs-archive-in'></i>
+                                                    </button>
+                                                @endauth
                                             </td>
                                         </tr>
                                     @endforeach
@@ -174,6 +181,13 @@
                                                     {{ $d->stok <= 0 ? 'disabled' : '' }}>
                                                     <i class='bx bxs-donate-blood'></i>
                                                 </button>
+                                                @auth
+                                                    <button type="button" class="btn btn-success btn-sm"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#restok_padat{{ $d->id }}">
+                                                        <i class='bx bxs-archive-in'></i>
+                                                    </button>
+                                                @endauth
                                             </td>
                                         </tr>
                                     @endforeach
@@ -295,7 +309,6 @@
                         <h5 class="modal-title">
                             <a class="btn btn-warning"><b>{{ $m->nama }} </b></a>
                         </h5>
-                        {{-- <h5>Example heading <span class="badge bg-secondary">New</span></h5> --}}
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
@@ -310,6 +323,7 @@
                                         <td><span class="badge bg-primary">{{ $m->stok . ' ml' }}</span></td>
                                         <input type="hidden" name="id" value="{{ $m->id }}">
                                         <input type="hidden" name="stok" value="{{ $m->stok }}">
+                                        <input type="hidden" name="lokas" value="{{ $m->stok }}">
                                     </tr>
                                     <tr>
                                         <td>Lokasi</td>
@@ -334,62 +348,227 @@
                 </div>
             </div>
         </div>
+
+        @auth
+            <div class="modal fade" id="restok_cair{{ $m->id }}" tabindex="-1" aria-labelledby="modalBahanCair"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">
+                                <a class="btn btn-warning"><b>{{ $m->nama }} </b></a>
+                            </h5>
+                            {{-- <h5>Example heading <span class="badge bg-secondary">New</span></h5> --}}
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <form action="{{ route('restokCair', '') . '/' . $m->id }}">
+                            @csrf
+                            <div class="modal-body">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td>Stok</td>
+                                            <td>:</td>
+                                            <td><span class="badge bg-primary">{{ $m->stok . ' ml' }}</span></td>
+                                            <input type="hidden" name="id" value="{{ $m->id }}">
+                                            <input type="hidden" name="stok" value="{{ $m->stok }}">
+                                        </tr>
+                                        <tr>
+                                            <td>Lokasi</td>
+                                            <td>:</td>
+                                            <td>
+                                                <select class="form-select" aria-label="lokasi bahan" name="lokasi">
+                                                    <option disabled>-- pilih lokasi --</option>
+
+                                                    @foreach ($lokasi as $lok)
+                                                        <option value="{{ $lok }}"
+                                                            {{ $lok === $m->lokasi ? 'selected' : '' }}>
+                                                            {{ $lok }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
+                                <div class="row p-2 m-2 mt-0">
+                                    <label for="ambil">Jumlah Penambahan</label>
+                                    <input class="form-control form-control-sm" id="restok{{ $m->id }}"
+                                        name="restok" type="text">
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        @endauth
     @endforeach
+
     @foreach ($dpadat as $n)
         <div class="modal fade" id="padat{{ $n->id }}" tabindex="-1" aria-labelledby="modalBahanCair"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-sm">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">
-                            <a class="btn btn-warning"><b>{{ $n->nama }}</b></a>
+                        <h5 class="modal-title">
+                            <a class="btn btn-warning"><b>{{ $n->nama }} </b></a>
                         </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
+                    <form action="{{ route('takeCair', '') . '/' . $n->id }}">
+                        @csrf
+                        <div class="modal-body">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>Stok</td>
+                                        <td>:</td>
+                                        <td><span class="badge bg-primary">{{ $n->stok . ' ml' }}</span></td>
+                                        <input type="hidden" name="id" value="{{ $n->id }}">
+                                        <input type="hidden" name="stok" value="{{ $n->stok }}">
+                                    </tr>
+                                    <tr>
+                                        <td>Lokasi</td>
+                                        <td>:</td>
+                                        <td><span class="badge bg-secondary">{{ $n->lokasi }}</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
 
-                        <div class="row p-2 m-2 mt-0">
-                            <label for="ambil">Jumlah Pengambilan</label>
-                            <input class="form-control form-control-sm" id="ambil{{ $n->id }}" type="text"
-                                placeholder="">
+
+                            <div class="row p-2 m-2 mt-0">
+                                <label for="ambil">Jumlah Pengambilan</label>
+                                <input class="form-control form-control-sm" id="ambil{{ $n->id }}"
+                                    name="ambil" type="text">
+                            </div>
+
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary btn-sm">Simpan</button>
-                    </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
+
+        @auth
+            <div class="modal fade" id="restok_padat{{ $n->id }}" tabindex="-1"
+                aria-labelledby="modalBahanCair" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">
+                                <a class="btn btn-warning"><b>{{ $n->nama }} </b></a>
+                            </h5>
+                            {{-- <h5>Example heading <span class="badge bg-secondary">New</span></h5> --}}
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <form action="{{ route('restokCair', '') . '/' . $n->id }}">
+                            @csrf
+                            <div class="modal-body">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td>Stok</td>
+                                            <td>:</td>
+                                            <td><span class="badge bg-primary">{{ $n->stok . ' ml' }}</span></td>
+                                            <input type="hidden" name="id" value="{{ $n->id }}">
+                                            <input type="hidden" name="stok" value="{{ $n->stok }}">
+                                        </tr>
+                                        <tr>
+                                            <td>Lokasi</td>
+                                            <td>:</td>
+                                            <td>
+                                                <select class="form-select" aria-label="lokasi bahan" name="lokasi">
+                                                    <option disabled>-- pilih lokasi --</option>
+
+                                                    @foreach ($lokasi as $lok)
+                                                        <option value="{{ $lok }}"
+                                                            {{ $lok === $n->lokasi ? 'selected' : '' }}>
+                                                            {{ $lok }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
+                                <div class="row p-2 m-2 mt-0">
+                                    <label for="ambil">Jumlah Penambahan</label>
+                                    <input class="form-control form-control-sm" id="restok{{ $n->id }}"
+                                        name="restok" type="text">
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        @endauth
     @endforeach
+
 
 
     <div class="modal fade" id="admin" tabindex="-1" aria-labelledby="modalAdmin" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-sm">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">
-                        Login
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form id="login">
-                    <div class="modal-body">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" name="username" id="username"
-                                aria-describedby="username">
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" name="password" id="password">
-                        </div>
+                @guest
+
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">
+                            Login
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary btn-sm">Login</button>
+                    <form id="login" action="{{ route('login') }}">
+                        <div class="modal-body">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Username</label>
+                                <input type="text" class="form-control" name="username" id="username"
+                                    aria-describedby="username">
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" name="password" id="password">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary btn-sm">Login</button>
+                        </div>
+                    </form>
+                @endguest
+                @auth
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">
+                            Login
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                </form>
+                    <form id="login" action="{{ route('logout') }}">
+                        <div class="modal-body">
+                            @csrf
+                            Logout dari akun Admin?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-danger btn-sm">Logout</button>
+                        </div>
+                    </form>
+                @endauth
+
             </div>
         </div>
     </div>
@@ -424,7 +603,32 @@
         new DataTable('#alat');
     </script>
 
+
     <script>
+        var selectedTabId = @json($selectedTabId);
+        var nameValue = @json($nameValue);
+
+        if (selectedTabId) {
+            var tab = $('#' + selectedTabId);
+            var element = $('#about');
+            var table = $('#cair').DataTable();
+            if (tab.length) {
+                tab.click();
+                element[0].scrollIntoView({
+                    behavior: 'smooth'
+                });
+                table.search(nameValue).draw();
+            }
+        }
+    </script>
+
+    <script>
+        alert();
+    </script>
+
+
+
+    {{-- <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Get the selectedTabId from the PHP variable
             var selectedTabId = @json($selectedTabId);
@@ -448,9 +652,9 @@
                 }
             }
         });
-    </script>
+    </script> --}}
 
-    <script>
+    {{-- <script>
         $('#login').on('submit', function(e) {
             e.preventDefault();
             routeLogin = "{{ route('login') }}";
@@ -486,7 +690,7 @@
             // alert(routeLogin);
 
         });
-    </script>
+    </script> --}}
 
 
 

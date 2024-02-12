@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Bahan;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class BahanController extends Controller
 {
@@ -35,89 +37,81 @@ class BahanController extends Controller
     /**
      * Display the specified resource.
      */
+    public function show(bahan $bahan, Request $request)
+    {
+        $cair = Bahan::where('jenis', 'Cair')->get();
+        $padat = Bahan::where('jenis', 'Padat')->get();
+        $alat = Bahan::where('jenis', 'Alat')->get();
+        $lokasi = Bahan::distinct()->pluck('lokasi');
+
+        return view('index')->with(['dcair' => $cair, 'dpadat' => $padat, 'dalat' => $alat, 'selectedTabId'  => 'nav-cair-tab', 'nameValue' => session()->get('nameValue') ?? '', 'lokasi' => $lokasi]);
+    }
+
     public function showCair(bahan $bahan, Request $request)
     {
         $cair = Bahan::where('jenis', 'Cair')->get();
         $padat = Bahan::where('jenis', 'Padat')->get();
         $alat = Bahan::where('jenis', 'Alat')->get();
-
+        $lokasi = Bahan::distinct()->pluck('lokasi');
 
         $nameValue = '';
 
 
 
-        return view('index')->with(['dcair' => $cair, 'dpadat' => $padat, 'dalat' => $alat, 'selectedTabId'  => 'nav-cair-tab', 'nameValue' => $nameValue]);
+        return view('index')->with(['dcair' => $cair, 'dpadat' => $padat, 'dalat' => $alat, 'selectedTabId'  => 'nav-cair-tab', 'nameValue' => $nameValue, 'lokasi' => $lokasi]);
         // dd($users);
     }
 
     public function upCair(bahan $bahan, Request $request)
     {
         $model = [
-            'stok' => $request->stok - $request->ambil,
+            'stok' => max(0, $request->stok - $request->ambil),
+            'lokasi' => ($request->stok - $request->ambil <= 0) ? '-' : Bahan::where('id', $request->id)->value('lokasi')
         ];
 
         Bahan::find($request->id)->update($model);
+
         $bahan = Bahan::find($request->id);
+        Session::put('nameValue', $bahan->nama);
 
-        if ($bahan) {
-            $nameValue = $bahan->nama;
-        }
+        return redirect()->route('show');
+    }
 
-        $cair = Bahan::where('jenis', 'Cair')->get();
-        $padat = Bahan::where('jenis', 'Padat')->get();
-        $alat = Bahan::where('jenis', 'Alat')->get();
+    function restokCair(bahan $bahan, Request $request)
+    {
+        $model = [
+            'stok' => $request->stok + $request->restok,
+            'lokasi' => $request->lokasi
+        ];
 
-        return view('index')->with(['dcair' => $cair, 'dpadat' => $padat, 'dalat' => $alat, 'selectedTabId'  => 'nav-cair-tab', 'nameValue' => $nameValue]);
+        Bahan::find($request->id)->update($model);
+
+        $bahan = Bahan::find($request->id);
+        Session::put('nameValue', $bahan->nama);
+
+        return redirect()->route('show');
     }
 
 
     public function login(Request $request)
     {
-        // $request->validate([
-        //     'username' => 'required',
-        //     'password' => 'required'
-        // ]);
-        // dd($request->all());
-        // return User::all();
-
-        // $user = User::all(); // Retrieve the authenticated user
-
-        // Return a JSON response
-        // return response()->json(User::all());
-        // return response()->json([User::all()]);
-
-        //  $data = User::where('nama', $request->username)->where('prodi', $prodi)->get();
-        //         $d_nim = $data->value('nim');
-        //         $d_nama = $data->value('nama');
-        //         $d_prodi = $data->value('prodi');
-
-        //         $d = [
-        //             'nim' => $d_nim,
-        //             'nama' => $d_nama,
-        //             'prodi' => $d_prodi,
-        //         ];
-        //         return $d;
-
-        $data = User::all();
-        $d_nama = $data->value('name');
-        $d_password = $data->value('password');
-
-        $d = [
-            'nama' => $d_nama,
-            'password' => $d_password
-        ];
-        // return $d;
-
-        return response()->json($d);
+        if (Auth::attempt($request->only('username', 'password'))) {
+            // dd('benar');
+            return redirect()->route('show');
+        } else {
+            // dd('salah');
+            Session::flash('admin', 'Username/Password Salah!');
+            return back();
+        }
     }
-    public function auth(user $user, Request $request)
+    public function logout(Request $request)
     {
-        return response()->json(User::all());
-        // $request->validate([
-        //     'username' => 'required',
-        //     'password' => 'required'
-        // ]);
-        // dd($request->all());
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+        return back();
     }
 
     /**

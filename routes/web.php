@@ -17,8 +17,16 @@ use App\Http\Controllers\BahanController;
 // Route::get('/', function () {
 //     return view('index');
 // });
-
-Route::get('/', [BahanController::class, 'showCair']);
-Route::get('/take/{id}', [BahanController::class, 'upCair'])->name('takeCair');
-Route::get('/login', [BahanController::class, 'login'])->name('login');
-// Route::post('/login', [BahanController::class, 'login'])->name('login');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/admin', [BahanController::class, 'show'])->name('show');
+    Route::get('/logout', [BahanController::class, 'logout'])->name('logout');
+    Route::get('/take/{id}', [BahanController::class, 'upCair'])->name('takeCair');
+    Route::get('/put/{id}', [BahanController::class, 'restokCair'])->name('restokCair');
+});
+Route::group(['middleware' => ['guest']], function () {
+    Route::get('/', [BahanController::class, 'showCair'])->name('home');
+    // Route::get('/take/{id}', [BahanController::class, 'upCair'])->name('takeCair');
+    Route::get('/login', [BahanController::class, 'login'])->name('login');
+    Route::post('/login', [BahanController::class, 'login'])->name('login');
+    // Route::post('/login', [BahanController::class, 'login'])->name('login');
+});
