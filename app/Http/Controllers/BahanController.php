@@ -50,28 +50,28 @@ class BahanController extends Controller
             'dalat' => $alat,
             // 'selectedTabId'  => 'nav-cair-tab',
             'nameValue' => session()->get('nameValue') ?? '',
-            'TabValue' => session()->get('tabValue') ?? 'Bahan Cair',
+            'tabValue' => session()->get('tabValue') ?? 'Bahan Cair',
             'lokasi' => $lokasi
         ]);
     }
 
 
-    public function showCair(bahan $bahan, Request $request)
-    {
-        $cair = Bahan::where('jenis', 'Cair')->get();
-        $padat = Bahan::where('jenis', 'Padat')->get();
-        $alat = Bahan::where('jenis', 'Alat')->get();
-        $lokasi = Bahan::distinct()->pluck('lokasi');
+    // public function showCair(bahan $bahan, Request $request)
+    // {
+    //     $cair = Bahan::where('jenis', 'Cair')->get();
+    //     $padat = Bahan::where('jenis', 'Padat')->get();
+    //     $alat = Bahan::where('jenis', 'Alat')->get();
+    //     $lokasi = Bahan::distinct()->pluck('lokasi');
 
-        $nameValue = '';
+    //     $nameValue = '';
 
 
 
-        return view('index')->with(['dcair' => $cair, 'dpadat' => $padat, 'dalat' => $alat, 'selectedTabId'  => 'nav-cair-tab', 'nameValue' => $nameValue, 'lokasi' => $lokasi]);
-        // dd($users);
-    }
+    //     return view('index')->with(['dcair' => $cair, 'dpadat' => $padat, 'dalat' => $alat, 'selectedTabId'  => 'nav-cair-tab', 'nameValue' => $nameValue, 'lokasi' => $lokasi]);
+    //     // dd($users);
+    // }
 
-    public function upCair(bahan $bahan, Request $request)
+    public function take(bahan $bahan, Request $request)
     {
         $model = [
             'stok' => max(0, $request->stok - $request->ambil),
@@ -84,10 +84,14 @@ class BahanController extends Controller
         Session::put('nameValue', $bahan->nama);
         Session::put('tabValue', $request->tab);
 
-        return redirect()->route('show');
+        if (auth()->check()) {
+            return redirect()->route('admin');
+        } else {
+            return redirect()->route('show');
+        }
     }
 
-    function restokCair(bahan $bahan, Request $request)
+    function restok(bahan $bahan, Request $request)
     {
         $model = [
             'stok' => $request->stok + $request->restok,
@@ -100,7 +104,7 @@ class BahanController extends Controller
         Session::put('nameValue', $bahan->nama);
         Session::put('tabValue', $request->tab);
 
-        return redirect()->route('show');
+        return redirect()->route('admin');
     }
 
 
@@ -108,7 +112,7 @@ class BahanController extends Controller
     {
         if (Auth::attempt($request->only('username', 'password'))) {
             // dd('benar');
-            return redirect()->route('show');
+            return redirect()->route('admin');
         } else {
             // dd('salah');
             Session::flash('admin', 'Username/Password Salah!');

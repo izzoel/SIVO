@@ -30,7 +30,15 @@
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.bootstrap5.min.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        div.dataTables_wrapper div.dataTables_length select {
+            width: 60px;
+            display: inline-block;
+        }
+    </style>
     <!-- =======================================================
   * Template Name: iPortfolio
   * Updated: Nov 17 2023 with Bootstrap v5.3.2
@@ -313,7 +321,11 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
-                    <form action="{{ route('takeCair', '') . '/' . $m->id }}">
+                    {{-- <form action="{{ route('take', '') . '/' . $m->id }}"> --}}
+                    <form
+                        action="{{ auth()->check() ? route('admin_take', ['id' => $m->id]) : route('take', $m->id) }}">
+
+
                         @csrf
                         <div class="modal-body">
                             <table class="table">
@@ -364,7 +376,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
-                        <form action="{{ route('restokCair', '') . '/' . $m->id }}">
+                        <form action="{{ route('restok', '') . '/' . $m->id }}">
                             @csrf
                             <div class="modal-body">
                                 <table class="table">
@@ -425,7 +437,8 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
-                    <form action="{{ route('takeCair', '') . '/' . $n->id }}">
+                    <form
+                        action="{{ auth()->check() ? route('admin_take', ['id' => $m->id]) : route('take', $m->id) }}">
                         @csrf
                         <div class="modal-body">
                             <table class="table">
@@ -475,7 +488,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
-                        <form action="{{ route('restokCair', '') . '/' . $n->id }}">
+                        <form action="{{ route('restok', '') . '/' . $n->id }}">
                             @csrf
                             <div class="modal-body">
                                 <table class="table">
@@ -578,6 +591,62 @@
         </div>
     </div>
 
+    <div class="modal fade" id="add" tabindex="-1" aria-labelledby="modalAdd" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addLabel">
+                        Tambah Baru
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="add">
+                    <div class="modal-body">
+                        @csrf
+                        <div class="row g-3 align-items-center ps-4 pe-4">
+                            <div class="col-4">
+                                <label for="namaBahan" class="col-form-label">Nama Bahan</label>
+                            </div>
+                            <div class="col">
+                                <input type="password" id="namaBahan" class="form-control" </div>
+                            </div>
+                        </div>
+                        <div class="row g-3 mt-1 align-items-center ps-4 pe-4">
+                            <div class="col-4">
+                                <label for="stok" class="col-form-label">Stok</label>
+                            </div>
+                            <div class="col">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="stok">
+                                    <span class="input-group-text" id="basic-addon2">ml</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row g-3 mt-1 align-items-center ps-4 pe-4">
+                            <div class="col-4">
+                                <label class="col-form-label">Lokasi</label>
+                            </div>
+                            <div class="col">
+                                <select class="form-select">
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success btn-sm">Simpan</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
     <a href="/" class="back-to-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-repeat"></i></a>
 
@@ -598,28 +667,104 @@
 
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    {{-- <script src="{{ asset('assets/js/dataTables.buttons.js') }}"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script> --}}
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.bootstrap5.min.js"></script>
+    {{-- <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.colVis.min.js"></script> --}}
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+    {{-- <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script> --}}
+    {{-- <script src="https://cdn.datatables.net/buttons/2.2.9/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.9/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.9/js/buttons.print.min.js"></script> --}}
+
+
+
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    @auth
+        <script>
+            $('#cair').DataTable({
+                dom: 'lBfrtip',
 
-    <script>
-        new DataTable('#padat');
-        new DataTable('#cair');
-        new DataTable('#alat');
-    </script>
+                buttons: [{
+                    text: '+',
+                    className: 'btn-sm btn-dark d-inline-block d-md-inline ms-2',
+                    action: function(e, dt, node, config) {
+                        $('#add').modal('show');
+                    }
+                }, {
+                    extend: 'excel',
+                    className: 'btn-sm btn-success d-inline-block d-md-inline ms-1',
+                    autoFilter: true,
+                    exportOptions: {
+                        columns: ':not(:last-child)' // Exclude the last column (Aksi)
+                    },
+                }, ],
+                responsive: true
+            });
+            $('#padat').DataTable({
+                dom: 'lBfrtip',
+                buttons: [{
+                    text: '+',
+                    className: 'btn-sm btn-dark d-inline-block d-md-inline ms-2',
+                    action: function(e, dt, node, config) {
+                        $('#add').modal('show');
+                    }
+                }, {
+                    extend: 'excel',
+                    className: 'btn-sm btn-success d-inline-block d-md-inline ms-1',
+                    autoFilter: true,
+                    exportOptions: {
+                        columns: ':not(:last-child)' // Exclude the last column (Aksi)
+                    },
+                }, ],
+                responsive: true
+            });
+            $('#alat').DataTable({
+                dom: 'lBfrtip',
+                buttons: [{
+                    text: '+',
+                    className: 'btn-sm btn-dark d-inline-block d-md-inline ms-2',
+                    action: function(e, dt, node, config) {
+                        $('#add').modal('show');
+                    }
+                }, {
+                    extend: 'excel',
+                    className: 'btn-sm btn-success d-inline-block d-md-inline ms-1',
+                    autoFilter: true,
+                    exportOptions: {
+                        columns: ':not(:last-child)' // Exclude the last column (Aksi)
+                    },
+                }, ]
+            });
+        </script>
+    @endauth
 
+    @guest
+        <script>
+            $('#cair').DataTable();
+            $('#padat').DataTable();
+            $('#alat').DataTable();
+        </script>
+    @endguest
     <script>
         $(document).ready(function() {
-            var selectedTabId = @json($TabValue);
+
+            var tabValue = @json($tabValue);
             var nameValue = @json($nameValue);
 
-            if (selectedTabId === @json($TabValue)) {
-                $('#nav-' + selectedTabId + '-tab').tab('show');
+
+            if (tabValue === @json($tabValue)) {
+                $('#nav-' + tabValue + '-tab').tab('show');
 
                 setTimeout(function() {
-                    var tab = $('#' + selectedTabId);
+                    var tab = $('#' + tabValue);
                     var element = $('#about');
-                    var table = $('#' + selectedTabId).DataTable();
+                    var table = $('#' + tabValue).DataTable();
                     if (element.length) {
                         element[0].scrollIntoView({
                             behavior: 'smooth'
