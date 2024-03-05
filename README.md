@@ -21,6 +21,7 @@ Fitur utama SIVO meliputi:
 Dengan SIVO, diharapkan proses manajemen inventaris di Depo Alat Bahan menjadi lebih efisien dan terorganisir.
 
 
+
 ## Laravel Framework
 
 Dikembangkan dengan menggunakan Framework Laravel, proyek ini memanfaatkan keunggulan dan fitur-fitur yang disediakan oleh salah satu framework PHP paling populer saat ini. Laravel menyediakan kerangka kerja yang kuat dan ekstensibel untuk pengembangan aplikasi web, dengan fitur-fitur seperti routing yang elegan, ORM yang kuat, sistem otentikasi yang lengkap, dan banyak lagi. Dengan menggunakan Laravel, pengembang dapat mempercepat pengembangan, meningkatkan produktivitas, dan memastikan aplikasi yang dibangun memiliki dasar yang kuat dan aman. [Laravel Partners program](https://laravel.com).
