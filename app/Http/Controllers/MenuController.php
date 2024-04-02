@@ -6,6 +6,7 @@ use App\Models\menu;
 use App\Models\Bahan;
 use App\Models\Mahasiswa;
 use App\Models\Transaksi;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 
 class MenuController extends Controller
@@ -47,26 +48,27 @@ class MenuController extends Controller
         $biodata = Mahasiswa::find($request->input('data_mahasiswa'));
         $nim = Mahasiswa::where('nim', $request->input('data_mahasiswa'))->pluck('nim')->first();
         $transaksis = Transaksi::where('id_mahasiswa', $nim)->get();
-        // dd($transaksis, $biodata);
+        // $historys = Transaksi::all();
+        $historys = Transaksi::where('id_mahasiswa', $nim)->get();
+        Session::put('nim', $nim);
+
         return view('contents.menu')->with([
-            'dcair' => $cair,
-            'dpadat' => $padat,
+            'cairs' => $cair,
+            'padats' => $padat,
             'dalat' => $alat,
             'jenis' => Bahan::where('jenis', ucfirst(session()->get('tabValue') ?? 'Cair'))->get(),
-            // 'nameValue' => session()->get('nameValue') ?? '',
-            // 'tabValue' => session()->get('tabValue') ?? 'Bahan Cair',
+            'nameValue' => session()->get('nameValue') ?? '',
+            'tabValue' => session()->get('tabValue') ?? 'Bahan Cair',
             'lokasi' => $lokasi,
             'biodata' => $biodata,
             'keperluan' => $request->input('keperluan'),
-            'transaksis' => $transaksis
+            'transaksis' => $transaksis,
+            'historys' => $historys,
+            'nim' => $nim
         ]);
     }
 
-    public function showCair()
-    {
-        $cairs = Bahan::where('jenis', 'Cair')->get();
-        return response()->json($cairs);
-    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -92,8 +94,10 @@ class MenuController extends Controller
         //
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
+        $request->session()->invalidate();
+
         return redirect('/');
     }
 }

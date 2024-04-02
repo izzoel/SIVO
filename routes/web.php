@@ -40,15 +40,21 @@ Route::get('/logbook', [MahasiswaController::class, 'show'])->name('show_mahasis
 Route::post('/import', [MahasiswaController::class, 'import'])->name('import_mahasiswa');
 Route::group(['middleware' => ['guest']], function () {
     // Route::get('/take/{id}', [BahanController::class, 'upCair'])->name('takeCair');
-    Route::get('/take/{id}', [BahanController::class, 'take'])->name('take');
+    // Route::get('/take/{id}', [BahanController::class, 'take'])->name('take');
     Route::post('/take/{id}', [BahanController::class, 'store_take'])->name('store_take');
     Route::get('/login', [BahanController::class, 'login'])->name('login');
     Route::post('/login', [BahanController::class, 'login'])->name('login');
     // Route::post('/login', [BahanController::class, 'login'])->name('login');
 
     Route::post('/menu', [MenuController::class, 'show'])->name('show-menu');
-    Route::get('/cair', [MenuController::class, 'showCair'])->name('show-cair');
+    Route::get('/cair', [BahanController::class, 'showCair'])->name('show-cair');
+    Route::get('/padat', [BahanController::class, 'showPadat'])->name('show-padat');
+
+
+
+    Route::get('/transaksi', [TransaksiController::class, 'showTransaksi'])->name('show-transaksi');
+    Route::get('/history', [TransaksiController::class, 'show'])->name('show-history');
+
     Route::get('/logout', [MenuController::class, 'logout'])->name('logout');
-    Route::get('/transaksi', [TransaksiController::class, 'show'])->name('show-transaksi');
-    // Route::get('/ss', [BahanController::class, 'store_take'])->name('store_take');
+    Route::get('/ss', [TransaksiController::class, 'show']);
 });

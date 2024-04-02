@@ -1,15 +1,15 @@
-@foreach ($dcair as $m)
-    <div class="modal fade modal-cair" id="cair{{ $m->id }}" tabindex="-1">
+@foreach ($cairs as $cair)
+    <div class="modal fade modal-cair" id="cair{{ $cair->id }}" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">
-                        <a class="btn btn-warning"><b>{{ $m->nama }} </b></a>
+                        <a class="btn btn-warning"><b>{{ $cair->nama }} </b></a>
                     </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                <form class="takeForm"
-                    action="{{ auth()->check() ? route('admin_take', ['id' => $m->id]) : route('take', $m->id) }}"
+                <form class="submit-form"
+                    action="{{ auth()->check() ? route('admin_take', ['id' => $cair->id]) : route('store_take', $cair->id) }}"
                     method="POST">
                     @csrf
                     <div class="modal-body">
@@ -18,32 +18,31 @@
                                 <tr>
                                     <td>Stok</td>
                                     <td>:</td>
-                                    <td><span class="badge bg-primary">{{ $m->stok . ' ml' }}</span></td>
-                                    <input type="hidden" name="stok" value="{{ $m->stok }}">
-                                    <input type="hidden" name="lokasi" value="{{ $m->lokasi }}">
-                                    <input type="hidden" name="tab" value="cair">
+                                    <td><span class="badge bg-primary">{{ $cair->stok . ' ml' }}</span></td>
+
                                 </tr>
                                 <tr>
                                     <td>Lokasi</td>
                                     <td>:</td>
-                                    <td><span class="badge bg-secondary">{{ $m->lokasi }}</span></td>
+                                    <td><span class="badge bg-secondary">{{ $cair->lokasi }}</span></td>
                                 </tr>
                             </tbody>
                         </table>
-                        <label for="ambil{{ $m->id }}">Jumlah Pengambilan</label>
+                        <label for="ambil{{ $cair->id }}">Jumlah Pengambilan</label>
                         <div class="input-group">
-                            <input type="text" class="form-control angka" id="ambil{{ $m->id }}"
+                            <input type="text" class="form-control angka" id="ambil{{ $cair->id }}"
                                 placeholder="..." required>
                             <span class="input-group-text">ml</span>
                         </div>
                     </div>
+                    <input type="hidden" name="stok" value="{{ $cair->stok }}">
+                    <input type="hidden" name="lokasi" value="{{ $cair->lokasi }}">
                     <input type="hidden" name="id_bahan">
                     <input type="hidden" name="nim" value="{{ $biodata->nim }}">
                     <input type="hidden" name="tanggal" value="{{ Carbon\Carbon::now() }}">
                     <input type="hidden" name="keperluan" value="{{ $keperluan }}">
                     <input type="hidden" name="ambil">
-
-
+                    <input type="hidden" name="tab">
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary btn-sm" onclick="submitForm()">Simpan</button>
@@ -55,7 +54,7 @@
 
 
     {{-- @auth
-        <div class="modal fade" id="restok_cair{{ $m->id }}" tabindex="-1" aria-labelledby="modalBahanCair"
+        <div class="modal fade" id="restok_cair{{ $cair->id }}" tabindex="-1" aria-labelledby="modalBahanCair"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-sm">
                 <div class="modal-content">

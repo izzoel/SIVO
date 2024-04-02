@@ -48,4 +48,4 @@
 
 @include('scripts.script_tabel')
 
-@include('scripts.script_modal_cair')
+@include('scripts.script_modal_submit')

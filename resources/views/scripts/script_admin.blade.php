@@ -62,52 +62,14 @@
       <script>
           $(document).ready(function() {
 
-              $.ajax({
-                  url: "{{ route('show-cair') }}",
-                  method: "GET",
-                  contentType: 'application/json'
-              }).done(function(data) {
-                  $('#cair').DataTable({
-                      data: data,
-                      columns: [{
-                              data: "nama"
-                          },
-                          {
-                              data: "stok"
-                          },
-                          {
-                              data: "lokasi"
-                          },
-                          {
-                              data: "aksi",
-                              render: function(data, type, row, meta) {
-                                  var disabled = row.stok <= 0 ? 'disabled' : '';
-                                  return '<button type="button" class="btn btn-warning btn-sm button-cair" ' +
-                                      'data-item-id="' + row.id +
-                                      '" data-bs-toggle="modal" data-bs-target="#cair' + row
-                                      .id + '" ' + disabled + '>' +
-                                      '<i class="bx bxs-donate-blood"></i>' + '</button>';
-                              },
-                          },
-                      ]
-                  });
-                  $(".button-cair").click(function() {
-                      var itemId = $(this).data("item-id");
-                      $('.angka').on('keyup', function() {
-                          var ambil = $(this).val();
-                          $('input[name=ambil]').val(ambil);
-                      });
-                      $('input[name="id_bahan"]').val(itemId);
-                  });
-                  $('.modal').on('hidden.bs.modal', function(e) {
-                      location.reload();
-                  });
-              });
+              tabelCair();
+              tabelPadat();
+              $('#nav-' + '{{ $tabValue }}'.toLowerCase() + '-tab').trigger('click');
 
 
-
-              $('#padat').DataTable();
               $('#alat').DataTable();
+              peminjaman();
+
 
               $('#data_mahasiswa').select2({
                   dropdownParent: $("#modal_biodata"),
@@ -120,8 +82,6 @@
                   placeholder: "-- Pilih Keperluan --",
                   minimumResultsForSearch: Infinity // Disable the search box
               });
-
-              peminjaman();
 
               $('#modal_biodata').on('shown.bs.modal', function() {
                   $.ajax({
@@ -152,31 +112,3 @@
       </script>
 
   @endguest
-
-  <script>
-      function peminjaman() {
-          $.ajax({
-              url: "{{ route('show-transaksi') }}",
-              type: 'GET',
-              success: function(response) {
-                  $('#transaksi').empty();
-                  $.each(response, function(index, transaksi) {
-                      const tanggalAmbil = new Date(transaksi.tanggal_ambil);
-                      const options = {
-                          year: 'numeric',
-                          month: 'short',
-                          day: 'numeric'
-                      };
-                      const formattedDate = tanggalAmbil.toLocaleDateString('id-ID', options);
-                      $('#transaksi').append(
-                          `<div class="col-auto"><div class="card-text text-secondary">${formattedDate}</div></div><div class="col"><hr></div><div class="col-auto"><span class="badge rounded-pill bg-primary">${transaksi.keperluan}</span></div>`
-                      );
-                  });
-              },
-              error: function(xhr, status, error) {
-                  // Tangani kesalahan jika terjadi
-                  console.error(xhr.responseText);
-              }
-          });
-      }
-  </script>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
 
 class TransaksiController extends Controller
 {
@@ -34,12 +35,25 @@ class TransaksiController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Transaksi $transaksi)
+    public function showTransaksi(Transaksi $transaksi, Request $request)
     {
-        //
-        $transaksi = Transaksi::all();
+        $transaksi = Transaksi::where('id_mahasiswa', session('nim'))->get();
         return response($transaksi);
     }
+
+    public function show(Transaksi $transaksi, Request $request)
+    {
+        $historys = Transaksi::all();
+
+        return response($historys);
+    }
+    // public function show(Transaksi $transaksi, Request $request)
+    // {
+    //     //
+    //     $transaksi = Transaksi::where('id_mahasiswa', $request->input('data_mahasiswa'))->pluck('id_mahasiswa')->first();
+    //     $transaksi = Transaksi::all();
+    //     return response($transaksi);
+    // }
 
     /**
      * Show the form for editing the specified resource.

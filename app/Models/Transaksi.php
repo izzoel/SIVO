@@ -15,4 +15,14 @@ class Transaksi extends Model
         'tanggal_ambil',
         'keperluan'
     ];
+
+    public function bahan()
+    {
+        return $this->belongsTo(Bahan::class, 'id_bahan');
+    }
+
+    public function mahasiswa()
+    {
+        return $this->belongsTo(Mahasiswa::class, 'id_mahasiswa');
+    }
 }

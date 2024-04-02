@@ -1,4 +1,4 @@
-<header id="header">
+<header id="header" style="z-index: auto">
     <div class="d-flex flex-column">
         <div class="profile text-center">
             <img src="assets/img/profile-img.jpg" alt="" class="img-fluid rounded-circle mx-auto d-block">
@@ -34,7 +34,7 @@
 
     <div class="card">
         <div class="card-header">
-            <span class="btn btn-sm btn-warning"><b>Peminjaman</b></span>
+            <span class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#history"><b>History</b></span>
         </div>
         <div class="card-body">
 
@@ -43,6 +43,5 @@
 
         </div>
     </div>
-
     @include('partials.links')
 </header>
