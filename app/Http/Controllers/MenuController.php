@@ -38,38 +38,37 @@ class MenuController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(bahan $bahan, Request $request)
+
+    public function login(menu $menu, Request $request)
     {
-        $cair = Bahan::where('jenis', 'Cair')->get();
-        $padat = Bahan::where('jenis', 'Padat')->get();
-        $alat = Bahan::where('jenis', 'Alat')->get();
-        $lokasi = Bahan::distinct()->pluck('lokasi');
-
-        $biodata = Mahasiswa::find($request->input('data_mahasiswa'));
         $nim = Mahasiswa::where('nim', $request->input('data_mahasiswa'))->pluck('nim')->first();
-        $transaksis = Transaksi::where('id_mahasiswa', $nim)->get();
-        // $historys = Transaksi::all();
-        $historys = Transaksi::where('id_mahasiswa', $nim)->get();
-        Session::put('nim', $nim);
 
-        return view('contents.menu')->with([
-            'cairs' => $cair,
-            'padats' => $padat,
-            'dalat' => $alat,
-            'jenis' => Bahan::where('jenis', ucfirst(session()->get('tabValue') ?? 'Cair'))->get(),
-            'nameValue' => session()->get('nameValue') ?? '',
-            'tabValue' => session()->get('tabValue') ?? 'Bahan Cair',
-            'lokasi' => $lokasi,
-            'biodata' => $biodata,
-            'keperluan' => $request->input('keperluan'),
-            'transaksis' => $transaksis,
-            'historys' => $historys,
-            'nim' => $nim
-        ]);
+        $biodata = Mahasiswa::find($nim);
+
+        session()->put('nim', $nim);
+        session()->put('nama', $biodata->nama);
+        session()->put('prodi', $biodata->prodi);
+        session()->put('keperluan', $request->input('keperluan'));
+
+        // dd($request->all(), session('nim'), session('nama'), session('keperluan'));
+        return redirect()->route('show-menu');
     }
 
 
+    public function show()
+    {
+        $nim = session('nim');
+        $nama = session('nama');
+        $prodi = session('prodi');
+        $keperluan = session('keperluan');
 
+        $cairs = Bahan::where('jenis', 'Cair')->get();
+        $padats = Bahan::where('jenis', 'Padat')->get();
+        $alats = Bahan::where('jenis', 'Alat')->get();
+
+        // dd(session('nim'), session('keperluan'));
+        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'cairs', 'padats', 'alats'));
+    }
     /**
      * Show the form for editing the specified resource.
      */

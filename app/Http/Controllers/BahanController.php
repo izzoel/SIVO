@@ -78,7 +78,7 @@ class BahanController extends Controller
 
     public function take(bahan $bahan, Request $request)
     {
-        // dd($request->all());
+
         $model = [
             'stok' => max(0, $request->stok - $request->ambil),
             'lokasi' => ($request->stok - $request->ambil <= 0) ? '-' : Bahan::where('id', $request->id)->value('lokasi')
@@ -88,7 +88,7 @@ class BahanController extends Controller
             'id_bahan' => $request->id,
             'jumlah_ambil' => $request->ambil,
             'id_mahasiswa' => $request->nim,
-            'tanggal_ambil' => $request->tanggal,
+            'tanggal' => $request->tanggal,
             'keperluan' => $request->keperluan
         ];
 
@@ -109,10 +109,10 @@ class BahanController extends Controller
 
     public function store_take(Request $request)
     {
-        // dd('asds');
         $stok = Bahan::where('id', $request->id_bahan)->value('stok');
-
         $id_bahan = Bahan::where('id', $request->id_bahan)->value('id');
+
+        Session::put('tab', $request->tab);
 
         $model = [
             'stok' => max(0, $stok - $request->ambil),
@@ -122,8 +122,36 @@ class BahanController extends Controller
         $create = [
             'id_bahan' => $request->id_bahan,
             'jumlah_ambil' => $request->ambil,
+            'jumlah_kembali' => $request->kembali,
+            'id_mahasiswa' => session('nim'),
+            'tanggal' => $request->tanggal,
+            'keperluan' => session('keperluan')
+        ];
+
+        // dd($create, $model);
+        Bahan::find($id_bahan)->update($model);
+        Transaksi::create($create);
+
+        // dd(session('nim'), session('nama'), session('prodi'), session('tab'), $create);
+        return back();
+    }
+    public function store_put(Request $request)
+    {
+        // dd('asds');
+        $stok = Bahan::where('id', $request->id_bahan)->value('stok');
+
+        $id_bahan = Bahan::where('id', $request->id_bahan)->value('id');
+
+        $model = [
+            'stok' => $stok - $request->ambil,
+            'lokasi' => ($stok - $request->ambil <= 0) ? '-' : Bahan::where('id', $request->id_bahan)->value('lokasi')
+        ];
+
+        $create = [
+            'id_bahan' => $request->id_bahan,
+            'jumlah_ambil' => $request->ambil,
             'id_mahasiswa' => $request->nim,
-            'tanggal_ambil' => $request->tanggal,
+            'tanggal' => $request->tanggal,
             'keperluan' => $request->keperluan
         ];
 

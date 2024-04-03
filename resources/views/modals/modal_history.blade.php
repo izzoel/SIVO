@@ -8,14 +8,19 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <table id="tabel_history" class="table table-striped table-bordered" style="width:100%">
+                <table id="tabel_history" class="table table-striped table-bordered"
+                    style="width:100%; text-align: center;">
                     <thead>
                         <tr>
-                            <th>Tanggal</th>
-                            <th>Nama Bahan</th>
-                            <th>Jenis</th>
-                            <th>Jumlah</th>
-                            <th>Keperluan</th>
+                            <th style="text-align: center; vertical-align: middle;" rowspan="2">Tanggal</th>
+                            <th style="text-align: center; vertical-align: middle;" rowspan="2"">Nama Bahan</th>
+                            <th style="text-align: center; vertical-align: middle;" rowspan="2"">Jenis</th>
+                            <th style="text-align: center;" colspan="2">Jumlah</th>
+                            <th style="text-align: center; vertical-align: middle;" rowspan="2"">Keperluan</th>
+                        </tr>
+                        <tr>
+                            <th style="text-align: center;">Ambil</th>
+                            <th style="text-align: center;">Kembali</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -27,6 +32,7 @@
                                 </td>
                                 <td>{{ $history->bahan->jenis }}</td>
                                 <td>{{ $history->jumlah_ambil }}</td>
+                                <td>{{ $history->jumlah_kembali }}</td>
                                 <td>{{ $history->keperluan }}</td>
                             </tr>
                         @endforeach

@@ -2,7 +2,8 @@
     <div class="d-flex flex-column">
         <div class="profile text-center">
             <img src="assets/img/profile-img.jpg" alt="" class="img-fluid rounded-circle mx-auto d-block">
-            <h4 class="text-light"><a>{{ $biodata->nama }}</a> <a href="{{ route('logout') }}"
+            {{-- <img src="https://api.dicebear.com/8.x/bottts/svg" alt="Avatar"> --}}
+            <h4 class="text-light"><a>{{ $nama }}</a> <a href="{{ route('logout') }}"
                     class="btn btn-sm btn-danger"><i class="bx bx-power-off"></i></a></h4>
             <span class="badge rounded-pill bg-primary">{{ $keperluan }}</span>
         </div>
@@ -16,7 +17,7 @@
         </div>
         <div class="col-md-auto">
             <div class="text-white p-3 pb-1" disabled> <span class="badge rounded-pill"
-                    style="background-color: chocolate">{{ $biodata->nim }}</span></div>
+                    style="background-color: chocolate">{{ session('nim') }}</span></div>
         </div>
     </div>
     <div class="row pe-4 pb-4">
@@ -28,7 +29,7 @@
         </div>
         <div class="col-md-auto">
             <div class="text-white p-3" disabled><span
-                    class="badge rounded-pill bg-success">{{ $biodata->prodi }}</span></div>
+                    class="badge rounded-pill bg-success">{{ session('prodi') }}</span></div>
         </div>
     </div>
 

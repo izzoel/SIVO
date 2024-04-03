@@ -64,7 +64,7 @@
 
               tabelCair();
               tabelPadat();
-              $('#nav-' + '{{ $tabValue }}'.toLowerCase() + '-tab').trigger('click');
+              $('#nav-' + "{{ session('tab') }}".toLowerCase() + '-tab').trigger('click');
 
 
               $('#alat').DataTable();

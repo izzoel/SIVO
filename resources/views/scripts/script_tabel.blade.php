@@ -22,13 +22,13 @@
                             var disabled = row.stok <= 0 ? 'disabled' : '';
                             return '<button type="button" class="btn btn-warning btn-sm button-cair me-3" ' +
                                 'data-item-id="' + row.id + '" data-jenis="' + row.jenis +
-                                '" data-bs-toggle="modal" data-bs-target="#cair' + row
+                                '" data-bs-toggle="modal" data-bs-target="#take_cair' + row
                                 .id + '" ' + disabled + '>' +
                                 '<i class="bx bxs-donate-blood"></i>' + '</button>' +
 
-                                '<button type="button" class="btn btn-success btn-sm" ' +
+                                '<button type="button" class="btn btn-success btn-sm button-cair" ' +
                                 'data-item-id="' + row.id + '" data-jenis="' + row.jenis +
-                                '" data-bs-toggle="modal" data-bs-target="#restok_cair' + row
+                                '" data-bs-toggle="modal" data-bs-target="#put_cair' + row
                                 .id + '" >' +
                                 '<i class="bx bxs-archive-in"></i>' + '</button>';
                         },
