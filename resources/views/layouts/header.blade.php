@@ -39,8 +39,7 @@
         </div>
         <div class="card-body">
 
-            <div class="row" style="overflow-y: auto; max-height: 120px;" id="transaksi">
-            </div>
+            <div class="row" style="overflow-y: auto; max-height: 120px;" id="list-history"></div>
 
         </div>
     </div>

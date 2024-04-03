@@ -19,7 +19,6 @@
                                     <td>Stok</td>
                                     <td>:</td>
                                     <td><span class="badge bg-primary">{{ $cair->stok . ' ml' }}</span></td>
-
                                 </tr>
                                 <tr>
                                     <td>Lokasi</td>
@@ -30,7 +29,7 @@
                         </table>
                         <label for="ambil{{ $cair->id }}">Jumlah Pengambilan</label>
                         <div class="input-group">
-                            <input type="text" class="form-control angka" id="ambil{{ $cair->id }}"
+                            <input type="text" class="form-control take-angka" id="ambil{{ $cair->id }}"
                                 placeholder="..." required>
                             <span class="input-group-text">ml</span>
                         </div>
@@ -42,7 +41,7 @@
                     <input type="hidden" name="tanggal" value="{{ Carbon\Carbon::now() }}">
                     <input type="hidden" name="keperluan" value="{{ $keperluan }}">
                     <input type="hidden" name="ambil">
-                    <input type="hidden" name="kembali" value="0">
+                    <input type="hidden" name="kembali">
                     <input type="hidden" name="tab">
 
                     <div class="modal-footer">
@@ -64,7 +63,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <form class="submit-form"
-                    action="{{ auth()->check() ? route('admin_put', ['id' => $cair->id]) : route('store_put', $cair->id) }}"
+                    action="{{ route('store_put', $cair->id) }}"
                     method="POST">
                     @csrf
                     <div class="modal-body">
@@ -74,7 +73,6 @@
                                     <td>Stok</td>
                                     <td>:</td>
                                     <td><span class="badge bg-primary">{{ $cair->stok . ' ml' }}</span></td>
-
                                 </tr>
                                 <tr>
                                     <td>Lokasi</td>
@@ -83,9 +81,9 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <label for="ambil{{ $cair->id }}">Jumlah Pengembalian</label>
+                        <label for="jumlah{{ $cair->id }}">Jumlah Pengembalian</label>
                         <div class="input-group">
-                            <input type="text" class="form-control angka" id="ambil{{ $cair->id }}"
+                            <input type="text" class="form-control put-angka" id="jumlah{{ $cair->id }}"
                                 placeholder="..." required>
                             <span class="input-group-text">ml</span>
                         </div>
@@ -101,7 +99,8 @@
                     <input type="hidden" name="tab">
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary btn-sm" onclick="submitForm()">Simpan</button>
+                        <button type="submit" class="btn btn-primary btn-sm" ">Simpan</button>
+                        {{-- <button type="button" class="btn btn-primary btn-sm" onclick="submitForm()">Simpan</button> --}}
                     </div>
                 </form>
             </div>
@@ -162,4 +161,4 @@
             </div>
         </div>
     @endauth --}}
- @endforeach
+@endforeach

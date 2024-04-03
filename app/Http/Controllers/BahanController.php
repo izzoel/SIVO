@@ -137,45 +137,31 @@ class BahanController extends Controller
     }
     public function store_put(Request $request)
     {
-        // dd('asds');
         $stok = Bahan::where('id', $request->id_bahan)->value('stok');
-
         $id_bahan = Bahan::where('id', $request->id_bahan)->value('id');
 
+        Session::put('tab', $request->tab);
+
         $model = [
-            'stok' => $stok - $request->ambil,
-            'lokasi' => ($stok - $request->ambil <= 0) ? '-' : Bahan::where('id', $request->id_bahan)->value('lokasi')
+            'stok' => $stok + $request->kembali,
+            'lokasi' => ($stok - $request->kembali <= 0) ? '-' : Bahan::where('id', $request->id_bahan)->value('lokasi')
         ];
 
         $create = [
             'id_bahan' => $request->id_bahan,
             'jumlah_ambil' => $request->ambil,
-            'id_mahasiswa' => $request->nim,
+            'jumlah_kembali' => $request->kembali,
+            'id_mahasiswa' => session('nim'),
             'tanggal' => $request->tanggal,
-            'keperluan' => $request->keperluan
+            'keperluan' => session('keperluan')
         ];
 
         Bahan::find($id_bahan)->update($model);
         Transaksi::create($create);
 
-        Session::put('tabValue', $request->tab);
+        return back();
     }
 
-    function restok(bahan $bahan, Request $request)
-    {
-        $model = [
-            'stok' => $request->stok + $request->restok,
-            'lokasi' => $request->lokasi
-        ];
-
-        Bahan::find($request->id)->update($model);
-
-        $bahan = Bahan::find($request->id);
-        Session::put('nameValue', $bahan->nama);
-        Session::put('tabValue', $request->tab);
-
-        return redirect()->route('admin');
-    }
 
     public function login(Request $request)
     {

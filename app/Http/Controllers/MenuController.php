@@ -39,20 +39,7 @@ class MenuController extends Controller
      * Display the specified resource.
      */
 
-    public function login(menu $menu, Request $request)
-    {
-        $nim = Mahasiswa::where('nim', $request->input('data_mahasiswa'))->pluck('nim')->first();
 
-        $biodata = Mahasiswa::find($nim);
-
-        session()->put('nim', $nim);
-        session()->put('nama', $biodata->nama);
-        session()->put('prodi', $biodata->prodi);
-        session()->put('keperluan', $request->input('keperluan'));
-
-        // dd($request->all(), session('nim'), session('nama'), session('keperluan'));
-        return redirect()->route('show-menu');
-    }
 
 
     public function show()
@@ -65,9 +52,10 @@ class MenuController extends Controller
         $cairs = Bahan::where('jenis', 'Cair')->get();
         $padats = Bahan::where('jenis', 'Padat')->get();
         $alats = Bahan::where('jenis', 'Alat')->get();
+        $historys = Transaksi::all();
 
         // dd(session('nim'), session('keperluan'));
-        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'cairs', 'padats', 'alats'));
+        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'cairs', 'padats', 'alats', 'historys'));
     }
     /**
      * Show the form for editing the specified resource.
@@ -91,6 +79,21 @@ class MenuController extends Controller
     public function destroy(menu $menu)
     {
         //
+    }
+
+    public function login(menu $menu, Request $request)
+    {
+        $nim = Mahasiswa::where('nim', $request->input('data_mahasiswa'))->pluck('nim')->first();
+
+        $biodata = Mahasiswa::find($nim);
+
+        session()->put('nim', $nim);
+        session()->put('nama', $biodata->nama);
+        session()->put('prodi', $biodata->prodi);
+        session()->put('keperluan', $request->input('keperluan'));
+
+        // dd($request->all(), session('nim'), session('nama'), session('keperluan'));
+        return redirect()->route('show-menu');
     }
 
     public function logout(Request $request)

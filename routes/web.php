@@ -59,7 +59,7 @@ Route::group(['middleware' => ['guest']], function () {
     Route::get('/cair', [BahanController::class, 'showCair'])->name('show-cair');
     Route::get('/padat', [BahanController::class, 'showPadat'])->name('show-padat');
 
-    Route::get('/transaksi', [TransaksiController::class, 'showTransaksi'])->name('show-transaksi');
+    Route::get('/transaksi', [TransaksiController::class, 'show'])->name('show-transaksi');
     Route::get('/history', [TransaksiController::class, 'show'])->name('show-history');
 
     Route::get('/logout', [MenuController::class, 'logout'])->name('logout');

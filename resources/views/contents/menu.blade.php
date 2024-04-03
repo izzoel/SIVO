@@ -6,7 +6,7 @@
 
     <main id="main">
         <section id="about">
-            <div class="container">
+            <div class="container-fluid">
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                         <button class="nav-link active" id="nav-cair-tab" data-bs-toggle="tab" data-bs-target="#nav-cair"
@@ -22,13 +22,13 @@
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-cair" role="tabpanel">
                         <div class="row m-2 p-3" data-aos="fade-up">
-                            <table id="cair" class="table table-striped tabca" style="width:100%">
+                            <table id="cair" class="table table-striped" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>Nama Bahan Cair</th>
                                         <th>Stok</th>
-                                        <th>Lokasi</th>
-                                        <th>Aksi</th>
+                                        <th class="col-2">Lokasi</th>
+                                        <th class="col-3">Aksi</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -42,8 +42,8 @@
                                     <tr>
                                         <th>Nama Bahan Padat</th>
                                         <th>Stok</th>
-                                        <th>Lokasi</th>
-                                        <th>Aksi</th>
+                                        <th class="col-2">Lokasi</th>
+                                        <th class="col-3">Aksi</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -58,7 +58,7 @@
                                         <th>Nama Alat</th>
                                         <th>Stok</th>
                                         <th>Lokasi</th>
-                                        <th>Aksi</th>
+                                        <th class="col-md-2">Aksi</th>
                                     </tr>
                                 </thead>
 
@@ -70,7 +70,7 @@
         </section>
 
     </main>
-    {{-- @include('modals.modal_history') --}}
+    @include('modals.modal_history')
     @include('modals.modal_cair')
     @include('modals.modal_padat')
 

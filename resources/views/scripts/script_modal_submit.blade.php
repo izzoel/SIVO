@@ -25,13 +25,13 @@
 
     function peminjaman() {
         $.ajax({
-            url: "{{ route('show-transaksi') }}",
+            url: "{{ route('show-history') }}",
             type: 'GET',
             success: function(response) {
                 const formattedDates = new Set();
-                $('#transaksi').empty();
+                $('#list-history').empty();
                 response.forEach(transaksi => {
-                    const tanggalAmbil = new Date(transaksi.tanggal_ambil);
+                    const tanggalAmbil = new Date(transaksi.tanggal);
                     const options = {
                         year: 'numeric',
                         month: 'short',
@@ -42,7 +42,7 @@
                         'bg-success';
                     if (!formattedDates.has(formattedDate)) {
                         formattedDates.add(formattedDate);
-                        $('#transaksi').append(
+                        $('#list-history').append(
                             `<div class="col-auto"><div class="card-text text-secondary">${formattedDate}</div></div><div class="col"><hr></div><div class="col-auto"><span class="badge rounded-pill ${className}">${transaksi.keperluan}</span></div>`
                         );
                     }

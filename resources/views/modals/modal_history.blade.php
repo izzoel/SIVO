@@ -8,8 +8,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <table id="tabel_history" class="table table-striped table-bordered"
-                    style="width:100%; text-align: center;">
+                <table id="tabel_history" class="table table-striped ta" style="width:100%; text-align: center;">
                     <thead>
                         <tr>
                             <th style="text-align: center; vertical-align: middle;" rowspan="2">Tanggal</th>
@@ -26,7 +25,7 @@
                     <tbody>
                         @foreach ($historys as $history)
                             <tr>
-                                <td>{{ $history->tanggal_ambil }}</td>
+                                <td>{{ $history->tanggal }}</td>
                                 <td>
                                     {{ $history->bahan->nama }}
                                 </td>
