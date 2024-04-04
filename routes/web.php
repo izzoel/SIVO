@@ -34,7 +34,8 @@ Route::group(['middleware' => ['auth']], function () {
     // });
 });
 // Route::post('/', [BahanController::class, 'show'])->name('show');
-Route::any('/', [BahanController::class, 'show'])->name('show');
+// Route::any('/', [BahanController::class, 'show'])->name('show');
+Route::any('/', [MenuController::class, 'landing'])->name('landing');
 // Route::get('/', [MahasiswaController::class, 'show'])->name('show_mahasiswa');
 Route::get('/logbook', [MahasiswaController::class, 'show'])->name('show_mahasiswa');
 Route::post('/import', [MahasiswaController::class, 'import'])->name('import_mahasiswa');

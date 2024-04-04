@@ -62,13 +62,14 @@
       <script>
           $(document).ready(function() {
 
+
               tabelCair();
               tabelPadat();
               $('#nav-' + "{{ session('tab') }}".toLowerCase() + '-tab').trigger('click');
 
 
               $('#alat').DataTable();
-              peminjaman();
+              //   history();
 
 
               $('#data_mahasiswa').select2({
@@ -110,5 +111,4 @@
               });
           });
       </script>
-
   @endguest

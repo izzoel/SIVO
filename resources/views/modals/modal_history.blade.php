@@ -32,7 +32,11 @@
                                 <td>{{ $history->bahan->jenis }}</td>
                                 <td>{{ $history->jumlah_ambil }}</td>
                                 <td>{{ $history->jumlah_kembali }}</td>
-                                <td>{{ $history->keperluan }}</td>
+                                <td>
+                                    <span
+                                        class="badge rounded-pill {{ $history->keperluan === 'Praktikum' ? 'bg-primary' : 'bg-success' }}">{{ $history->keperluan }}
+                                    </span>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

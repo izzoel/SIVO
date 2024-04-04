@@ -23,7 +23,7 @@
 
     }
 
-    function peminjaman() {
+    function history() {
         $.ajax({
             url: "{{ route('show-history') }}",
             type: 'GET',
@@ -31,13 +31,13 @@
                 const formattedDates = new Set();
                 $('#list-history').empty();
                 response.forEach(transaksi => {
-                    const tanggalAmbil = new Date(transaksi.tanggal);
+                    const tanggal = new Date(transaksi.tanggal);
                     const options = {
                         year: 'numeric',
                         month: 'short',
                         day: 'numeric'
                     };
-                    const formattedDate = tanggalAmbil.toLocaleDateString('id-ID', options);
+                    const formattedDate = tanggal.toLocaleDateString('id-ID', options);
                     const className = transaksi.keperluan === 'Praktikum' ? 'bg-primary' :
                         'bg-success';
                     if (!formattedDates.has(formattedDate)) {
@@ -46,6 +46,7 @@
                             `<div class="col-auto"><div class="card-text text-secondary">${formattedDate}</div></div><div class="col"><hr></div><div class="col-auto"><span class="badge rounded-pill ${className}">${transaksi.keperluan}</span></div>`
                         );
                     }
+
 
                 });
             },

@@ -52,7 +52,7 @@ class MenuController extends Controller
         $cairs = Bahan::where('jenis', 'Cair')->get();
         $padats = Bahan::where('jenis', 'Padat')->get();
         $alats = Bahan::where('jenis', 'Alat')->get();
-        $historys = Transaksi::all();
+        $historys = Transaksi::where('id_mahasiswa', $nim)->get();
 
         // dd(session('nim'), session('keperluan'));
         return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'cairs', 'padats', 'alats', 'historys'));
@@ -81,6 +81,11 @@ class MenuController extends Controller
         //
     }
 
+    function landing()
+    {
+        return view('landing');
+    }
+
     public function login(menu $menu, Request $request)
     {
         $nim = Mahasiswa::where('nim', $request->input('data_mahasiswa'))->pluck('nim')->first();
@@ -98,8 +103,11 @@ class MenuController extends Controller
 
     public function logout(Request $request)
     {
+        // Auth::logout();
+
         $request->session()->invalidate();
 
+        $request->session()->regenerateToken();
         return redirect('/');
     }
 }

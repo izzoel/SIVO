@@ -1,3 +1,7 @@
+@php
+    $badgeClass = $keperluan == 'Praktikum' ? 'bg-primary' : 'bg-success';
+@endphp
+
 <header id="header" style="z-index: auto">
     <div class="d-flex flex-column">
         <div class="profile text-center">
@@ -5,7 +9,7 @@
             {{-- <img src="https://api.dicebear.com/8.x/bottts/svg" alt="Avatar"> --}}
             <h4 class="text-light"><a>{{ $nama }}</a> <a href="{{ route('logout') }}"
                     class="btn btn-sm btn-danger"><i class="bx bx-power-off"></i></a></h4>
-            <span class="badge rounded-pill bg-primary">{{ $keperluan }}</span>
+            <span class="badge rounded-pill {{ $badgeClass }}">{{ $keperluan }}</span>
         </div>
     </div>
     <div class="row pe-4 pt-4">
@@ -39,7 +43,21 @@
         </div>
         <div class="card-body">
 
-            <div class="row" style="overflow-y: auto; max-height: 120px;" id="list-history"></div>
+            <div class="row" style="overflow-y: auto; max-height: 120px;" id="list-history">
+                @foreach ($historys as $history)
+                    <div class="col-auto">
+                        <div class="card-text text-secondary">{{ substr($history->tanggal, 0, 10) }}</div>
+                    </div>
+                    <div class="col">
+                        <hr>
+                    </div>
+                    <div class="col-auto">
+                        <span
+                            class="badge rounded-pill {{ $history->keperluan === 'Praktikum' ? 'bg-primary' : 'bg-success' }}">{{ $history->keperluan }}
+                        </span>
+                    </div>
+                @endforeach
+            </div>
 
         </div>
     </div>
