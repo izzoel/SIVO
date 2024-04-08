@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 @include('layouts.header')
 
 <body>
 
     <main id="main">
-
         <section id="about">
             <div class="container-fluid">
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                         <button class="nav-link active" id="nav-cair-tab" data-bs-toggle="tab" data-bs-target="#nav-cair"
-                            type="button" role="tab"">Bahan
+                            type="button" role="tab">Bahan
                             Cair</button>
                         <button class=" nav-link" id="nav-padat-tab" data-bs-toggle="tab" data-bs-target="#nav-padat"
                             type="button" role="tab" aria-selected="false">Bahan&nbsp;Padat</button>
@@ -85,27 +85,23 @@
     @include('modals.modal_alat')
 
 
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up"></i></a>
+    <a href="/" class="back-to-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-repeat"></i></a>
 
-    <footer id="footer" style="z-index: auto">
+    <footer id="footer">
         <div class="container">
             <div class="copyright">
-                {{-- &copy; Copyright <strong><span>iPortfolio</span></strong> --}}
+                <button type="button" class="btn btn-warning">
+                    <strong><span>[ Versi BETA ]</span></strong>
+                </button>
+                </p>
             </div>
             <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/ -->
                 Designed by <a href="https://izzoel.github.io/"
                     style="text-decoration: none; color: #d2691e;"><b>zetware</b> </a>@2024
             </div>
         </div>
-    </footer><!-- End  Footer -->
-
-    @include('partials.scripts')
-
-</body>
+    </footer>
+    < @include('partials.scripts') </body>
 
 </html>

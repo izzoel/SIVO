@@ -1,4 +1,13 @@
+<head>
+    @include('partials.links')
+</head>
+
 <header id="header" style="z-index: auto">
+    @if (auth()->check())
+        <title>SIVO | Admin Panel</title>
+    @else
+        <title>SIVO | Menu</title>
+    @endif
     <div class="d-flex flex-column">
         <div class="profile text-center">
             <img src="assets/avatars/{{ session('avatar') }}.png" alt=""
@@ -75,5 +84,5 @@
 
         </div>
     </div>
-    @include('partials.links')
+
 </header>

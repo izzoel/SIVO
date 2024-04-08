@@ -6,6 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <title>SIVO | Sistem Informasi Inventaris Depo</title>
+    <link rel="shortcut icon" type="image/jpg" href="assets/img/favicon.png" />
     <meta content="" name="description">
     <meta content="" name="keywords">
 
