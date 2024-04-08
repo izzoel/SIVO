@@ -8,7 +8,6 @@ use App\Models\Mahasiswa;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
 class MenuController extends Controller
 {
@@ -96,11 +95,12 @@ class MenuController extends Controller
         $nim = Mahasiswa::where('nim', $request->input('data_mahasiswa'))->pluck('nim')->first();
 
         $biodata = Mahasiswa::find($nim);
-
+        $avatar = substr($biodata->nim, -1);
         session()->put('nim', $nim);
         session()->put('nama', $biodata->nama);
         session()->put('prodi', $biodata->prodi);
         session()->put('keperluan', $request->input('keperluan'));
+        session()->put('avatar', $avatar);
 
         // dd($request->all(), session('nim'), session('nama'), session('keperluan'));
         return redirect()->route('show-menu');
@@ -113,6 +113,9 @@ class MenuController extends Controller
             session()->put('nama', 'ADMIN');
             session()->put('prodi', 'UNIVERSAL');
             session()->put('keperluan', 'Inventaris');
+            session()->put('avatar', 'admin');
+
+
             return redirect()->route('show-menu');
         }
     }

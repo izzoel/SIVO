@@ -1,7 +1,12 @@
 <header id="header" style="z-index: auto">
     <div class="d-flex flex-column">
         <div class="profile text-center">
-            <img src="assets/img/profile-img.jpg" alt="" class="img-fluid rounded-circle mx-auto d-block">
+            <img src="assets/avatars/{{ session('avatar') }}.png" alt=""
+                class="img-fluid rounded-circle mx-auto d-block">
+            {{-- <img src="{{ Avatar::create(session('nama'))->toSvg() }}" class="img-fluid rounded-circle mx-auto d-block" /> --}}
+            {{-- <img src="{{ Avatar::create(session('nama'))->toGravatar() }}" alt=""> --}}
+            {{-- <img src="{{ Avatar::create(session('nama'))->setFontFamily('Laravolt')->toSvg() }}" alt=""> --}}
+            {{-- <img src="https://api.dicebear.com/8.x/bottts/svg" alt=""> --}}
             {{-- <img src="https://api.dicebear.com/8.x/bottts/svg" alt="Avatar"> --}}
             <h4 class="text-light"><a>{{ $nama }}</a> <a href="{{ route('logout') }}"
                     class="btn btn-sm btn-danger"><i class="bx bx-power-off"></i></a></h4>

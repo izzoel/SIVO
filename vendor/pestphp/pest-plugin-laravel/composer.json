@@ -13,8 +13,8 @@
     "license": "MIT",
     "require": {
         "php": "^8.1.0",
-        "laravel/framework": "^10.18.0|^11.0",
-        "pestphp/pest": "^2.13.0"
+        "laravel/framework": "^10.44.0|^11.0",
+        "pestphp/pest": "^2.33.6"
     },
     "autoload": {
         "psr-4": {
@@ -30,9 +30,9 @@
         }
     },
     "require-dev": {
-        "laravel/dusk": "^7.9.3",
-        "orchestra/testbench": "^8.6.3",
-        "pestphp/pest-dev-tools": "^2.14.0"
+        "laravel/dusk": "^7.12.3",
+        "orchestra/testbench": "^8.21.1|^9.0.0",
+        "pestphp/pest-dev-tools": "^2.16.0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -48,15 +48,22 @@
             "providers": [
                 "Pest\\Laravel\\PestServiceProvider"
             ]
+        },
+        "pest": {
+            "plugins": [
+                "Pest\\Laravel\\Plugin"
+            ]
         }
     },
     "scripts": {
         "lint": "pint",
         "test:lint": "pint --test",
-        "test:unit": "pest --colors=always",
+        "test:unit": "pest --colors=always --exclude-group=options",
+        "test:unit:options": "pest --colors=always --group=options --without-exception-handling --without-deprecation-handling",
         "test": [
             "@test:lint",
-            "@test:unit"
+            "@test:unit",
+            "@test:unit:options"
         ]
     }
 }

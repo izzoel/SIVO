@@ -32,11 +32,18 @@
                 success: function(response) {
                     $('#data_mahasiswa').empty();
 
-                    $.each(response, function(index, value) {
-                        $('#data_mahasiswa').append('<option value="' + value.nim +
-                            '">' + value
-                            .nim + ' - ' + value.nama + '</option>');
+                    // Filter out options where 'nama' contains 'ADMIN' (case insensitive)
+                    var filteredData = response.filter(function(item) {
+                        return item.nama.toUpperCase().indexOf('ADMIN') === -1;
                     });
+
+                    // Append non-admin options to the select element
+                    $.each(filteredData, function(index, value) {
+                        $('#data_mahasiswa').append('<option value="' + value.nim +
+                            '">' + value.nim + ' - ' + value.nama + '</option>');
+                    });
+
+                    // Reinitialize Select2
                     $('#data_mahasiswa').select2('destroy');
                     $('#data_mahasiswa').select2({
                         dropdownParent: $("#modal_biodata"),
@@ -49,5 +56,6 @@
                 }
             });
         });
+
     }
 </script>

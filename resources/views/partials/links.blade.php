@@ -35,6 +35,8 @@
 <link rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
 
+<link href="https://fonts.googleapis.com/css?family=Laravolt" rel="stylesheet">
+
 <style>
     div.dataTables_wrapper div.dataTables_length select {
         width: 60px;
@@ -45,5 +47,10 @@
         height: 40px;
         border-right: 1px solid #000;
         margin: 0 10px;
+    }
+
+    @font-face {
+        font-family: Laravolt;
+        src: url({{ asset('fonts/laravolt.woff') }});
     }
 </style>
