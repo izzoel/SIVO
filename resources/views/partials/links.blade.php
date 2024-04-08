@@ -17,11 +17,13 @@
 
 <!-- Template Main CSS File -->
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/css/jquery.dataTables.min.css') }}">
+{{-- <link rel="stylesheet" href="{{ asset('assets/css/jquery.dataTables.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/dataTables.bootstrap5.min.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/css/buttons.bootstrap5.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/buttons.bootstrap5.min.css') }}"> --}}
 
 <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+
+<link rel="stylesheet" href="{{ asset('assets/css/datatables.min.css') }}">
 
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <!-- Styles -->

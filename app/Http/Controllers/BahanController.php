@@ -39,31 +39,6 @@ class BahanController extends Controller
     /**
      * Display the specified resource.
      */
-    // public function show(bahan $bahan, Request $request)
-    // {
-    //     $cair = Bahan::where('jenis', 'Cair')->get();
-    //     $padat = Bahan::where('jenis', 'Padat')->get();
-    //     $alat = Bahan::where('jenis', 'Alat')->get();
-    //     $lokasi = Bahan::distinct()->pluck('lokasi');
-
-    //     // $mahasiswas = Mahasiswa::all();
-    //     // dd($mahasiswas);
-    //     // dd(session()->get('tabValue') ?? 'cair');
-    //     // $jenis = Bahan::where('jenis', ucfirst(session()->get('tabValue') ?? 'Cair'))->get();
-    //     // dd(session()->get('tabValue') ?? 'cair');
-    //     return view('landing')->with([
-    //         'dcair' => $cair,
-    //         'dpadat' => $padat,
-    //         'dalat' => $alat,
-    //         'jenis' => Bahan::where('jenis', ucfirst(session()->get('tabValue') ?? 'Cair'))->get(),
-    //         // 'selectedTabId'  => 'nav-cair-tab',
-    //         // 'nameValue' => session()->get('nameValue') ?? '',
-    //         'tabValue' => session()->get('tabValue') ?? 'Bahan Cair',
-    //         'lokasi' => $lokasi,
-    //         // 'mahasiswas' => $mahasiswas
-
-    //     ]);
-    // }
 
     public function showCair()
     {
@@ -75,39 +50,13 @@ class BahanController extends Controller
         $padats = Bahan::where('jenis', 'Padat')->get();
         return response()->json($padats);
     }
+    public function showAlat()
+    {
+        $alats = Bahan::where('jenis', 'Alat')->get();
+        return response()->json($alats);
+    }
 
-    // public function take(bahan $bahan, Request $request)
-    // {
-
-    //     $model = [
-    //         'stok' => max(0, $request->stok - $request->ambil),
-    //         'lokasi' => ($request->stok - $request->ambil <= 0) ? '-' : Bahan::where('id', $request->id)->value('lokasi')
-    //     ];
-
-    //     $create = [
-    //         'id_bahan' => $request->id,
-    //         'jumlah_ambil' => $request->ambil,
-    //         'id_mahasiswa' => $request->nim,
-    //         'tanggal' => $request->tanggal,
-    //         'keperluan' => $request->keperluan
-    //     ];
-
-    //     Bahan::find($request->id)->update($model);
-    //     Transaksi::create($create);
-
-    //     $bahan = Bahan::find($request->id);
-    //     Session::put('nameValue', $bahan->nama);
-    //     Session::put('tabValue', $request->tab);
-    //     Session::put('nim', $request->nim);
-
-    //     if (auth()->check()) {
-    //         return redirect()->route('admin');
-    //     } else {
-    //         return back();
-    //     }
-    // }
-
-    public function store_take(Request $request)
+    public function storeTake(Request $request)
     {
         $stok = Bahan::where('id', $request->id_bahan)->value('stok');
         $id_bahan = Bahan::where('id', $request->id_bahan)->value('id');
@@ -122,7 +71,6 @@ class BahanController extends Controller
         $history_tanggal = Transaksi::whereDate('tanggal', '>=', substr($request->tanggal, 0, 10) . ' 00:00:00')
             ->whereDate('tanggal', '<=', substr($request->tanggal, 0, 10) . ' 23:59:59')->where('id_bahan', $request->id_bahan)->where('keperluan', session('keperluan'))
             ->get();
-
 
         if ($history_tanggal->isEmpty()) {
             $create = [
@@ -142,9 +90,11 @@ class BahanController extends Controller
                 'tanggal' => $request->tanggal
             ];
 
-            // dd($update);
-
-            Transaksi::where('id_bahan', $history_tanggal->pluck('id_bahan'))->where('keperluan', $history_tanggal->pluck('keperluan'))->update($update);
+            // $tanggal = date('Y-m', strtotime($request->tanggal));
+            // $model['tanggal'] = $tanggal;
+            // dd($model['tanggal']);
+            // dd($history_tanggal->pluck('id_bahan')->first(), $history_tanggal->pluck('keperluan')->first());
+            Transaksi::where('id_bahan', $history_tanggal->pluck('id_bahan')->first())->where('keperluan', $history_tanggal->pluck('keperluan')->first())->update($update);
             // dd($t);
             // Transaksi::where('id_bahan', $history_tanggal->pluck('id_bahan'))->where('keperluan', $history_tanggal->pluck('keperluan'))->update($update);
         }
@@ -153,7 +103,7 @@ class BahanController extends Controller
 
         return back();
     }
-    public function store_put(Request $request)
+    public function storePut(Request $request)
     {
         $stok = Bahan::where('id', $request->id_bahan)->value('stok');
         $id_bahan = Bahan::where('id', $request->id_bahan)->value('id');
@@ -168,7 +118,7 @@ class BahanController extends Controller
         $history_tanggal = Transaksi::whereDate('tanggal', '>=', substr($request->tanggal, 0, 10) . ' 00:00:00')
             ->whereDate('tanggal', '<=', substr($request->tanggal, 0, 10) . ' 23:59:59')->where('id_bahan', $request->id_bahan)->where('keperluan', session('keperluan'))
             ->get();
-
+        // dd($history_tanggal);
         if ($history_tanggal->isEmpty()) {
             // dd('create');
             $create = [
@@ -189,7 +139,7 @@ class BahanController extends Controller
                 'tanggal' => $request->tanggal
             ];
 
-            Transaksi::where('id_bahan', $history_tanggal->pluck('id_bahan'))->update($update);
+            Transaksi::where('id_bahan', $history_tanggal->pluck('id_bahan'))->where('keperluan', $history_tanggal->pluck('keperluan'))->update($update);
         }
 
         Bahan::find($id_bahan)->update($model);
@@ -197,27 +147,6 @@ class BahanController extends Controller
         return back();
     }
 
-
-    // public function login(Request $request)
-    // {
-    //     if (Auth::attempt($request->only('username', 'password'))) {
-    //         // dd('benar');
-    //         return redirect()->route('admin');
-    //     } else {
-    //         // dd('salah');
-    //         Session::flash('admin', 'Username/Password Salah!');
-    //         return back();
-    //     }
-    // }
-    // public function logout(Request $request)
-    // {
-    //     Auth::logout();
-
-    //     $request->session()->invalidate();
-
-    //     $request->session()->regenerateToken();
-    //     return back();
-    // }
 
     /**
      * Show the form for editing the specified resource.

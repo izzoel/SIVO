@@ -6,8 +6,9 @@ use App\Models\menu;
 use App\Models\Bahan;
 use App\Models\Mahasiswa;
 use App\Models\Transaksi;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class MenuController extends Controller
 {
@@ -53,9 +54,13 @@ class MenuController extends Controller
         $padats = Bahan::where('jenis', 'Padat')->get();
         $alats = Bahan::where('jenis', 'Alat')->get();
         $historys = Transaksi::where('id_mahasiswa', $nim)->get();
+        $history_admins = Transaksi::all();
+        $rekaps = Transaksi::selectRaw('id_bahan, MONTH(tanggal) as bulan, SUM(jumlah_ambil) as ambil,SUM(jumlah_kembali) as kembali, keperluan')
+            ->groupBy('id_bahan', 'bulan', 'keperluan')
+            ->get();
 
         // dd(session('nim'), session('keperluan'));
-        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'cairs', 'padats', 'alats', 'historys'));
+        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'cairs', 'padats', 'alats', 'historys', 'history_admins', 'rekaps'));
     }
     /**
      * Show the form for editing the specified resource.
@@ -86,7 +91,7 @@ class MenuController extends Controller
         return view('landing');
     }
 
-    public function login(menu $menu, Request $request)
+    public function logbook(menu $menu, Request $request)
     {
         $nim = Mahasiswa::where('nim', $request->input('data_mahasiswa'))->pluck('nim')->first();
 
@@ -100,14 +105,25 @@ class MenuController extends Controller
         // dd($request->all(), session('nim'), session('nama'), session('keperluan'));
         return redirect()->route('show-menu');
     }
+    public function login(Menu $menu, Request $request)
+    {
+        $credentials = $request->only('username', 'password');
+        if (auth()->attempt($credentials)) {
+            session()->put('nim', '∞');
+            session()->put('nama', 'ADMIN');
+            session()->put('prodi', 'UNIVERSAL');
+            session()->put('keperluan', 'Inventaris');
+            return redirect()->route('show-menu');
+        }
+    }
 
     public function logout(Request $request)
     {
-        // Auth::logout();
+        Auth::logout();
 
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
-        return redirect('/');
+        return redirect()->route('landing');
     }
 }

@@ -1,7 +1,3 @@
-@php
-    $badgeClass = $keperluan == 'Praktikum' ? 'bg-primary' : 'bg-success';
-@endphp
-
 <header id="header" style="z-index: auto">
     <div class="d-flex flex-column">
         <div class="profile text-center">
@@ -9,7 +5,8 @@
             {{-- <img src="https://api.dicebear.com/8.x/bottts/svg" alt="Avatar"> --}}
             <h4 class="text-light"><a>{{ $nama }}</a> <a href="{{ route('logout') }}"
                     class="btn btn-sm btn-danger"><i class="bx bx-power-off"></i></a></h4>
-            <span class="badge rounded-pill {{ $badgeClass }}">{{ $keperluan }}</span>
+            <span
+                class="badge rounded-pill  {{ $keperluan === 'Praktikum' ? 'bg-primary' : ($keperluan === 'Penelitian' ? 'bg-success' : 'bg-danger') }}">{{ $keperluan }}</span>
         </div>
     </div>
     <div class="row pe-4 pt-4">
@@ -39,23 +36,35 @@
 
     <div class="card">
         <div class="card-header">
-            <span class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#history"><b>History</b></span>
+            <span class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#history"><i
+                    class='bx bx-history'></i><b> History</b></span>
+            @auth
+                <span class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#rekap"><i
+                        class='bx bx-spreadsheet'></i><b> Rekap</b></span>
+
+            @endauth
         </div>
         <div class="card-body">
 
             <div class="row" style="overflow-y: auto; max-height: 120px;" id="list-history">
-                @foreach ($historys as $history)
-                    <div class="col-auto">
-                        <div class="card-text text-secondary">{{ substr($history->tanggal, 0, 10) }}</div>
-                    </div>
-                    <div class="col">
-                        <hr>
-                    </div>
-                    <div class="col-auto">
-                        <span
-                            class="badge rounded-pill {{ $history->keperluan === 'Praktikum' ? 'bg-primary' : 'bg-success' }}">{{ $history->keperluan }}
-                        </span>
-                    </div>
+                @php($historyMap = [])
+                @foreach ($historys->sortByDesc('tanggal') as $history)
+                    @if (!isset($historyMap[$history->keperluan]))
+                        @php($historyMap[$history->keperluan] = true)
+                        <div class="col-auto">
+                            <div class="card-text text-secondary">
+                                {{ \Carbon\Carbon::parse($history->tanggal)->translatedFormat('d F Y') }}
+                            </div>
+                        </div>
+                        <div class="col">
+                            <hr>
+                        </div>
+                        <div class="col-auto">
+                            <span
+                                class="badge rounded-pill  {{ $history->keperluan === 'Praktikum' ? 'bg-primary' : ($history->keperluan === 'Penelitian' ? 'bg-success' : 'bg-danger') }}">{{ $history->keperluan }}
+                            </span>
+                        </div>
+                    @endif
                 @endforeach
             </div>
 
