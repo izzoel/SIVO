@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\menu;
+use App\Models\Menu;
 use App\Models\Bahan;
 use App\Models\Mahasiswa;
 use App\Models\Transaksi;

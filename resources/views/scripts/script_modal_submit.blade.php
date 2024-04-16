@@ -1,27 +1,27 @@
 <script>
-    function submitForm() {
+    // function submitForm() {
 
-        $.ajax({
-            url: $('.submit-form').attr('action'),
-            type: 'POST',
-            data: $('.submit-form').serialize(),
-            success: function(response) {
-                peminjaman();
-                $('.modal-cair').modal('hide');
-                $('.modal-padat').modal('hide');
-                $('.modal-backdrop').remove();
+    //     $.ajax({
+    //         url: $('.submit-form').attr('action'),
+    //         type: 'POST',
+    //         data: $('.submit-form').serialize(),
+    //         success: function(response) {
+    //             peminjaman();
+    //             $('.modal-cair').modal('hide');
+    //             $('.modal-padat').modal('hide');
+    //             $('.modal-backdrop').remove();
 
-                $('.modal').on('hidden.bs.modal', function(e) {
-                    location.reload();
-                });
-            },
-            error: function(xhr) {
-                console.error(xhr.responseText);
-            }
-        });
+    //             $('.modal').on('hidden.bs.modal', function(e) {
+    //                 location.reload();
+    //             });
+    //         },
+    //         error: function(xhr) {
+    //             console.error(xhr.responseText);
+    //         }
+    //     });
 
 
-    }
+    // }
 
     function modalBiodata() {
         $('#modal_biodata').on('shown.bs.modal', function() {
@@ -58,28 +58,4 @@
         });
 
     }
-
-    $('#input_bahan, #import_bahan').on('change', function() {
-        if ($('#input_bahan').is(':checked')) {
-            var html = '';
-            // $('#nama').attr('name', 'nama');
-            $('#import').hide('fast');
-            $('#submit_import').hide('fast');
-            $('#input').show('fast');
-
-            html =
-                '<div class="mb-3"><label for="nama" class="form-label">Nama Bahan</label><input type="text" class="form-control" id="nama"></div>';
-
-            $('#input').append(html);
-        } else {
-            // $('#nama').attr('name', '');
-            $('#import').show('fast');
-            $('#submit_import').show('fast');
-            $('#submit_bahan').hide('fast');
-            $('#input').hide('fast');
-            $('#input').html("");
-        }
-        var html = '';
-        $('#input').append(html);
-    });
 </script>

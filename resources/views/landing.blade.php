@@ -53,15 +53,71 @@
     @include('modals.modal_biodata')
     @include('modals.modal_admin')
 
-    @include('partials.scripts')
+    <script src="{{ asset('assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
+    <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
+    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+    {{-- <script src="{{ asset('assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script> --}}
+    <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/typed.js/typed.umd.js') }}"></script>
+    {{-- <script src="{{ asset('assets/vendor/waypoints/noframework.waypoints.js') }}"></script> --}}
+    {{-- <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script> --}}
 
+    <!-- Template Main JS File -->
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/table.js') }}"></script> --}}
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="{{ asset('assets/js/dataTables.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
 
+    <script>
+        $('#data_mahasiswa').select2({
+            dropdownParent: $("#modal_biodata"),
+            theme: 'bootstrap-5',
+            placeholder: "-- Cari Mahasiswa --"
+        });
+        $('#keperluan').select2({
+            dropdownParent: $("#modal_biodata"),
+            theme: 'bootstrap-5',
+            placeholder: "-- Pilih Keperluan --",
+            minimumResultsForSearch: Infinity // Disable the search box
+        });
 
+        $('#modal_biodata').on('shown.bs.modal', function() {
+            $.ajax({
+                url: "{{ route('show_mahasiswa') }}",
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    $('#data_mahasiswa').empty();
 
+                    // Filter out options where 'nama' contains 'ADMIN' (case insensitive)
+                    var filteredData = response.filter(function(item) {
+                        return item.nama.toUpperCase().indexOf('ADMIN') === -1;
+                    });
 
+                    // Append non-admin options to the select element
+                    $.each(filteredData, function(index, value) {
+                        $('#data_mahasiswa').append('<option value="' + value.nim +
+                            '">' + value.nim + ' - ' + value.nama + '</option>');
+                    });
 
-
-
+                    // Reinitialize Select2
+                    $('#data_mahasiswa').select2('destroy');
+                    $('#data_mahasiswa').select2({
+                        dropdownParent: $("#modal_biodata"),
+                        theme: 'bootstrap-5',
+                        placeholder: "-- Cari Mahasiswa --"
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        });
+    </script>
 
 </body>
 

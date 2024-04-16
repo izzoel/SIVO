@@ -6,8 +6,9 @@ use App\Models\User;
 use App\Models\Bahan;
 use App\Models\Mahasiswa;
 use App\Models\Transaksi;
-use App\Imports\BahanImport;
+use App\Imports\FirstSheet;
 use Illuminate\Http\Request;
+use App\Imports\BahanImports;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Session;
@@ -43,12 +44,13 @@ class BahanController extends Controller
         ];
 
         Bahan::create($create);
+        return back();
     }
 
     public function import(Request $request)
     {
-        // dd($request->file('excel'));
-        Excel::import(new BahanImport(), request()->file('excel'));
+        Excel::import(new FirstSheet, $request->file('excel'));
+        return back();
     }
     /**
      * Display the specified resource.

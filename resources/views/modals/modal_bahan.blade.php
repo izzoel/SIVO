@@ -9,34 +9,32 @@
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            <form id="form_bahan" enctype="multipart/form-data">
-                @csrf
-                <div class="modal-body">
 
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="input_bahan" id="import_bahan"
-                                    checked>
-                                <label class="form-check-label text-dark" for="import_bahan">
-                                    Import Excel
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="input_bahan" id="input_bahan">
-                                <label class="form-check-label text-dark" for="input_bahan">
-                                    Input Bahan
-                                </label>
-                            </div>
+            <div class="container-fluid">
+                <div class="row mt-3 ps-3">
+                    <div class="col">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="input_bahan" id="import_bahan" checked>
+                            <label class="form-check-label text-dark" for="import_bahan">
+                                Import Excel
+                            </label>
                         </div>
                     </div>
+                    <div class="col">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="input_bahan" id="input_bahan">
+                            <label class="form-check-label text-dark" for="input_bahan">
+                                Input Bahan
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-
+            <form id="form_import" action="{{ route('import-bahan') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body">
                     <div class="mt-3" id="import">
-                        {{-- <input type="text" name="id_bahan" id="">
-                        <input type="file" name="excel" id=""> --}}
                         <input class="form-control" type="file" id="import_excel" name="excel" accept=".xlsx">
                         <div id="import_excel" class="form-text">
                             <a href="#"><strong>[template.xlsx]</strong></a>
@@ -48,9 +46,21 @@
                             </i>
                         </div>
                     </div>
+                </div>
 
-                    <div class="mt-3" id="input" style="display: none">
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary btn-sm" id="import_button">Import</button>
+                </div>
+            </form>
 
+            <form id="form_submit" action="{{ route('store-bahan') }}" method="POST" style="display: none">
+                @csrf
+                <div class="modal-body">
+                    <div class="mt-3" id="input">
+                        <div class="mb-3">
+                            <label for="nama" class="form-label">Nama Bahan</label>
+                            <input type="text" class="form-control" id="nama" name="nama">
+                        </div>
                         <div class="mb-3">
                             <label for="jenis" class="form-label">Jenis</label>
                             <select class="form-select" id="jenis" name="jenis">
@@ -64,7 +74,7 @@
                             <label for="stok" class="form-label">Stok</label>
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" id="stok" placeholder="..."
-                                    oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '');" name="stok">
                                 <span class="input-group-text d-none" id="gr">gr</span>
                                 <span class="input-group-text d-none" id="pcs">pcs</span>
                                 <span class="input-group-text" id="ml">ml</span>
@@ -86,13 +96,10 @@
                             </select>
                         </div>
                     </div>
-
-
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary btn-sm" onclick="store_bahan()">Simpan</button>
-                    <button type="submit" class="btn btn-primary btn-sm" id="submit_import">Import</button>
+                    <button type="submit" class="btn btn-primary btn-sm" id="submit_button">Simpan</button>
                 </div>
             </form>
 
