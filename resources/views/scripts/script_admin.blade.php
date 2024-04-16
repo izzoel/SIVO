@@ -4,7 +4,9 @@
         tabelPadat();
         tabelAlat();
         tabelRekap();
+        tabelHistory();
 
+        // bahan();
         $('#nav-' + "{{ session('tab') }}".toLowerCase() + '-tab').trigger('click');
 
 

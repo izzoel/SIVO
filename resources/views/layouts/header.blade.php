@@ -12,11 +12,6 @@
         <div class="profile text-center">
             <img src="assets/avatars/{{ session('avatar') }}.png" alt=""
                 class="img-fluid rounded-circle mx-auto d-block">
-            {{-- <img src="{{ Avatar::create(session('nama'))->toSvg() }}" class="img-fluid rounded-circle mx-auto d-block" /> --}}
-            {{-- <img src="{{ Avatar::create(session('nama'))->toGravatar() }}" alt=""> --}}
-            {{-- <img src="{{ Avatar::create(session('nama'))->setFontFamily('Laravolt')->toSvg() }}" alt=""> --}}
-            {{-- <img src="https://api.dicebear.com/8.x/bottts/svg" alt=""> --}}
-            {{-- <img src="https://api.dicebear.com/8.x/bottts/svg" alt="Avatar"> --}}
             <h4 class="text-light"><a>{{ $nama }}</a> <a href="{{ route('logout') }}"
                     class="btn btn-sm btn-danger"><i class="bx bx-power-off"></i></a></h4>
             <span
@@ -50,13 +45,18 @@
 
     <div class="card">
         <div class="card-header">
-            <span class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#history"><i
-                    class='bx bx-history'></i><b> History</b></span>
-            @auth
-                <span class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#rekap"><i
-                        class='bx bx-spreadsheet'></i><b> Rekap</b></span>
 
-            @endauth
+            <div class="btn-group btn-group-sm" role="group">
+                <span class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#modal_history"><i
+                        class='bx bx-history'></i><b> History</b></span>
+                @auth
+                    <span class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#modal_rekap"><i
+                            class='bx bx-spreadsheet'></i><b> Rekap</b></span>
+                    <span class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modal_bahan"><i
+                            class='bx bxs-vial'></i><b> Bahan</b></span>
+                @endauth
+            </div>
+
         </div>
         <div class="card-body">
 

@@ -192,28 +192,30 @@
         });
     }
 
-    $('#tabel_history').DataTable({
-        language: {
-            "lengthMenu": "Tampilkan _MENU_ baris per halaman",
-            "info": "Menampilkan _START_ ke _END_ dari _TOTAL_ baris",
-            "search": "Cari:",
-        },
-        "lengthMenu": [
-            [10, 25, 50, 100, -1],
-            [10, 25, 50, 100, "Semua"]
-        ],
-        columnDefs: [{
-            targets: 0,
-            orderData: [0],
-            orderable: false,
-            createdCell: function(td, cellData, rowData, row, col) {
-                $(td).attr('data-order', rowData[0]);
-            }
-        }],
-        order: [
-            [0, 'desc']
-        ]
-    });
+    function tabelHistory() {
+        $('#tabel_history').DataTable({
+            language: {
+                "lengthMenu": "Tampilkan _MENU_ baris per halaman",
+                "info": "Menampilkan _START_ ke _END_ dari _TOTAL_ baris",
+                "search": "Cari:",
+            },
+            "lengthMenu": [
+                [10, 25, 50, 100, -1],
+                [10, 25, 50, 100, "Semua"]
+            ],
+            columnDefs: [{
+                targets: 0,
+                orderData: [0],
+                orderable: false,
+                createdCell: function(td, cellData, rowData, row, col) {
+                    $(td).attr('data-order', rowData[0]);
+                }
+            }],
+            order: [
+                [0, 'desc']
+            ]
+        });
+    }
 
     function tabelRekap() {
         var rekap = $('#tabel_rekap').DataTable({

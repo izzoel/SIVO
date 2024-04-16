@@ -58,7 +58,6 @@ class MenuController extends Controller
             ->groupBy('id_bahan', 'bulan', 'keperluan')
             ->get();
 
-        // dd(session('nim'), session('keperluan'));
         return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'cairs', 'padats', 'alats', 'historys', 'history_admins', 'rekaps'));
     }
     /**
@@ -102,7 +101,6 @@ class MenuController extends Controller
         session()->put('keperluan', $request->input('keperluan'));
         session()->put('avatar', $avatar);
 
-        // dd($request->all(), session('nim'), session('nama'), session('keperluan'));
         return redirect()->route('show-menu');
     }
     public function login(Menu $menu, Request $request)
@@ -117,6 +115,8 @@ class MenuController extends Controller
 
 
             return redirect()->route('show-menu');
+        } else {
+            return redirect()->back();
         }
     }
 

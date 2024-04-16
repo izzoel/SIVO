@@ -24,9 +24,10 @@ Route::get('/logbook', [MahasiswaController::class, 'show'])->name('show_mahasis
 Route::post('/logbook', [MenuController::class, 'logbook'])->name('logbook');
 
 Route::post('/login', [MenuController::class, 'login'])->name('login');
-// Route::post('/import', [MahasiswaController::class, 'import'])->name('import_mahasiswa');
 
 Route::middleware('check.user.activity')->group(function () {
+    Route::post('/import', [BahanController::class, 'import'])->name('import-bahan');
+    Route::post('/store', [BahanController::class, 'store'])->name('store-bahan');
 
     Route::get('/cair', [BahanController::class, 'showCair'])->name('show-cair');
     Route::get('/padat', [BahanController::class, 'showPadat'])->name('show-padat');

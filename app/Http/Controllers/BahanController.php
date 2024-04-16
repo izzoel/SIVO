@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Bahan;
 use App\Models\Mahasiswa;
 use App\Models\Transaksi;
-use App\Models\User;
+use App\Imports\BahanImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Session;
 
 class BahanController extends Controller
@@ -33,9 +35,21 @@ class BahanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $create = [
+            'nama' => $request->nama,
+            'stok' => $request->stok,
+            'lokasi' => $request->lokasi,
+            'jenis' => $request->jenis
+        ];
+
+        Bahan::create($create);
     }
 
+    public function import(Request $request)
+    {
+        // dd($request->file('excel'));
+        Excel::import(new BahanImport(), request()->file('excel'));
+    }
     /**
      * Display the specified resource.
      */
@@ -89,14 +103,7 @@ class BahanController extends Controller
                 'jumlah_ambil' => $jumlah_ambil + $request->ambil,
                 'tanggal' => $request->tanggal
             ];
-
-            // $tanggal = date('Y-m', strtotime($request->tanggal));
-            // $model['tanggal'] = $tanggal;
-            // dd($model['tanggal']);
-            // dd($history_tanggal->pluck('id_bahan')->first(), $history_tanggal->pluck('keperluan')->first());
             Transaksi::where('id_bahan', $history_tanggal->pluck('id_bahan')->first())->where('keperluan', $history_tanggal->pluck('keperluan')->first())->update($update);
-            // dd($t);
-            // Transaksi::where('id_bahan', $history_tanggal->pluck('id_bahan'))->where('keperluan', $history_tanggal->pluck('keperluan'))->update($update);
         }
 
         Bahan::find($id_bahan)->update($model);
@@ -118,9 +125,7 @@ class BahanController extends Controller
         $history_tanggal = Transaksi::whereDate('tanggal', '>=', substr($request->tanggal, 0, 10) . ' 00:00:00')
             ->whereDate('tanggal', '<=', substr($request->tanggal, 0, 10) . ' 23:59:59')->where('id_bahan', $request->id_bahan)->where('keperluan', session('keperluan'))
             ->get();
-        // dd($history_tanggal);
         if ($history_tanggal->isEmpty()) {
-            // dd('create');
             $create = [
                 'id_bahan' => $request->id_bahan,
                 'jumlah_ambil' => $request->ambil,
@@ -132,7 +137,6 @@ class BahanController extends Controller
 
             Transaksi::create($create);
         } else {
-            // dd('update');
             $jumlah_kembali = $history_tanggal->first()->jumlah_kembali;
             $update = [
                 'jumlah_kembali' => $jumlah_kembali + $request->kembali,

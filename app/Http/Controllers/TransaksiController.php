@@ -47,13 +47,6 @@ class TransaksiController extends Controller
 
         return response($historys);
     }
-    // public function show(Transaksi $transaksi, Request $request)
-    // {
-    //     //
-    //     $transaksi = Transaksi::where('id_mahasiswa', $request->input('data_mahasiswa'))->pluck('id_mahasiswa')->first();
-    //     $transaksi = Transaksi::all();
-    //     return response($transaksi);
-    // }
 
     /**
      * Show the form for editing the specified resource.

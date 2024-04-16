@@ -75,18 +75,19 @@
 
     </main>
 
-    @auth
-        @include('modals.modal_rekap')
-    @endauth
-
     @include('modals.modal_history')
     @include('modals.modal_cair')
     @include('modals.modal_padat')
     @include('modals.modal_alat')
 
+    @auth
+        @include('modals.modal_rekap')
+        @include('modals.modal_bahan')
+        @include('modals.modal_lokasi')
+    @endauth
 
     <a href="/" class="back-to-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-repeat"></i></a>
+            class="bi bi-arrow-up"></i></a>
 
     <footer id="footer">
         <div class="container">

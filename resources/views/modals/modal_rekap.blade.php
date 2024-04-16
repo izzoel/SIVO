@@ -1,4 +1,4 @@
-<div class="modal fade" id="rekap" tabindex="-1">
+<div class="modal fade" id="modal_rekap" tabindex="-1">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
