@@ -19,9 +19,6 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
 
 
-
-
-
 @include('scripts.script_admin')
 
 @include('scripts.script_tabel')
