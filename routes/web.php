@@ -25,28 +25,21 @@ Route::post('/logbook', [MenuController::class, 'logbook'])->name('logbook');
 
 Route::post('/login', [MenuController::class, 'login'])->name('login');
 
-Route::middleware('check.user.activity')->group(function () {
-    Route::post('/import', [BahanController::class, 'import'])->name('import-bahan');
-    Route::post('/store', [BahanController::class, 'store'])->name('store-bahan');
+Route::get('/cair', [BahanController::class, 'showCair'])->name('show-cair');
+Route::get('/padat', [BahanController::class, 'showPadat'])->name('show-padat');
+Route::get('/alat', [BahanController::class, 'showAlat'])->name('show-alat');
 
-    Route::get('/cair', [BahanController::class, 'showCair'])->name('show-cair');
-    Route::get('/padat', [BahanController::class, 'showPadat'])->name('show-padat');
-    Route::get('/alat', [BahanController::class, 'showAlat'])->name('show-alat');
+Route::post('/take/{id}', [BahanController::class, 'storeTake'])->name('store_take');
+Route::post('/put/{id}', [BahanController::class, 'storePut'])->name('store_put');
 
-    // Route::group(['middleware' => ['guest']], function () {
+Route::get('/menu', [MenuController::class, 'show'])->name('show-menu');
+Route::post('/menu', [MenuController::class, 'show'])->name('show-menu');
 
-    Route::post('/take/{id}', [BahanController::class, 'storeTake'])->name('store_take');
-    Route::post('/put/{id}', [BahanController::class, 'storePut'])->name('store_put');
-
-    Route::get('/menu', [MenuController::class, 'show'])->name('show-menu');
-    Route::post('/menu', [MenuController::class, 'show'])->name('show-menu');
-
-    Route::get('/transaksi', [TransaksiController::class, 'show'])->name('show-transaksi');
-    Route::get('/history', [TransaksiController::class, 'show'])->name('show-history');
+Route::get('/transaksi', [TransaksiController::class, 'show'])->name('show-transaksi');
+Route::get('/history', [TransaksiController::class, 'show'])->name('show-history');
 
 
-    Route::get('/logout', [MenuController::class, 'logout'])->name('logout');
+Route::get('/logout', [MenuController::class, 'logout'])->name('logout');
 
-    // Route::get('/ss', [BahanController::class, 'showAlat']);
-});
-// });
+Route::post('/import', [BahanController::class, 'import'])->name('import-bahan');
+Route::post('/store', [BahanController::class, 'store'])->name('store-bahan');
