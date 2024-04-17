@@ -6,19 +6,15 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <title>SIVO | Sistem Informasi Inventaris Depo</title>
-    {{-- <link rel="shortcut icon" type="image/jpg" href="{{ asset('assets/img/favicon.png') }}" /> --}}
 
 
     <meta content="" name="description">
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    {{-- <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
-    <link href="{{ asset('assets/img/sivo.png') }}" rel="sivo"> --}}
-
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/img/apple-touch-icon.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/img/favicon-32x32.png') }} ">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/favicon-16x16.png') }} ">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/img/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/favicon-16x16.png') }}">
     <link rel="manifest" href="{{ asset('assets/img/site.webmanifest') }} ">
 
     <!-- Google Fonts -->
