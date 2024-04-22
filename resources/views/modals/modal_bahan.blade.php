@@ -37,7 +37,8 @@
                     <div class="mt-3" id="import">
                         <input class="form-control" type="file" id="import_excel" name="excel" accept=".xlsx">
                         <div id="import_excel" class="form-text">
-                            <a href="#"><strong>[template.xlsx]</strong></a>
+                            <a href="{{ asset('Template Import Bahan.xlsx') }}"><strong>[Template Import
+                                    Bahan.xlsx]</strong></a>
                             <br>
                             <i>
                                 jika data sudah
@@ -93,6 +94,7 @@
                                 <option value="Rak Besi + Rak Besi Stok">Rak Besi + Rak Besi Stok</option>
                                 <option value="Rak Besi Stok">Rak Besi Stok</option>
                                 <option value="Rak Stok (Kayu Putih)">Rak Stok (Kayu Putih)</option>
+                                <option value="Lemari Kayu Berpintu">Lemari Kayu Berpintu</option>
                             </select>
                         </div>
                     </div>

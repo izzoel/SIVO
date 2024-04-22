@@ -198,7 +198,7 @@
                                     @foreach ($padats as $padat)
                                         <tr>
                                             <td>{{ $padat->nama }}</td>
-                                            <td>{{ $padat->stok . ' ml' }}</td>
+                                            <td>{{ $padat->stok . ' gr' }}</td>
                                             <td>{{ $padat->lokasi }}</td>
                                             <td>
                                                 <button type="button"
@@ -241,7 +241,7 @@
                                     @foreach ($alats as $alat)
                                         <tr>
                                             <td>{{ $alat->nama }}</td>
-                                            <td>{{ $alat->stok . ' ml' }}</td>
+                                            <td>{{ $alat->stok . ' pcs' }}</td>
                                             <td>{{ $alat->lokasi }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-warning btn-sm button-alat me-3"
