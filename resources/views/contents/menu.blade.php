@@ -672,6 +672,20 @@
             $('#form_submit').toggle('fast');
         });
 
+        $("#jenis").change(function() {
+            var jenis = $(this).val();
+            if (jenis == "Cair") {
+                $("#ml").removeClass("d-none");
+                $("#gr, #pcs").addClass("d-none");
+            } else if (jenis == "Padat") {
+                $("#gr").removeClass("d-none");
+                $("#ml, #pcs").addClass("d-none");
+            } else {
+                $("#pcs").removeClass("d-none");
+                $("#ml, #gr").addClass("d-none");
+            }
+        });
+
         function submitBahan() {
             $.ajaxSetup({
                 headers: {

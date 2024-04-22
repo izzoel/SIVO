@@ -74,13 +74,14 @@
                         <div class="mb-3">
                             <label for="stok" class="form-label">Stok</label>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" id="stok" placeholder="..."
+                                <input type="text" class="form-control" id="stok" placeholder="..." -
                                     oninput="this.value = this.value.replace(/[^0-9]/g, '');" name="stok">
                                 <span class="input-group-text d-none" id="gr">gr</span>
                                 <span class="input-group-text d-none" id="pcs">pcs</span>
                                 <span class="input-group-text" id="ml">ml</span>
                             </div>
                         </div>
+
                         <div class="mb-1">
                             <label for="lokasi" class="form-label">Lokasi
                                 <a type="button" data-bs-toggle="modal" data-bs-target="#lokasi"
