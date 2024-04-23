@@ -28,9 +28,8 @@ class KerusakanController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $reques)
     {
-        //
     }
 
     public function import(Request $request)
@@ -60,9 +59,19 @@ class KerusakanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Kerusakan $kerusakan)
+    public function update(Request $request, Kerusakan $kerusakan, $id)
     {
-        //
+        // $kerusakan = Kerusakan::find($id);
+        $update = [
+            'nama' => $request->nama,
+            'lokasi' => $request->lokasi,
+            'kondisi' => $request->kondisi,
+            'status' => $request->status
+        ];
+        // dd($update);
+
+        Kerusakan::where('id', $id)->update($update);
+        return back();
     }
 
     /**

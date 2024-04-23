@@ -597,7 +597,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
-                    <form class="" action="{{ route('store-kerusakan', $kerusakan->id) }}" method="POST">
+                    <form action="{{ route('update-kerusakan', $kerusakan->id) }}" method="POST">
                         @csrf
                         <div class="modal-body">
                             <table class="table">
@@ -609,18 +609,18 @@
                                                 placeholder="..." value="{{ $kerusakan->nama }}">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="nama" class="form-label">Lokasi</label>
-                                            <input type="text" class="form-control" id="nama" name="nama"
+                                            <label for="lokasi" class="form-label">Lokasi</label>
+                                            <input type="text" class="form-control" id="lokasi" name="lokasi"
                                                 placeholder="..." value="{{ $kerusakan->lokasi }}">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="nama" class="form-label">Kondisi</label>
-                                            <input type="text" class="form-control" id="nama" name="nama"
+                                            <label for="kondisi" class="form-label">Kondisi</label>
+                                            <input type="text" class="form-control" id="kondisi" name="kondisi"
                                                 placeholder="..." value="{{ $kerusakan->kondisi }}">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="nama" class="form-label">Status</label>
-                                            <input type="text" class="form-control" id="nama" name="nama"
+                                            <label for="status" class="form-label">Status</label>
+                                            <input type="text" class="form-control" id="status" name="status"
                                                 placeholder="..." value="{{ $kerusakan->status }}">
                                         </div>
 
@@ -704,7 +704,7 @@
                 </p>
             </div>
             <div class="credits">
-                Designed by <a href="https://izzoel.github.io/"
+                Developed by <a href="https://izzoel.github.io/"
                     style="text-decoration: none; color: #d2691e;"><b>zetware</b> </a>@2024
             </div>
         </div>

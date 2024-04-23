@@ -45,5 +45,7 @@ Route::get('/logout', [MenuController::class, 'logout'])->name('logout');
 Route::post('/store/bahan', [BahanController::class, 'store'])->name('store-bahan');
 Route::post('/store/kerusakan', [KerusakanController::class, 'store'])->name('store-kerusakan');
 
+Route::post('/update/kerusakan/{id}', [KerusakanController::class, 'update'])->name('update-kerusakan');
+
 Route::post('/import/bahan', [BahanController::class, 'import'])->name('import-bahan');
 Route::post('/import/kerusakan', [KerusakanController::class, 'import'])->name('import-kerusakan');
