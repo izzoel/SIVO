@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Kerusakan;
 use Illuminate\Http\Request;
+use App\Imports\KerusakanImports;
+use Maatwebsite\Excel\Facades\Excel;
 
 class KerusakanController extends Controller
 {
@@ -33,6 +35,8 @@ class KerusakanController extends Controller
 
     public function import(Request $request)
     {
+        Excel::import(new KerusakanImports, $request->file('excel'));
+        return back();
     }
 
     /**

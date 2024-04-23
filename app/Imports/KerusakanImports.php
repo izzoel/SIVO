@@ -18,9 +18,15 @@ class KerusakanImports implements ToModel
         //     //
 
         // ]);
+        // return new Kerusakan([
+        //     ['nama' => $row['nama_alat']],
+        //     'lokasi' => $row['lokasi'], ['kondisi' => $row['kondisi'],  'status' => $row['status']]
+        // ]);
         return new Kerusakan([
-            ['nama' => $row['nama_alat']],
-            'lokasi' => $row['lokasi'], ['kondisi' => $row['kondisi'],  'status' => $row['status']]
+            'nama' => $row[0],
+            'lokasi' => $row[1],
+            'kondisi' => $row[2],
+            'status' => $row[3]
         ]);
     }
 }

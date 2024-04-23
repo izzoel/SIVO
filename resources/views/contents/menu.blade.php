@@ -282,17 +282,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($alats as $alat)
+                                    @foreach ($kerusakans as $kerusakan)
                                         <tr>
-                                            <td>{{ $alat->nama }}</td>
-                                            <td>{{ $alat->lokasi }}</td>
-                                            <td>{{ $alat->stok . ' pcs' }}</td>
-                                            <td>{{ $alat->lokasi }}</td>
+                                            <td>{{ $kerusakan->nama }}</td>
+                                            <td>Lab. {{ $kerusakan->lokasi }}</td>
+                                            <td>{{ $kerusakan->kondisi }}</td>
+                                            <td>{{ $kerusakan->status }}</td>
                                             <td>
-                                                <button type="button" class="btn btn-warning btn-sm button-alat me-3"
+                                                <button type="button"
+                                                    class="btn btn-warning btn-sm button-kerusakan me-3"
                                                     data-bs-toggle="modal"
-                                                    data-bs-target="#take_alat{{ $alat->id }}"
-                                                    {{ $alat->stok <= 0 ? 'disabled' : '' }}>
+                                                    data-bs-target="#kerusakan{{ $kerusakan->id }}">
                                                     <i class="bx bxs-donate-blood"></i>Edit
                                                 </button>
 
@@ -588,6 +588,110 @@
             </div>
         </div>
     @endforeach
+    @foreach ($kerusakans as $kerusakan)
+        <div class="modal fade modal-alat" id="kerusakan{{ $kerusakan->id }}" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            <a class="btn btn-warning"><b>{{ $kerusakan->nama }} </b></a>
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <form class="" action="{{ route('store-kerusakan', $kerusakan->id) }}" method="POST">
+                        @csrf
+                        <div class="modal-body">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <div class="mb-3">
+                                            <label for="nama" class="form-label">Nama Kerusakan</label>
+                                            <input type="text" class="form-control" id="nama" name="nama"
+                                                placeholder="..." value="{{ $kerusakan->nama }}">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="nama" class="form-label">Lokasi</label>
+                                            <input type="text" class="form-control" id="nama" name="nama"
+                                                placeholder="..." value="{{ $kerusakan->lokasi }}">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="nama" class="form-label">Kondisi</label>
+                                            <input type="text" class="form-control" id="nama" name="nama"
+                                                placeholder="..." value="{{ $kerusakan->kondisi }}">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="nama" class="form-label">Status</label>
+                                            <input type="text" class="form-control" id="nama" name="nama"
+                                                placeholder="..." value="{{ $kerusakan->status }}">
+                                        </div>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <input type="hidden" name="nim" value="{{ session('nim') }}">
+                        <input type="hidden" name="tanggal" value="{{ Carbon\Carbon::now() }}">
+                        <input type="hidden" name="tab">
+
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade modal-cair" id="put_alat{{ $alat->id }}" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            <a class="btn btn-warning"><b>{{ $alat->nama }} </b></a>
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <form class="submit-form" action="{{ route('store_put', $alat->id) }}" method="POST">
+                        @csrf
+                        <div class="modal-body">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>Stok</td>
+                                        <td>:</td>
+                                        <td><span class="badge bg-primary">{{ $alat->stok . ' ml' }}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lokasi</td>
+                                        <td>:</td>
+                                        <td><span class="badge bg-secondary">{{ $alat->lokasi }}</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <label for="jumlah{{ $alat->id }}">Jumlah Pengembalian</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control put-angka" id="jumlah{{ $alat->id }}"
+                                    placeholder="..." required name="kembali">
+                                <span class="input-group-text">pcs</span>
+                            </div>
+                        </div>
+                        <input type="hidden" name="stok" value="{{ $alat->stok }}">
+                        <input type="hidden" name="lokasi" value="{{ $alat->lokasi }}">
+                        <input type="hidden" name="id_bahan" value="{{ $alat->id }}">
+                        <input type="hidden" name="nim" value="{{ session('nim') }}">
+                        <input type="hidden" name="tanggal" value="{{ Carbon\Carbon::now() }}">
+                        <input type="hidden" name="keperluan" value="{{ $keperluan }}">
+                        <input type="hidden" name="ambil" value="0">
+                        <input type="hidden" name="tab">
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    @endforeach
 
 
     <a href="/" class="back-to-top d-flex align-items-center justify-content-center"><i
@@ -668,13 +772,9 @@
                 "info": "Menampilkan _START_ ke _END_ dari _TOTAL_ baris",
             },
             buttons: [{
-                extend: 'excelHtml5',
                 text: '+ Tambah',
                 title: 'Tambah',
                 className: 'btn btn-sm btn-danger mb-2',
-                exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 5]
-                },
                 action: function(e, dt, node, config) {
                     $('#modal_kerusakan').modal('show');
                 }

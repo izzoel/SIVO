@@ -39,7 +39,7 @@
                     <div class="mt-3" id="import">
                         <input class="form-control" type="file" id="import_excel" name="excel" accept=".xlsx">
                         <div id="import_excel" class="form-text">
-                            <a href="{{ asset('Template Import Kerusakan.xlsx') }}"><strong>[Template Import
+                            <a href="{{ asset('Template Import Kerusakan Alat.xlsx') }}"><strong>[Template Import
                                     Kerusakan.xlsx]</strong></a>
                             <br>
                             <i>
@@ -61,20 +61,20 @@
                 <div class="modal-body">
                     <div class="mt-3" id="input">
                         <div class="mb-3">
-                            <label for="nama" class="form-label">Nama Kerusakan</label>
-                            <input type="text" class="form-control" id="nama" name="nama">
+                            <label for="nama" class="form-label">Nama Alat</label>
+                            <input type="text" class="form-control" id="nama" name="nama" placeholder="...">
                         </div>
                         <div class="mb-3">
                             <label for="lokasi" class="form-label">Lokasi</label>
-                            <input type="text" class="form-control" id="lokasi" name="lokasi">
+                            <input type="text" class="form-control" id="lokasi" name="lokasi" placeholder="...">
                         </div>
                         <div class="mb-3">
                             <label for="kondisi" class="form-label">Kondisi</label>
-                            <input type="text" class="form-control" id="kondisi" name="kondisi">
+                            <input type="text" class="form-control" id="kondisi" name="kondisi" placeholder="...">
                         </div>
                         <div class="mb-3">
                             <label for="status" class="form-label">Status</label>
-                            <input type="text" class="form-control" id="status" name="status">
+                            <input type="text" class="form-control" id="status" name="status" placeholder="...">
                         </div>
                     </div>
                 </div>

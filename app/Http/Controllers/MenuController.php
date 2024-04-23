@@ -53,14 +53,14 @@ class MenuController extends Controller
         $cairs = Bahan::where('jenis', 'Cair')->get();
         $padats = Bahan::where('jenis', 'Padat')->get();
         $alats = Bahan::where('jenis', 'Alat')->get();
-        $kerusakan = Kerusakan::all();
+        $kerusakans = Kerusakan::all();
         $historys = Transaksi::where('id_mahasiswa', $nim)->get();
         $history_admins = Transaksi::all();
         $rekaps = Transaksi::selectRaw('id_bahan, MONTH(tanggal) as bulan, SUM(jumlah_ambil) as ambil,SUM(jumlah_kembali) as kembali, keperluan')
             ->groupBy('id_bahan', 'bulan', 'keperluan')
             ->get();
 
-        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'cairs', 'padats', 'alats', 'kerusakan', 'historys', 'history_admins', 'rekaps'));
+        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'cairs', 'padats', 'alats', 'kerusakans', 'historys', 'history_admins', 'rekaps'));
     }
     /**
      * Show the form for editing the specified resource.
