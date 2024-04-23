@@ -135,8 +135,10 @@
                             aria-selected="false">Bahan&nbsp;Padat</button>
                         <button class="nav-link" id="nav-alat-tab" data-bs-toggle="tab" data-bs-target="#nav-alat"
                             type="button" role="tab">Alat</button>
-                        <button class="nav-link" id="nav-alat-tab" data-bs-toggle="tab"
-                            data-bs-target="#nav-kerusakan" type="button" role="tab">Kerusakan Alat</button>
+                        @auth
+                            <button class="nav-link" id="nav-alat-tab" data-bs-toggle="tab"
+                                data-bs-target="#nav-kerusakan" type="button" role="tab">Kerusakan Alat</button>
+                        @endauth
                     </div>
                 </nav>
 
@@ -289,19 +291,14 @@
                                             <td>{{ $kerusakan->kondisi }}</td>
                                             <td>{{ $kerusakan->status }}</td>
                                             <td>
+
                                                 <button type="button"
                                                     class="btn btn-warning btn-sm button-kerusakan me-3"
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#kerusakan{{ $kerusakan->id }}">
-                                                    <i class="bx bxs-donate-blood"></i>Edit
+                                                    <i class='bx bx-edit-alt'></i> Edit
                                                 </button>
 
-                                                {{-- <button type="button" class="btn btn-success btn-sm button-alat"
-                                                    data-item-id="{{ $alat->id }}"
-                                                    data-jenis="{{ $alat->jenis }}" data-bs-toggle="modal"
-                                                    data-bs-target="#put_alat{{ $alat->id }}">
-                                                    <i class="bx bxs-archive-in"></i>Status
-                                                </button> --}}
                                             </td>
                                         </tr>
                                     @endforeach
@@ -588,6 +585,7 @@
             </div>
         </div>
     @endforeach
+
     @foreach ($kerusakans as $kerusakan)
         <div class="modal fade modal-alat" id="kerusakan{{ $kerusakan->id }}" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
