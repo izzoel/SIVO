@@ -4,6 +4,7 @@ use App\Models\Transaksi;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\BahanController;
+use App\Http\Controllers\KerusakanController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\TransaksiController;
 
@@ -41,5 +42,8 @@ Route::get('/history', [TransaksiController::class, 'show'])->name('show-history
 
 Route::get('/logout', [MenuController::class, 'logout'])->name('logout');
 
-Route::post('/import', [BahanController::class, 'import'])->name('import-bahan');
-Route::post('/store', [BahanController::class, 'store'])->name('store-bahan');
+Route::post('/store/bahan', [BahanController::class, 'store'])->name('store-bahan');
+Route::post('/store/kerusakan', [KerusakanController::class, 'store'])->name('store-kerusakan');
+
+Route::post('/import/bahan', [BahanController::class, 'import'])->name('import-bahan');
+Route::post('/import/kerusakan', [KerusakanController::class, 'import'])->name('import-kerusakan');

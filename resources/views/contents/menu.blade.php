@@ -135,6 +135,8 @@
                             aria-selected="false">Bahan&nbsp;Padat</button>
                         <button class="nav-link" id="nav-alat-tab" data-bs-toggle="tab" data-bs-target="#nav-alat"
                             type="button" role="tab">Alat</button>
+                        <button class="nav-link" id="nav-alat-tab" data-bs-toggle="tab"
+                            data-bs-target="#nav-kerusakan" type="button" role="tab">Kerusakan Alat</button>
                     </div>
                 </nav>
 
@@ -265,6 +267,49 @@
                             </table>
                         </div>
                     </div>
+
+                    <div class="tab-pane fade" id="nav-kerusakan" role="tabpanel">
+                        <div class="row m-2 p-3">
+                            <table id="kerusakan" class="table table-striped table-hover table-bordered"
+                                style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Nama Alat</th>
+                                        <th class="col-2">Lokasi</th>
+                                        <th class="col-2">Kondisi</th>
+                                        <th class="col-2">Status</th>
+                                        <th class="col-3">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($alats as $alat)
+                                        <tr>
+                                            <td>{{ $alat->nama }}</td>
+                                            <td>{{ $alat->lokasi }}</td>
+                                            <td>{{ $alat->stok . ' pcs' }}</td>
+                                            <td>{{ $alat->lokasi }}</td>
+                                            <td>
+                                                <button type="button" class="btn btn-warning btn-sm button-alat me-3"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#take_alat{{ $alat->id }}"
+                                                    {{ $alat->stok <= 0 ? 'disabled' : '' }}>
+                                                    <i class="bx bxs-donate-blood"></i>Edit
+                                                </button>
+
+                                                {{-- <button type="button" class="btn btn-success btn-sm button-alat"
+                                                    data-item-id="{{ $alat->id }}"
+                                                    data-jenis="{{ $alat->jenis }}" data-bs-toggle="modal"
+                                                    data-bs-target="#put_alat{{ $alat->id }}">
+                                                    <i class="bx bxs-archive-in"></i>Status
+                                                </button> --}}
+                                            </td>
+                                        </tr>
+                                    @endforeach
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -278,6 +323,7 @@
         @include('modals.modal_rekap')
         @include('modals.modal_bahan')
         @include('modals.modal_lokasi')
+        @include('modals.modal_kerusakan')
     @endauth
 
     @foreach ($cairs as $cair)
@@ -614,6 +660,30 @@
                 [10, 25, 50, 100, "Semua"]
             ],
         });
+        $('#kerusakan').DataTable({
+            dom: 'B<"row mb-2"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>><"row mb-2"<"col-sm-12">><"row mb-2"<"col-sm-12"t>><"row mb-2"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6">>',
+            language: {
+                "lengthMenu": "Tampilkan _MENU_ baris per halaman",
+                "search": "Cari:",
+                "info": "Menampilkan _START_ ke _END_ dari _TOTAL_ baris",
+            },
+            buttons: [{
+                extend: 'excelHtml5',
+                text: '+ Tambah',
+                title: 'Tambah',
+                className: 'btn btn-sm btn-danger mb-2',
+                exportOptions: {
+                    columns: [0, 1, 2, 3, 4, 5]
+                },
+                action: function(e, dt, node, config) {
+                    $('#modal_kerusakan').modal('show');
+                }
+            }],
+            "lengthMenu": [
+                [10, 25, 50, 100, -1],
+                [10, 25, 50, 100, "Semua"]
+            ],
+        });
 
         $('#nav-' + "{{ session('tab') }}".toLowerCase() + '-tab').trigger('click');
 
@@ -670,6 +740,10 @@
         $('#input_bahan, #import_bahan').on('change', function() {
             $('#form_import').toggle('fast');
             $('#form_submit').toggle('fast');
+        });
+        $('#input_kerusakan, #import_kerusakan').on('change', function() {
+            $('#form_import2').toggle('fast');
+            $('#form_submit2').toggle('fast');
         });
 
         $("#jenis").change(function() {
