@@ -1,11 +1,11 @@
 <p align="center">
-    <a href="https://sivo.unbl.ac.id" target="_blank" style="display: inline-block; vertical-align: middle;">
+    <a href="https://sivo.unbl.ac.id" target="_blank">
         <img src="https://raw.githubusercontent.com/izzoel/SIVO/8fbef2e19239b8f38350428e9569c2c322a143b5/public/assets/img/sivo.png" width="100" alt="SIVO Logo">
     </a>
-    <span style="display: inline-block; vertical-align: middle; margin-left: 10px;">
-        <strong>SIVO | Sistem Informasi Inventari Depo</strong>
-    </span>
+    <br>
+    <strong>SIVO | Sistem Informasi Inventari Depo</strong>
 </p>
+
 
 ## Tentang SIVO
 
