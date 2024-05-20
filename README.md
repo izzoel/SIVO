@@ -1,10 +1,8 @@
 <p align="center">
-    <table>
+    <table border=0>
         <tr>
-            <td>
-                <a href="https://sivo.unbl.ac.id" target="_blank"><img src="https://raw.githubusercontent.com/izzoel/SIVO/8fbef2e19239b8f38350428e9569c2c322a143b5/public/assets/img/sivo.png" width="100" alt="SIVO Logo"></a>
-            </td>
-            <td><h1>SIVO</h1></td>
+            <td><a href="https://sivo.unbl.ac.id" target="_blank"><img src="https://raw.githubusercontent.com/izzoel/SIVO/8fbef2e19239b8f38350428e9569c2c322a143b5/public/assets/img/sivo.png" width="100" alt="SIVO Logo"></a></td>
+            <td><h1>SIVO | Sistem Informasi Inventari Depo</h1></td>
         </tr>
     </table>
 
