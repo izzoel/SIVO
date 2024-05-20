@@ -1,4 +1,7 @@
-<p align="center"><a href="https://sivo.unbl.ac.id" target="_blank"><img src="https://raw.githubusercontent.com/izzoel/SIVO/8fbef2e19239b8f38350428e9569c2c322a143b5/public/assets/img/sivo.png" width="100" alt="SIVO Logo"></a></p>
+<p align="center">
+    <a href="https://sivo.unbl.ac.id" target="_blank"><img src="https://raw.githubusercontent.com/izzoel/SIVO/8fbef2e19239b8f38350428e9569c2c322a143b5/public/assets/img/sivo.png" width="100" alt="SIVO Logo"></a>
+    <h1>SIVO</h1>
+</p>
 
 ## Tentang SIVO
 
