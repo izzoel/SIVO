@@ -9,7 +9,7 @@
 
 ## Tentang SIVO
 
-SIVO merupakan singkatan dari "Sistem Informasi Inventaris" yang bertujuan untuk mempermudah proses inventarisasi barang dan pengecekan bahan di Depo Alat Bahan Universitas Borneo Lestari.
+SIVO merupakan singkatan dari "Sistem Informasi Inventaris Depositori" yang bertujuan untuk mempermudah proses inventarisasi barang dan pengecekan bahan di Depo Alat Bahan Universitas Borneo Lestari.
 
 Fitur utama SIVO meliputi:
 
