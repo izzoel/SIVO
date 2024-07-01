@@ -3,7 +3,7 @@
         <img src="https://raw.githubusercontent.com/izzoel/SIVO/8fbef2e19239b8f38350428e9569c2c322a143b5/public/assets/img/sivo.png" width="100" alt="SIVO Logo">
     </a>
     <br>
-    <strong>SIVO | Sistem Informasi Inventari Deposit</strong>
+    <strong>SIVO | Sistem Informasi Inventaris Deposit</strong>
 </p>
 
 
