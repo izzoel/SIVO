@@ -29,7 +29,8 @@ Dikembangkan dengan menggunakan Framework Laravel, proyek ini memanfaatkan keung
 
 ## Tahap Pengembangan
 
-Proyek ini masih dalam tahap pengembangan aktif. Jika Anda menemukan bug, memiliki saran, atau ingin berkontribusi, kami sangat menghargai masukan Anda. Silakan laporkan masalah atau saran Anda ke Zulfahmi Ramadhani. Kami berterima kasih atas kontribusi Anda dalam meningkatkan proyek ini.
+Proyek ini masih dalam tahap pengembangan aktif. Jika Anda menemukan bug, memiliki saran, atau ingin berkontribusi, kami sangat menghargai masukan Anda. Silakan laporkan masalah atau saran Anda ke Zulfahmi Ramadhani (<a href="mailto:
+                                                                                                                                                                                                                             ramadhani.zulfahmi@gmail.com">ramadhani.zulfahmi@gmail.com</a>). Kami berterima kasih atas kontribusi Anda dalam meningkatkan proyek ini.
 
 ## Lisensi
 
