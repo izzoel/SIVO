@@ -4,7 +4,7 @@
             <div class="modal-header">
                 <h5 class="modal-title">
                     <a class="btn btn-danger">
-                        <i class='bx bxs-vial'></i><b> Kerusakan Alat</b>
+                        <i class='bx bx-hdd'></i><b> Kerusakan Alat</b>
                     </a>
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
