@@ -37,7 +37,7 @@
 
 <header id="header" style="z-index: auto">
     @if (auth()->check())
-        <title>SIVO | Admin Panel</title>
+        <title>SIVO | Admin Panel 1</title>
     @else
         <title>SIVO | Menu</title>
     @endif
