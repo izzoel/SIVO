@@ -33,12 +33,17 @@ Route::get('/alat', [BahanController::class, 'showAlat'])->name('show-alat');
 Route::post('/take/{id}', [BahanController::class, 'storeTake'])->name('store_take');
 Route::post('/put/{id}', [BahanController::class, 'storePut'])->name('store_put');
 
-Route::get('/menu', [MenuController::class, 'show'])->name('show-menu');
+Route::get('/menu/', [MenuController::class, 'show'])->name('show-menu');
 Route::post('/menu', [MenuController::class, 'show'])->name('show-menu');
+Route::get('/menu/cair', [MenuController::class, 'showCair'])->name('menu-cair');
+Route::get('/menu/padat', [MenuController::class, 'showPadat'])->name('menu-padat');
+Route::get('/menu/alat', [MenuController::class, 'showAlat'])->name('menu-alat');
+Route::get('/menu/kerusakan', [MenuController::class, 'showKerusakan'])->name('menu-kerusakan');
 
 Route::get('/transaksi', [TransaksiController::class, 'show'])->name('show-transaksi');
 Route::get('/history', [TransaksiController::class, 'show'])->name('show-history');
 
+Route::post('/purge/cari', [MenuController::class, 'purge'])->name('purge-cari');
 
 Route::get('/logout', [MenuController::class, 'logout'])->name('logout');
 

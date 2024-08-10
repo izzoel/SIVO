@@ -77,8 +77,8 @@
 
     </section>
 
-    @include('modals.modal_biodata')
-    @include('modals.modal_admin')
+    @include('contents.modals.modal_biodata')
+    @include('contents.modals.modal_admin')
 
     <script src="{{ asset('assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
     <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>

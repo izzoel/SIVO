@@ -78,6 +78,7 @@ class BahanController extends Controller
         $id_bahan = Bahan::where('id', $request->id_bahan)->value('id');
 
         Session::put('tab', $request->tab);
+        Session::put('cari', $request->cari);
 
         $model = [
             'stok' => max(0, $stok - $request->ambil),
@@ -118,6 +119,7 @@ class BahanController extends Controller
         $id_bahan = Bahan::where('id', $request->id_bahan)->value('id');
 
         Session::put('tab', $request->tab);
+        Session::put('cari', $request->cari);
 
         $model = [
             'stok' => $stok + $request->kembali,
