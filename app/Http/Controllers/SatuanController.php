@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Lokasi;
+use App\Models\Satuan;
 use Illuminate\Http\Request;
 
-class LokasiController extends Controller
+class SatuanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -29,17 +29,18 @@ class LokasiController extends Controller
     public function store(Request $request)
     {
         $create = [
-            'lokasi' => $request->lokasi,
+            'nama' => $request->nama,
+            'satuan' => $request->satuan,
         ];
 
-        Lokasi::create($create);
+        Satuan::create($create);
         return back();
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Lokasi $lokasi)
+    public function show(Satuan $satuan)
     {
         //
     }
@@ -47,7 +48,7 @@ class LokasiController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Lokasi $lokasi)
+    public function edit(Satuan $satuan)
     {
         //
     }
@@ -57,11 +58,13 @@ class LokasiController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $data = [
-            'lokasi' => $request->input('lokasiEdit'),
+            'nama' => $request->input('namaEdit'),
+            'satuan' => $request->input('satuanEdit'),
         ];
 
-        Lokasi::find($id)->update($data);
+        Satuan::find($id)->update($data);
         return back();
     }
 
@@ -70,7 +73,7 @@ class LokasiController extends Controller
      */
     public function destroy($id)
     {
-        Lokasi::destroy($id);
+        Satuan::destroy($id);
         return back();
     }
 }

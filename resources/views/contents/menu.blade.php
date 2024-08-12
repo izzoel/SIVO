@@ -54,6 +54,13 @@
                     @endauth
                 </ul>
             </div>
+            <span class="navbar-text me-3">
+                <a type="button" href="{{ route('show-setting') }}" class="btn m-0 p-0"
+                    style="font-size: 1.8rem;color:#0d6efd;" onmouseover="this.style.color='#232425';"
+                    onmouseout="this.style.color='#0d6efd';">
+                    <i class='bx bx-cog'></i>
+                </a>
+            </span>
         </nav>
 
         @if ($title == 'cair')
@@ -64,14 +71,19 @@
             @include('contents.menus.alat')
         @elseif($title == 'kerusakan')
             @include('contents.menus.kerusakan')
+        @elseif($title == 'setting')
+            @include('contents.settings.setting')
+        @elseif($title == 'satuan')
+            @include('contents.settings.satuan')
+        @elseif($title == 'lokasi')
+            @include('contents.settings.lokasi')
         @endif
     </main>
-
     @include('contents.modals.modal_history')
-
     @auth
         @include('contents.modals.modal_rekap')
         @include('contents.modals.modal_bahan')
+        @include('contents.modals.modal_satuan')
         @include('contents.modals.modal_lokasi')
         @include('contents.modals.modal_kerusakan')
     @endauth
@@ -83,6 +95,7 @@
 
     @include('scripts.script_footer')
     @include('scripts.script_menu')
+    @include('scripts.script_swal')
 
 
 </body>

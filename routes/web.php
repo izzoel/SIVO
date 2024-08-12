@@ -4,6 +4,8 @@ use App\Models\Transaksi;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\BahanController;
+use App\Http\Controllers\LokasiController;
+use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\KerusakanController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\TransaksiController;
@@ -44,6 +46,18 @@ Route::get('/transaksi', [TransaksiController::class, 'show'])->name('show-trans
 Route::get('/history', [TransaksiController::class, 'show'])->name('show-history');
 
 Route::post('/purge/cari', [MenuController::class, 'purge'])->name('purge-cari');
+
+Route::get('/setting/', [MenuController::class, 'setting'])->name('show-setting');
+
+Route::get('/setting/satuan/', [MenuController::class, 'settingSatuan'])->name('setting-satuan');
+Route::post('/setting/satuan/store', [SatuanController::class, 'store'])->name('store-satuan');
+Route::get('/setting/satuan/destroy/{id}', [SatuanController::class, 'destroy'])->name('destroy-satuan');
+Route::put('/setting/satuan/update/{id}', [SatuanController::class, 'update'])->name('update-satuan');
+
+Route::get('/setting/lokasi/', [MenuController::class, 'settingLokasi'])->name('setting-lokasi');
+Route::post('/setting/lokasi/store', [LokasiController::class, 'store'])->name('store-lokasi');
+Route::get('/setting/lokasi/destroy/{id}', [LokasiController::class, 'destroy'])->name('destroy-lokasi');
+Route::put('/setting/lokasi/update/{id}', [LokasiController::class, 'update'])->name('update-lokasi');
 
 Route::get('/logout', [MenuController::class, 'logout'])->name('logout');
 

@@ -1,23 +1,40 @@
 <script>
     $('#cair').DataTable({
+        dom: 'B<"row mb-2"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>><"row mb-2"<"col-sm-12">><"row mb-2"<"col-sm-12"t>><"row mb-2"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6">>',
         language: {
             "lengthMenu": "Tampilkan _MENU_ baris per halaman",
             "info": "Menampilkan _START_ ke _END_ dari _TOTAL_ baris",
             "search": "Cari:",
         },
+        buttons: [{
+            text: '+ Tambah',
+            title: 'Tambah',
+            className: 'btn btn-sm btn-danger mb-2',
+            action: function(e, dt, node, config) {
+                $('#modal_bahan').modal('show');
+            }
+        }],
         "lengthMenu": [
             [10, 25, 50, 100, -1],
             [10, 25, 50, 100, "Semua"]
         ],
-        "stateSave": true,
     });
 
     $('#padat').DataTable({
+        dom: 'B<"row mb-2"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>><"row mb-2"<"col-sm-12">><"row mb-2"<"col-sm-12"t>><"row mb-2"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6">>',
         language: {
             "lengthMenu": "Tampilkan _MENU_ baris per halaman",
             "info": "Menampilkan _START_ ke _END_ dari _TOTAL_ baris",
             "search": "Cari:",
         },
+        buttons: [{
+            text: '+ Tambah',
+            title: 'Tambah',
+            className: 'btn btn-sm btn-danger mb-2',
+            action: function(e, dt, node, config) {
+                $('#modal_bahan').modal('show');
+            }
+        }],
         "lengthMenu": [
             [10, 25, 50, 100, -1],
             [10, 25, 50, 100, "Semua"]
@@ -25,11 +42,20 @@
     });
 
     $('#alat').DataTable({
+        dom: 'B<"row mb-2"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>><"row mb-2"<"col-sm-12">><"row mb-2"<"col-sm-12"t>><"row mb-2"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6">>',
         language: {
             "lengthMenu": "Tampilkan _MENU_ baris per halaman",
             "info": "Menampilkan _START_ ke _END_ dari _TOTAL_ baris",
             "search": "Cari:",
         },
+        buttons: [{
+            text: '+ Tambah',
+            title: 'Tambah',
+            className: 'btn btn-sm btn-danger mb-2',
+            action: function(e, dt, node, config) {
+                $('#modal_bahan').modal('show');
+            }
+        }],
         "lengthMenu": [
             [10, 25, 50, 100, -1],
             [10, 25, 50, 100, "Semua"]
@@ -56,6 +82,35 @@
             [10, 25, 50, 100, "Semua"]
         ],
     });
+    $('#table_satuan').DataTable({
+        dom: 'B<"row mb-2"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>><"row mb-2"<"col-sm-12">><"row mb-2"<"col-sm-12"t>><"row mb-2"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6">>',
+        buttons: [{
+            text: '+ Tambah',
+            title: 'Tambah',
+            className: 'btn btn-sm btn-danger',
+            action: function(e, dt, node, config) {
+                $('#add_satuan').modal('show');
+            }
+        }],
+        searching: false,
+        lengthChange: false,
+        info: false
+    });
+    $('#table_lokasi').DataTable({
+        dom: 'B<"row mb-2"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>><"row mb-2"<"col-sm-12">><"row mb-2"<"col-sm-12"t>><"row mb-2"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6">>',
+        buttons: [{
+            text: '+ Tambah',
+            title: 'Tambah',
+            className: 'btn btn-sm btn-danger',
+            action: function(e, dt, node, config) {
+                $('#add_lokasi').modal('show');
+            }
+        }],
+        searching: false,
+        lengthChange: false,
+        info: false
+    });
+
 
 
 
@@ -156,6 +211,7 @@
         }
     });
 
+
     function submitBahan() {
         $.ajaxSetup({
             headers: {
@@ -227,4 +283,35 @@
         });
 
     }
+
+    // function closeModal(button) {
+    //     // Find the closest modal ancestor of the clicked button
+    //     $('.btn-close').click(function() {
+    //         $(".modal-backdrop").remove();
+    //     });
+    // }
+    // function closeAllModals() {
+    //     // var modal = bootstrap.Modal.getInstance($('.modal'));
+    //     // modal.hide();
+    //     $('.modal').modal('hide');
+    //     // $('#modal_stok').modal('hide');
+    // }
+
+    // function closeStok() {
+    //     // Hide all modals with IDs starting with 'edit_satuan'
+    //     $('[id^=edit_satuan]').each(function() {
+    //         $(this).modal('hide');
+    //     });
+
+    //     // Show the modal with ID 'modal_stok'
+    //     // Assuming you have already included Bootstrap's JavaScript
+    //     // var modalStok = new bootstrap.Modal($('#modal_stok'));
+    //     // modalStok.show();
+
+    //     // $('#modal_stok').addClass('show').css('display', 'block').modal('show');
+    // }
+
+    // $(document).on('hidden.bs.modal', function() {
+    //     $('.modal').modal('hide');
+    // });
 </script>

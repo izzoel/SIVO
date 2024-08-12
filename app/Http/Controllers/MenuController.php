@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Menu;
 use App\Models\Bahan;
+use App\Models\Satuan;
 use App\Models\Kerusakan;
+use App\Models\Lokasi;
 use App\Models\Mahasiswa;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
@@ -40,28 +42,6 @@ class MenuController extends Controller
      * Display the specified resource.
      */
 
-
-
-
-    // public function show()
-    // {
-    //     $nim = session('nim');
-    //     $nama = session('nama');
-    //     $prodi = session('prodi');
-    //     $keperluan = session('keperluan');
-
-    //     $cairs = Bahan::where('jenis', 'Cair')->get();
-    //     $padats = Bahan::where('jenis', 'Padat')->get();
-    //     $alats = Bahan::where('jenis', 'Alat')->get();
-    //     $kerusakans = Kerusakan::all();
-    //     $historys = Transaksi::where('id_mahasiswa', $nim)->get();
-    //     $history_admins = Transaksi::all();
-    //     $rekaps = Transaksi::selectRaw('id_bahan, MONTH(tanggal) as bulan, SUM(jumlah_ambil) as ambil,SUM(jumlah_kembali) as kembali, keperluan')
-    //         ->groupBy('id_bahan', 'bulan', 'keperluan')
-    //         ->get();
-
-    //     return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'cairs', 'padats', 'alats', 'kerusakans', 'historys', 'history_admins', 'rekaps'));
-    // }
     public function show()
     {
         $nim = session('nim');
@@ -80,7 +60,7 @@ class MenuController extends Controller
             ->groupBy('id_bahan', 'bulan', 'keperluan')
             ->get();
         $title = "cair";
-        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'cairs',  'historys', 'history_admins', 'rekaps', 'title', 'cari'));
+        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'cairs',  'historys', 'history_admins', 'rekaps', 'title', 'cari', 'lokasis'));
         // return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'cairs', 'padats', 'alats', 'kerusakans', 'historys', 'history_admins', 'rekaps', 'title'));
     }
     public function showCair()
@@ -98,7 +78,10 @@ class MenuController extends Controller
             ->groupBy('id_bahan', 'bulan', 'keperluan')
             ->get();
         $title = "cair";
-        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'cairs',  'historys', 'history_admins', 'rekaps', 'title', 'cari'));
+        $satuans = Satuan::all();
+        $lokasis = Lokasi::all();
+
+        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'cairs',  'historys', 'history_admins', 'rekaps', 'title', 'cari', 'satuans', 'lokasis'));
     }
     public function showPadat()
     {
@@ -115,7 +98,10 @@ class MenuController extends Controller
             ->groupBy('id_bahan', 'bulan', 'keperluan')
             ->get();
         $title = "padat";
-        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'padats',  'historys', 'history_admins', 'rekaps', 'title', 'cari'));
+        $satuans = Satuan::all();
+        $lokasis = Lokasi::all();
+
+        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'padats',  'historys', 'history_admins', 'rekaps', 'title', 'cari', 'satuans', 'lokasis'));
     }
     public function showAlat()
     {
@@ -132,7 +118,10 @@ class MenuController extends Controller
             ->groupBy('id_bahan', 'bulan', 'keperluan')
             ->get();
         $title = "alat";
-        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'alats',  'historys', 'history_admins', 'rekaps', 'title', 'cari'));
+        $satuans = Satuan::all();
+        $lokasis = Lokasi::all();
+
+        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'alats',  'historys', 'history_admins', 'rekaps', 'title', 'cari', 'satuans', 'lokasis'));
     }
     public function showKerusakan()
     {
@@ -149,7 +138,10 @@ class MenuController extends Controller
             ->groupBy('id_bahan', 'bulan', 'keperluan')
             ->get();
         $title = "kerusakan";
-        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'kerusakans',  'historys', 'history_admins', 'rekaps', 'title', 'cari'));
+        $satuans = Satuan::all();
+        $lokasis = Lokasi::all();
+
+        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'kerusakans',  'historys', 'history_admins', 'rekaps', 'title', 'cari', 'satuans', 'lokasis'));
     }
 
     /**
@@ -183,6 +175,64 @@ class MenuController extends Controller
 
         // Optionally, return a response
         return response()->json(['message' => 'Session key "cari" purged successfully']);
+    }
+
+    public function setting()
+    {
+        $nim = session('nim');
+        $nama = session('nama');
+        $prodi = session('prodi');
+        $keperluan = session('keperluan');
+        $cari = session('cari');
+
+        $historys = Transaksi::where('id_mahasiswa', $nim)->get();
+        $history_admins = Transaksi::all();
+        $rekaps = Transaksi::selectRaw('id_bahan, MONTH(tanggal) as bulan, SUM(jumlah_ambil) as ambil,SUM(jumlah_kembali) as kembali, keperluan')
+            ->groupBy('id_bahan', 'bulan', 'keperluan')
+            ->get();
+        $title = "setting";
+        $satuans = Satuan::all();
+        $lokasis = Lokasi::all();
+
+        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'historys', 'history_admins', 'rekaps', 'title', 'cari', 'satuans', 'lokasis'));
+    }
+    public function settingSatuan()
+    {
+        $nim = session('nim');
+        $nama = session('nama');
+        $prodi = session('prodi');
+        $keperluan = session('keperluan');
+        $cari = session('cari');
+
+        $historys = Transaksi::where('id_mahasiswa', $nim)->get();
+        $history_admins = Transaksi::all();
+        $rekaps = Transaksi::selectRaw('id_bahan, MONTH(tanggal) as bulan, SUM(jumlah_ambil) as ambil,SUM(jumlah_kembali) as kembali, keperluan')
+            ->groupBy('id_bahan', 'bulan', 'keperluan')
+            ->get();
+        $title = "satuan";
+        $satuans = Satuan::all();
+        $lokasis = Lokasi::all();
+
+        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'historys', 'history_admins', 'rekaps', 'title', 'cari', 'satuans', 'lokasis'));
+    }
+    public function settingLokasi()
+    {
+        $nim = session('nim');
+        $nama = session('nama');
+        $prodi = session('prodi');
+        $keperluan = session('keperluan');
+        $cari = session('cari');
+
+        $historys = Transaksi::where('id_mahasiswa', $nim)->get();
+        $history_admins = Transaksi::all();
+        $rekaps = Transaksi::selectRaw('id_bahan, MONTH(tanggal) as bulan, SUM(jumlah_ambil) as ambil,SUM(jumlah_kembali) as kembali, keperluan')
+            ->groupBy('id_bahan', 'bulan', 'keperluan')
+            ->get();
+        $title = "lokasi";
+        $satuans = Satuan::all();
+        $lokasis = Lokasi::all();
+
+        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'historys', 'history_admins', 'rekaps', 'title', 'cari', 'satuans', 'lokasis'));
     }
 
     function landing()

@@ -1,4 +1,4 @@
-<div class="container ">
+<div class="container mt-2">
     <table id="alat" class="table table-striped table-hover table-bordered" style="width:100%">
         <thead>
             <tr>
