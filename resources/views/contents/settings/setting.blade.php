@@ -27,6 +27,16 @@
                 </div>
             </div>
         </div>
+        <div class="col-auto">
+            <div class="card">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <span>Laboratorium &nbsp;</span>
+                    <a type="button" href="{{ route('setting-laboratorium') }}" class="btn btn-sm btn-primary">
+                        <i class='bx bx-cog'></i> Setting
+                    </a>
+                </div>
+            </div>
+        </div>
 
     </div>
 

@@ -3,31 +3,34 @@
         aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('show-setting') }}">Setting</a></li>
-            <li class="breadcrumb-item active" aria-current="page">satuan</li>
+            <li class="breadcrumb-item active" aria-current="page">laboratorium</li>
         </ol>
     </nav>
 
+
     <div class="card">
         <div class="card-body">
-            <h5>Satuan</h5>
-            <table id="table_satuan" class="table table-striped table-bordered" style="width:100%; text-align: center;">
+            <h5>Laboratorium</h5>
+            <table id="table_laboratorium" class="table table-striped table-bordered"
+                style="width:100%; text-align: center;">
                 <thead>
                     <tr>
-                        <th style="text-align: center;">Satuan</th>
+                        <th style="text-align: center;">Laboratorium</th>
                         <th style="text-align: center;">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($satuans as $satuan)
+                    @foreach ($laboratoriums as $laboratorium)
                         <tr>
-                            <td style="text-align: center;">{{ $satuan->satuan }}</td>
+                            <td style="text-align: left;">{{ $laboratorium->laboratorium }}</td>
                             <td>
                                 <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#edit_satuan{{ $satuan->id }}">
+                                    data-bs-target="#edit_laboratorium{{ $laboratorium->id }}">
                                     <i class="bx bx-pencil"></i>
                                 </button>
-                                <a class="btn btn-danger btn-sm" href="{{ route('destroy-satuan', $satuan->id) }}"
-                                    id="destroySatuan{{ $satuan->id }}" role="button">
+
+                                <a class="btn btn-danger btn-sm" id="destroyLaboratorium{{ $laboratorium->id }}"
+                                    href="{{ route('destroy-laboratorium', $laboratorium->id) }}" role="button">
                                     <i class="bx bx-trash"></i>
                                 </a>
                             </td>

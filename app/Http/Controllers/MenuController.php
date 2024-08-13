@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Menu;
 use App\Models\Bahan;
+use App\Models\Lokasi;
 use App\Models\Satuan;
 use App\Models\Kerusakan;
-use App\Models\Lokasi;
 use App\Models\Mahasiswa;
 use App\Models\Transaksi;
+use App\Models\Laboratorium;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -80,8 +81,9 @@ class MenuController extends Controller
         $title = "cair";
         $satuans = Satuan::all();
         $lokasis = Lokasi::all();
+        $laboratoriums = Laboratorium::all();
 
-        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'cairs',  'historys', 'history_admins', 'rekaps', 'title', 'cari', 'satuans', 'lokasis'));
+        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'cairs',  'historys', 'history_admins', 'rekaps', 'title', 'cari', 'satuans', 'lokasis', 'laboratoriums'));
     }
     public function showPadat()
     {
@@ -100,8 +102,9 @@ class MenuController extends Controller
         $title = "padat";
         $satuans = Satuan::all();
         $lokasis = Lokasi::all();
+        $laboratoriums = Laboratorium::all();
 
-        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'padats',  'historys', 'history_admins', 'rekaps', 'title', 'cari', 'satuans', 'lokasis'));
+        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'padats',  'historys', 'history_admins', 'rekaps', 'title', 'cari', 'satuans', 'lokasis', 'laboratoriums'));
     }
     public function showAlat()
     {
@@ -120,8 +123,9 @@ class MenuController extends Controller
         $title = "alat";
         $satuans = Satuan::all();
         $lokasis = Lokasi::all();
+        $laboratoriums = Laboratorium::all();
 
-        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'alats',  'historys', 'history_admins', 'rekaps', 'title', 'cari', 'satuans', 'lokasis'));
+        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'alats',  'historys', 'history_admins', 'rekaps', 'title', 'cari', 'satuans', 'lokasis', 'laboratoriums'));
     }
     public function showKerusakan()
     {
@@ -140,8 +144,9 @@ class MenuController extends Controller
         $title = "kerusakan";
         $satuans = Satuan::all();
         $lokasis = Lokasi::all();
+        $laboratoriums = Laboratorium::all();
 
-        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'kerusakans',  'historys', 'history_admins', 'rekaps', 'title', 'cari', 'satuans', 'lokasis'));
+        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'kerusakans',  'historys', 'history_admins', 'rekaps', 'title', 'cari', 'satuans', 'lokasis', 'laboratoriums'));
     }
 
     /**
@@ -193,8 +198,9 @@ class MenuController extends Controller
         $title = "setting";
         $satuans = Satuan::all();
         $lokasis = Lokasi::all();
+        $laboratoriums = Laboratorium::all();
 
-        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'historys', 'history_admins', 'rekaps', 'title', 'cari', 'satuans', 'lokasis'));
+        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'historys', 'history_admins', 'rekaps', 'title', 'cari', 'satuans', 'lokasis', 'laboratoriums'));
     }
     public function settingSatuan()
     {
@@ -212,8 +218,9 @@ class MenuController extends Controller
         $title = "satuan";
         $satuans = Satuan::all();
         $lokasis = Lokasi::all();
+        $laboratoriums = Laboratorium::all();
 
-        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'historys', 'history_admins', 'rekaps', 'title', 'cari', 'satuans', 'lokasis'));
+        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'historys', 'history_admins', 'rekaps', 'title', 'cari', 'satuans', 'lokasis', 'laboratoriums'));
     }
     public function settingLokasi()
     {
@@ -231,8 +238,30 @@ class MenuController extends Controller
         $title = "lokasi";
         $satuans = Satuan::all();
         $lokasis = Lokasi::all();
+        $laboratoriums = Laboratorium::all();
 
-        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'historys', 'history_admins', 'rekaps', 'title', 'cari', 'satuans', 'lokasis'));
+        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'historys', 'history_admins', 'rekaps', 'title', 'cari', 'satuans', 'lokasis', 'laboratoriums'));
+    }
+    public function settingLaboratorium()
+    {
+        $nim = session('nim');
+        $nama = session('nama');
+        $prodi = session('prodi');
+        $keperluan = session('keperluan');
+        $cari = session('cari');
+
+        $historys = Transaksi::where('id_mahasiswa', $nim)->get();
+        $history_admins = Transaksi::all();
+        $rekaps = Transaksi::selectRaw('id_bahan, MONTH(tanggal) as bulan, SUM(jumlah_ambil) as ambil,SUM(jumlah_kembali) as kembali, keperluan')
+            ->groupBy('id_bahan', 'bulan', 'keperluan')
+            ->get();
+        $title = "laboratorium";
+        $satuans = Satuan::all();
+        $lokasis = Lokasi::all();
+        $laboratoriums = Laboratorium::all();
+
+
+        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'historys', 'history_admins', 'rekaps', 'title', 'cari', 'satuans', 'lokasis', 'laboratoriums'));
     }
 
     function landing()

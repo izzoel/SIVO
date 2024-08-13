@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Satuan;
+use App\Models\Laboratorium;
 use Illuminate\Http\Request;
 
-class SatuanController extends Controller
+class LaboratoriumController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -29,18 +29,17 @@ class SatuanController extends Controller
     public function store(Request $request)
     {
         $create = [
-            // 'nama' => $request->nama,
-            'satuan' => $request->satuan,
+            'laboratorium' => $request->laboratorium,
         ];
 
-        Satuan::create($create);
+        Laboratorium::create($create);
         return back();
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Satuan $satuan)
+    public function show(Laboratorium $laboratorium)
     {
         //
     }
@@ -48,7 +47,7 @@ class SatuanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Satuan $satuan)
+    public function edit(Laboratorium $laboratorium)
     {
         //
     }
@@ -61,10 +60,10 @@ class SatuanController extends Controller
 
         $data = [
             // 'nama' => $request->input('namaEdit'),
-            'satuan' => $request->input('satuanEdit'),
+            'laboratorium' => $request->input('laboratoriumEdit'),
         ];
 
-        Satuan::find($id)->update($data);
+        Laboratorium::find($id)->update($data);
         return back();
     }
 
@@ -73,7 +72,7 @@ class SatuanController extends Controller
      */
     public function destroy($id)
     {
-        Satuan::destroy($id);
+        Laboratorium::destroy($id);
         return back();
     }
 }

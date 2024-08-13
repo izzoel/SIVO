@@ -77,15 +77,20 @@
             @include('contents.settings.satuan')
         @elseif($title == 'lokasi')
             @include('contents.settings.lokasi')
+        @elseif($title == 'laboratorium')
+            @include('contents.settings.laboratorium')
         @endif
+
+        {{-- <a name="swal" id="swal" class="btn btn-primary" href="#" role="button">swal</a> --}}
     </main>
     @include('contents.modals.modal_history')
     @auth
         @include('contents.modals.modal_rekap')
         @include('contents.modals.modal_bahan')
+        @include('contents.modals.modal_kerusakan')
         @include('contents.modals.modal_satuan')
         @include('contents.modals.modal_lokasi')
-        @include('contents.modals.modal_kerusakan')
+        @include('contents.modals.modal_laboratorium')
     @endauth
 
     <a href="/" class="back-to-top d-flex align-items-center justify-content-center"><i
@@ -94,8 +99,20 @@
     @include('layouts.footer')
 
     @include('scripts.script_footer')
+    @include('scripts.script_datatable')
     @include('scripts.script_menu')
-    @include('scripts.script_swal')
+
+    @foreach ($satuans as $satuan)
+        @include('scripts.script_satuan')
+    @endforeach
+
+    @foreach ($lokasis as $lokasi)
+        @include('scripts.script_lokasi')
+    @endforeach
+
+    @foreach ($laboratoriums as $laboratorium)
+        @include('scripts.script_laboratorium')
+    @endforeach
 
 
 </body>

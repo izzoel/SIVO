@@ -10,17 +10,9 @@
                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
              </div>
 
-             <form action="{{ route('store-satuan') }}" method="POST">
+             <form id="form-storeSatuan" action="{{ route('store-satuan') }}" method="POST">
                  @csrf
                  <div class="modal-body">
-                     <div class="mb-3">
-                         <label for="nama" class="form-label">
-                             Nama
-                         </label>
-                         <div class="input-group mb-3">
-                             <input type="text" class="form-control" placeholder="..." name="nama" required>
-                         </div>
-                     </div>
                      <div class="mb-3">
                          <label for="satuan" class="form-label">Satuan</label>
                          <div class="input-group mb-3">
@@ -30,7 +22,7 @@
                  </div>
 
                  <div class="modal-footer">
-                     <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+                     <button type="submit" class="btn btn-primary btn-sm" id="storeSatuan">Simpan</button>
                  </div>
              </form>
 
@@ -51,19 +43,11 @@
                      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                  </div>
 
-                 <form action="{{ route('update-satuan', $satuan->id) }}" method="POST">
+                 <form id="form-updateSatuan{{ $satuan->id }}" action="{{ route('update-satuan', $satuan->id) }}"
+                     method="POST">
                      @method('PUT')
                      @csrf
                      <div class="modal-body">
-                         <div class="mb-3">
-                             <label for="namaEdit" class="form-label">
-                                 Nama
-                             </label>
-                             <div class="input-group mb-3">
-                                 <input type="text" class="form-control" placeholder="..." name="namaEdit"
-                                     value="{{ $satuan->nama }}" required>
-                             </div>
-                         </div>
                          <div class="mb-3">
                              <label for="satuanEdit" class="form-label">Satuan</label>
                              <div class="input-group mb-3">
@@ -74,7 +58,8 @@
                      </div>
 
                      <div class="modal-footer">
-                         <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+                         <button type="submit" class="btn btn-primary btn-sm"
+                             id="updateSatuan{{ $satuan->id }}">Simpan</button>
                      </div>
                  </form>
 

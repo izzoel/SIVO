@@ -28,11 +28,10 @@
                                     <i class="bx bx-pencil"></i>
                                 </button>
 
-                                <a class="btn btn-danger btn-sm" id="deletelokasi"
+                                <a class="btn btn-danger btn-sm" id="destroyLokasi{{ $lokasi->id }}"
                                     href="{{ route('destroy-lokasi', $lokasi->id) }}" role="button">
                                     <i class="bx bx-trash"></i>
                                 </a>
-
                             </td>
                         </tr>
                     @endforeach
