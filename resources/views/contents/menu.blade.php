@@ -54,13 +54,15 @@
                     @endauth
                 </ul>
             </div>
-            <span class="navbar-text me-3">
-                <a type="button" href="{{ route('show-setting') }}" class="btn m-0 p-0"
-                    style="font-size: 1.8rem;color:#0d6efd;" onmouseover="this.style.color='#232425';"
-                    onmouseout="this.style.color='#0d6efd';">
-                    <i class='bx bx-cog'></i>
-                </a>
-            </span>
+            @auth
+                <span class="navbar-text me-3">
+                    <a type="button" href="{{ route('show-setting') }}" class="btn m-0 p-0"
+                        style="font-size: 1.8rem;color:#0d6efd;" onmouseover="this.style.color='#232425';"
+                        onmouseout="this.style.color='#0d6efd';">
+                        <i class='bx bx-cog'></i>
+                    </a>
+                </span>
+            @endauth
         </nav>
 
         @if ($title == 'cair')
@@ -102,6 +104,10 @@
     @include('scripts.script_datatable')
     @include('scripts.script_menu')
 
+    @foreach ($padats as $padat)
+        @include('scripts.script_padat')
+    @endforeach
+
     @foreach ($alats as $alat)
         @include('scripts.script_alat')
     @endforeach
@@ -122,8 +128,9 @@
         @include('scripts.script_laboratorium')
     @endforeach
 
-
-
+    @guest
+        @include('scripts.script_button')
+    @endguest
 
 </body>
 

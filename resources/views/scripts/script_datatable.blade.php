@@ -9,7 +9,7 @@
         buttons: [{
             text: '+ Tambah',
             title: 'Tambah',
-            className: 'btn btn-sm btn-danger mb-2',
+            className: 'btn btn-sm btn-danger mb-2 btn-cair',
             action: function(e, dt, node, config) {
                 $('#modal_bahan').modal('show');
             }
@@ -30,7 +30,7 @@
         buttons: [{
             text: '+ Tambah',
             title: 'Tambah',
-            className: 'btn btn-sm btn-danger mb-2',
+            className: 'btn btn-sm btn-danger mb-2 btn-padat',
             action: function(e, dt, node, config) {
                 $('#modal_bahan').modal('show');
             }
@@ -51,7 +51,7 @@
         buttons: [{
             text: '+ Tambah',
             title: 'Tambah',
-            className: 'btn btn-sm btn-danger mb-2',
+            className: 'btn btn-sm btn-danger mb-2 btn-alat',
             action: function(e, dt, node, config) {
                 $('#modal_bahan').modal('show');
             }
@@ -61,6 +61,10 @@
             [10, 25, 50, 100, "Semua"]
         ],
     });
+
+
+
+
 
     $('#kerusakan').DataTable({
         dom: 'B<"row mb-2"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>><"row mb-2"<"col-sm-12">><"row mb-2"<"col-sm-12"t>><"row mb-2"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6">>',

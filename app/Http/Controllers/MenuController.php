@@ -168,7 +168,7 @@ class MenuController extends Controller
         session()->put('keperluan', $request->input('keperluan'));
         session()->put('avatar', $avatar);
 
-        return redirect()->route('show-menu');
+        return redirect()->route('menu-cair');
     }
     public function login(Menu $menu, Request $request)
     {

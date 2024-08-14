@@ -37,10 +37,11 @@ class BahanController extends Controller
     public function store(Request $request)
     {
         $create = [
-            'nama' => $request->nama,
-            'stok' => $request->stok,
-            'lokasi' => $request->lokasi,
-            'jenis' => $request->jenis
+            'nama' => $request->input('nama'),
+            'stok' => $request->input('stok'),
+            'satuan' => $request->input('satuan'),
+            'lokasi' => $request->input('lokasi'),
+            'jenis' => $request->input('jenis'),
         ];
 
         Bahan::create($create);
@@ -72,11 +73,36 @@ class BahanController extends Controller
         return response()->json($alats);
     }
 
+    public function updateCair(Request $request, $id)
+    {
+        $data = [
+            'nama' => $request->input('namaEdit'),
+            'stok' => $request->input('stokEdit'),
+            'satuan' => $request->input('satuanEdit'),
+            'lokasi' => $request->input('lokasiEdit'),
+        ];
+
+        Bahan::find($id)->update($data);
+        return back();
+    }
+    public function updatePadat(Request $request, $id)
+    {
+        $data = [
+            'nama' => $request->input('namaEdit'),
+            'stok' => $request->input('stokEdit'),
+            'satuan' => $request->input('satuanEdit'),
+            'lokasi' => $request->input('lokasiEdit'),
+        ];
+
+        Bahan::find($id)->update($data);
+        return back();
+    }
     public function updateAlat(Request $request, $id)
     {
         $data = [
             'nama' => $request->input('namaEdit'),
             'stok' => $request->input('stokEdit'),
+            'satuan' => $request->input('satuanEdit'),
             'lokasi' => $request->input('lokasiEdit'),
         ];
 
@@ -190,5 +216,24 @@ class BahanController extends Controller
     public function destroy(bahan $bahan)
     {
         //
+    }
+
+    public function destroyCair($id)
+    {
+        Bahan::destroy($id);
+        Transaksi::destroy($id);
+        return back();
+    }
+    public function destroyPadat($id)
+    {
+        Bahan::destroy($id);
+        Transaksi::destroy($id);
+        return back();
+    }
+    public function destroyAlat($id)
+    {
+        Bahan::destroy($id);
+        Transaksi::destroy($id);
+        return back();
     }
 }

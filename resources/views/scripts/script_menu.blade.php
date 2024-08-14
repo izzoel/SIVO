@@ -82,7 +82,6 @@
         $('#form-storeKerusakan').toggle('fast');
     });
 
-
     $("#jenis").change(function() {
         var jenis = $(this).val();
         if (jenis == "Cair") {
@@ -96,6 +95,23 @@
             $("#ml, #gr").addClass("d-none");
         }
     });
+
+
+
+
+    $('#submit_button').on('click', function(event) {
+        event.preventDefault();
+
+        Swal.fire({
+            title: "Tersimpan!",
+            text: "Sukses",
+            icon: "success",
+            showConfirmButton: false,
+        })
+        $("#form_submit").submit();
+    });
+
+
 
 
     function submitBahan() {

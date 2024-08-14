@@ -39,12 +39,25 @@ Route::post('/put/{id}', [BahanController::class, 'storePut'])->name('store_put'
 
 Route::get('/menu/', [MenuController::class, 'show'])->name('show-menu');
 Route::post('/menu', [MenuController::class, 'show'])->name('show-menu');
+
+Route::post('/store/bahan', [BahanController::class, 'store'])->name('store-bahan');
+
 Route::get('/menu/cair', [MenuController::class, 'showCair'])->name('menu-cair');
+Route::put('/menu/cair/update/{id}', [BahanController::class, 'updateCair'])->name('update-cair');
+Route::get('/menu/cair/destroy/{id}', [BahanController::class, 'destroyCair'])->name('destroy-cair');
+
 Route::get('/menu/padat', [MenuController::class, 'showPadat'])->name('menu-padat');
+Route::put('/menu/padat/update/{id}', [BahanController::class, 'updatePadat'])->name('update-padat');
+Route::get('/menu/padat/destroy/{id}', [BahanController::class, 'destroyPadat'])->name('destroy-padat');
+
 Route::get('/menu/alat', [MenuController::class, 'showAlat'])->name('menu-alat');
 Route::put('/menu/alat/update/{id}', [BahanController::class, 'updateAlat'])->name('update-alat');
+Route::get('/menu/alat/destroy/{id}', [BahanController::class, 'destroyAlat'])->name('destroy-alat');
+
 Route::get('/menu/kerusakan', [MenuController::class, 'showKerusakan'])->name('menu-kerusakan');
-Route::post('/update/kerusakan/{id}', [KerusakanController::class, 'update'])->name('update-kerusakan');
+Route::post('/menu/kerusakan/store', [KerusakanController::class, 'store'])->name('store-kerusakan');
+Route::put('/menu/kerusakan/update/{id}', [KerusakanController::class, 'update'])->name('update-kerusakan');
+Route::get('/menu/kerusakan/destroy/{id}', [KerusakanController::class, 'destroy'])->name('destroy-kerusakan');
 
 Route::get('/transaksi', [TransaksiController::class, 'show'])->name('show-transaksi');
 Route::get('/history', [TransaksiController::class, 'show'])->name('show-history');
@@ -71,9 +84,7 @@ Route::get('/setting/laboratorium/destroy/{id}', [LaboratoriumController::class,
 
 Route::get('/logout', [MenuController::class, 'logout'])->name('logout');
 
-Route::post('/store/bahan', [BahanController::class, 'store'])->name('store-bahan');
-Route::post('/store/kerusakan', [KerusakanController::class, 'store'])->name('store-kerusakan');
-Route::get('/store/kerusakan/destroy/{id}', [KerusakanController::class, 'destroy'])->name('destroy-kerusakan');
+
 
 
 Route::post('/import/bahan', [BahanController::class, 'import'])->name('import-bahan');
