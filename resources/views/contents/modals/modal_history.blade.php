@@ -38,9 +38,9 @@
                                         {{ $history->mahasiswa->nama }}
                                     </td>
                                     <td>
-                                        {{ $history->bahan->nama }}
+                                        {{ $history->nama }}
                                     </td>
-                                    <td>{{ $history->bahan->jenis }}</td>
+                                    <td>{{ $history->jenis }}</td>
                                     <td>{{ $history->jumlah_ambil }}</td>
                                     <td>{{ $history->jumlah_kembali }}</td>
                                     <td>

@@ -31,7 +31,8 @@
                 </div>
             </div>
 
-            <form id="form_import" action="{{ route('import-bahan') }}" method="POST" enctype="multipart/form-data">
+            <form id="form_import" action="{{ route('import-bahan', $title) }}" method="POST"
+                enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <div class="mt-3" id="import">
@@ -54,7 +55,7 @@
                 </div>
             </form>
 
-            <form id="form_submit" action="{{ route('store-bahan') }}" method="POST" style="display: none">
+            <form id="form_submit" action="{{ route('store-bahan', $title) }}" method="POST" style="display: none">
                 @csrf
                 <div class="modal-body">
                     <div class="mt-3" id="input">

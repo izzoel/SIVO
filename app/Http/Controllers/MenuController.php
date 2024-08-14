@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alat;
+use App\Models\Cair;
 use App\Models\Menu;
 use App\Models\Bahan;
+use App\Models\Padat;
 use App\Models\Lokasi;
 use App\Models\Satuan;
 use App\Models\Kerusakan;
@@ -24,9 +27,9 @@ class MenuController extends Controller
         $keperluan = session('keperluan');
         $cari = session('cari');
 
-        $cairs = Bahan::where('jenis', 'Cair')->get();
-        $padats = Bahan::where('jenis', 'Padat')->get();
-        $alats = Bahan::where('jenis', 'Alat')->get();
+        $cairs = Cair::all();
+        $padats = Padat::all();
+        $alats = Alat::all();
 
         $kerusakans = Kerusakan::all();
         $satuans = Satuan::all();
@@ -35,11 +38,9 @@ class MenuController extends Controller
 
         $historys = Transaksi::where('id_mahasiswa', $nim)->get();
         $history_admins = Transaksi::all();
-        $rekaps = Transaksi::selectRaw('id_bahan, MONTH(tanggal) as bulan, SUM(jumlah_ambil) as ambil, SUM(jumlah_kembali) as kembali, keperluan')
-            ->groupBy('id_bahan', 'bulan', 'keperluan')
+        $rekaps = Transaksi::selectRaw('nama, jenis, stok, MONTH(tanggal) as bulan, SUM(jumlah_ambil) as ambil, SUM(jumlah_kembali) as kembali, keperluan')
+            ->groupBy('nama', 'jenis', 'stok', 'bulan', 'keperluan')
             ->get();
-
-
 
         return compact('nim', 'nama', 'prodi', 'keperluan', 'cari', 'cairs', 'padats', 'alats',  'kerusakans', 'satuans', 'lokasis', 'laboratoriums', 'historys', 'history_admins', 'rekaps');
     }

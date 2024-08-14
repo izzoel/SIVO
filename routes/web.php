@@ -34,13 +34,13 @@ Route::get('/cair', [BahanController::class, 'showCair'])->name('show-cair');
 Route::get('/padat', [BahanController::class, 'showPadat'])->name('show-padat');
 Route::get('/alat', [BahanController::class, 'showAlat'])->name('show-alat');
 
-Route::post('/take/{id}', [BahanController::class, 'storeTake'])->name('store_take');
-Route::post('/put/{id}', [BahanController::class, 'storePut'])->name('store_put');
+Route::post('/take/{jenis}/{id}', [BahanController::class, 'storeTake'])->name('store_take');
+Route::post('/put/{jenis}/{id}', [BahanController::class, 'storePut'])->name('store_put');
 
 Route::get('/menu/', [MenuController::class, 'show'])->name('show-menu');
 Route::post('/menu', [MenuController::class, 'show'])->name('show-menu');
 
-Route::post('/store/bahan', [BahanController::class, 'store'])->name('store-bahan');
+Route::post('/store/{jenis}', [BahanController::class, 'store'])->name('store-bahan');
 
 Route::get('/menu/cair', [MenuController::class, 'showCair'])->name('menu-cair');
 Route::put('/menu/cair/update/{id}', [BahanController::class, 'updateCair'])->name('update-cair');
@@ -85,7 +85,7 @@ Route::get('/setting/laboratorium/destroy/{id}', [LaboratoriumController::class,
 Route::get('/logout', [MenuController::class, 'logout'])->name('logout');
 
 
+// Route::post('/import/bahan/{padat}', [BahanController::class, 'import'])->name('import-padat');
 
-
-Route::post('/import/bahan', [BahanController::class, 'import'])->name('import-bahan');
+Route::post('/import/bahan/{jenis}', [BahanController::class, 'import'])->name('import-bahan');
 Route::post('/import/kerusakan', [KerusakanController::class, 'import'])->name('import-kerusakan');

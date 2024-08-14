@@ -16,7 +16,7 @@
         var href = $(this).attr('href');
 
         Swal.fire({
-            title: "Hapus Padat?",
+            title: "Hapus {{ $padat->nama }}?",
             text: "Tidak dapat dikembalikan!",
             icon: "warning",
             showCancelButton: true,

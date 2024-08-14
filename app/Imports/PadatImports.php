@@ -2,15 +2,12 @@
 
 namespace App\Imports;
 
-use App\Models\Mahasiswa;
-use App\Models\Bahan;
+use App\Models\Padat;
 use Maatwebsite\Excel\Concerns\ToModel;
-use Maatwebsite\Excel\Concerns\WithCharts;
-use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
-use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
 
-class BahanImports implements ToModel, WithChunkReading, WithHeadingRow
+class PadatImports implements ToModel, WithChunkReading, WithHeadingRow
 {
     /**
      * @param array $row
@@ -19,9 +16,9 @@ class BahanImports implements ToModel, WithChunkReading, WithHeadingRow
      */
     public function model(array $row)
     {
-        Bahan::updateOrCreate(
+        Padat::updateOrCreate(
             ['nama' => $row['nama_bahan']],
-            ['stok' => $row['stok'], 'satuan' => $row['satuan'], 'lokasi' => $row['lokasi'], 'jenis' => $row['jenis']]
+            ['stok' => $row['stok'], 'satuan' => $row['satuan'], 'jenis' => $row['jenis'], 'lokasi' => $row['lokasi']]
         );
     }
 

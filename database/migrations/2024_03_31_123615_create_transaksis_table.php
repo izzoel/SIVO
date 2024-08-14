@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('id_bahan');
+            $table->string('nama');
+            $table->string('jenis');
+            $table->string('stok');
             $table->string('jumlah_ambil');
             $table->string('jumlah_kembali');
             $table->string('id_mahasiswa');

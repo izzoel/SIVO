@@ -58,13 +58,13 @@
                                 {{-- <td>{{ \Carbon\Carbon::parse($rekap->tanggal)->translatedFormat('d F Y ') }}</td> --}}
                                 <td>{{ \Carbon\Carbon::parse($rekap->tanggal)->translatedFormat('F Y ') }}</td>
                                 {{-- <td>{{ $rekap->mahasiswa->nama }}</td> --}}
-                                <td>{{ $rekap->bahan->nama }}</td>
-                                <td>{{ $rekap->bahan->jenis }}</td>
+                                <td>{{ $rekap->nama }}</td>
+                                <td>{{ $rekap->jenis }}</td>
                                 {{-- <td>{{ $rekap->jumlah_ambil }}</td> --}}
                                 <td>{{ $rekap->ambil }}</td>
                                 {{-- <td>{{ $rekap->jumlah_kembali }}</td> --}}
                                 <td>{{ $rekap->kembali }}</td>
-                                <td>{{ $rekap->bahan->stok }}</td>
+                                <td>{{ $rekap->stok }}</td>
                                 <td>
                                     <span
                                         class="badge rounded-pill {{ $rekap->keperluan === 'Praktikum' ? 'bg-primary' : ($rekap->keperluan === 'Penelitian' ? 'bg-success' : 'bg-danger') }}">{{ $rekap->keperluan }}

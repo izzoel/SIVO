@@ -1,0 +1,305 @@
+"nama";"stok";"satuan";"lokasi";"jenis";"created_at";"updated_at"
+"Vanilin";"1000,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Vaselin";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Vaselin (petrolatum) white";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Vaselin album";"12200,00";"gr";"Rak Besi + Rak Stok (Kayu Putih)";"Padat";\N;"2024-08-14 15:21:40"
+"Vaselin flavum";"10700,00";"gr";"Rak Besi + Rak Stok (Kayu Putih)";"Padat";\N;"2024-08-14 15:21:40"
+"Vit. B6";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Vit. C uncoated";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Zinc";"800,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Zinc logam";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Zinc okide";"4500,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Zinc sulfat";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"ZnO";"2200,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"ZnSO4";"1900,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Amylum Tritici";"500,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Amylum ";"1500,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Ammonium Perusulphate";"1000,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Amylum Solami";"500,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Albumin";"200,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Ammonium Molybolate";"100,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Asam Sitrat";"6500,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Asam Tatrat";"1000,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Bentonit Magma";"1000,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"BHT";"2500,00";"gr";"Rak Besi + Rak Stok (Kayu Putih)";"Padat";\N;"2024-08-14 15:21:40"
+"Benedict";"500,00";"gr";"Rak Besi Stok";"Padat";\N;"2024-08-14 15:21:40"
+"Benziden";"1000,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Carmin";"1000,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Cetostearyl ";"1000,00";"gr";"Rak Stok (Kayu Putih)";"Padat";\N;"2024-08-14 15:21:40"
+"Iron (II) Chloride";"250,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Mangan Sulfat (MnSO4)";"1000,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Mercury (II) Sulfate";"50,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Pottasium Cromate";"1000,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Propylene Paraben";"1000,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Sodium Oxalate (Na2C2O4)";"1000,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"C6H6O2 Hidrokuinon";"50,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"D-Glucose Monohydrate";"1000,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Maltosa";"1000,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Asam Silicat";"1000,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Lactose Broth";"500,00";"gr";"Rak Besi Stok";"Padat";\N;"2024-08-14 15:21:40"
+"EMB Agar";"500,00";"gr";"Rak Besi Stok";"Padat";\N;"2024-08-14 15:21:40"
+"BGLB";"500,00";"gr";"Rak Besi Stok";"Padat";\N;\N
+"Muller Hinton Agar";"500,00";"gr";"Rak Besi Stok";"Padat";\N;\N
+"Simon Citrate Agar";"500,00";"gr";"Rak Besi Stok";"Padat";\N;\N
+"Trypthone Soya Broth";"500,00";"gr";"Rak Besi Stok";"Padat";\N;\N
+"Nutrient Agar";"500,00";"gr";"Rak Besi Stok";"Padat";\N;\N
+"Metyl Morfin";"500,00";"gr";"Rak Besi";"Padat";\N;\N
+"Oleum Cacao";"300,00";"gr";"Rak Besi";"Padat";\N;\N
+"P Amadup";"40,00";"gr";"Rak Besi";"Padat";\N;\N
+"Gum Arabicum";"1000,00";"gr";"Rak Besi";"Padat";\N;\N
+"1-Naftol";"994,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Acetanilide";"299,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Adeps lanae";"4000,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Aerosil";"300,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"AgNO3";"310,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Aluminium Potasium";"500,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Aluminium Powder";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Ambroxol";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Amilum Manihot";"5900,00";"gr";"Rak Besi + Rak Stok (Kayu Putih)";"Padat";\N;"2024-08-14 15:21:40"
+"Amilum Oryzae";"1300,00";"gr";"Rak Besi + Rak Stok (Kayu Putih)";"Padat";\N;"2024-08-14 15:21:40"
+"Aminofilin";"600,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Amoksilin serbuk";"1000,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Amonium asetat";"1500,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Amonium klorida";"6200,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Amonium sulfat";"700,00";"gr";"Rak Besi Stok";"Padat";\N;"2024-08-14 15:21:40"
+"Amprotab";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Antalgin";"250,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Asam askorbat";"1800,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Asam benzoat";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Asam borat";"780,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Asam kromat";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Asam Mefenamat";"1750,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Asam Oksalat";"2300,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Asam pikrat";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Asam salisilat";"6000,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Asam sitrat";"6500,00";"";"Rak Besi";"Padat";\N;\N
+"Asam stearat";"3800,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Asetosal";"750,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Aspirin";"2000,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Avicel 101";"1000,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Avicel 102";"1500,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Avicel ph 102";"700,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"B12";"200,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Barium cloride 2-hydrate";"1000,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Benedict";"500,00";"";"Rak Besi Stok";"Padat";\N;\N
+"C8H8N6O6";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Caffein";"1000,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Calamin";"500,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Calsium Carbonate";"3000,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Calsium cloride dyhidrate";"1300,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Carbokyl Metyl Cellulosa";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Carbopol";"4000,00";"gr";"Rak Besi + Rak Stok (Kayu Putih)";"Padat";\N;"2024-08-14 15:21:40"
+"Cera alba";"4350,00";"gr";"Rak Besi + Rak Stok (Kayu Putih)";"Padat";\N;"2024-08-14 15:21:40"
+"Cera Flava";"7000,00";"gr";"Rak Besi + Rak Stok (Kayu Putih)";"Padat";\N;"2024-08-14 15:21:40"
+"Cetil Alkohol";"3800,00";"gr";"Rak Besi + Rak Stok (Kayu Putih)";"Padat";\N;"2024-08-14 15:21:40"
+"Champora";"1800,00";"gr";"Rak Besi + Rak Stok (Kayu Putih)";"Padat";\N;"2024-08-14 15:21:40"
+"Chloramphenicol";"700,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"CMC Na";"700,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"AA";"11,00";"gr";"Rak Besi";"Padat";"2024-08-14 14:00:04";"2024-08-14 14:57:08"
+"Copper (II) asetat";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Copper (III) Acetate M.";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"CuSO4";"1000,00";"gr";"Rak Besi Stok";"Padat";\N;"2024-08-14 15:21:40"
+"Dextrosa";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"D-Glucose anhydrous";"200,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Dinatrium EDTA";"1000,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"di-Potassium hydrogen";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"di-Potassium hydrogen phosphat";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"FeCl3";"2400,00";"gr";"Rak Besi + Rak Stok (Kayu Putih)";"Padat";\N;"2024-08-14 15:21:40"
+"FeNO3";"90,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Ferrous Sulphate";"500,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"FeSO4";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Gelatin";"1400,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Gliserin Guaia";"500,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Glukosa";"800,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"GOM";"2800,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Hancol";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"HPMC";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Hydrocortisone";"800,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Ibuprofen";"2500,00";"gr";"Rak Besi + Rak Stok (Kayu Putih)";"Padat";\N;"2024-08-14 15:21:40"
+"Iodium";"1950,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Iron (III) Amonium Sulfate";"1000,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"K2CrO4";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Kalium Bromat";"100,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Kalium dikromat";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Kalium permanganat";"700,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Karagenin";"800,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Karbon aktif";"2500,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Karmin";"1000,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"KCl";"350,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"KH2PO4";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"KMnO4";"1500,00";"gr";"Rak Besi + Rak Stok (Kayu Putih)";"Padat";\N;"2024-08-14 15:21:40"
+"KOH";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Laktosa";"1300,00";"gr";"Rak Besi + Rak Stok (Kayu Putih)";"Padat";\N;"2024-08-14 15:21:40"
+"Lanolin";"2200,00";"gr";"Rak Besi + Rak Stok (Kayu Putih)";"Padat";\N;"2024-08-14 15:21:40"
+"Lead (II) Acetat Trihydrate";"250,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Lead (II) Nitrat";"50,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Logam Al";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Magnesium";"300,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Magnesium ribbon";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Magnesium serbuk";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Magnesium stearat";"5500,00";"gr";"Rak Besi + Rak Stok (Kayu Putih)";"Padat";\N;"2024-08-14 15:21:40"
+"Magnesium sulfat";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Magnesium sulfat heptahidrat";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Menthol";"500,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Mercury (II) Chloride";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Mercury (II) Nitrat";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Methyl red";"25,00";"gr";"Rak Besi Stok";"Padat";\N;"2024-08-14 15:21:40"
+"Metyl morfin";"500,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Metyl paraben";"3200,00";"gr";"Rak Besi + Rak Stok (Kayu Putih)";"Padat";\N;"2024-08-14 15:21:40"
+"Na Carbonate";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Na CMC";"1700,00";"gr";"Rak Besi + Rak Stok (Kayu Putih)";"Padat";\N;"2024-08-14 15:21:40"
+"Na EDTA";"1000,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Na2S2O2";"1000,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"NaCl";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"NaOH";"3200,00";"gr";"Rak Besi + Rak Stok (Kayu Putih)";"Padat";\N;"2024-08-14 15:21:40"
+"NaOH 98%";"3400,00";"gr";"Rak Besi + Rak Stok (Kayu Putih)";"Padat";\N;"2024-08-14 15:21:40"
+"Natrium tiosulfat";"1200,00";"gr";"Rak Besi + Rak Stok (Kayu Putih)";"Padat";\N;"2024-08-14 15:21:40"
+"Natrium asetat";"150,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Natrium Benzoat";"2700,00";"gr";"Rak Besi + Rak Stok (Kayu Putih)";"Padat";\N;"2024-08-14 15:21:40"
+"Natrium bikarbonat";"2650,00";"gr";"Rak Besi + Rak Stok (Kayu Putih)";"Padat";\N;"2024-08-14 15:21:40"
+"Natrium karbonat";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Natrium lauril sulfat";"1400,00";"gr";"Rak Besi + Rak Stok (Kayu Putih)";"Padat";\N;"2024-08-14 15:21:40"
+"Natrium nitrat";"550,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Natrium nitrit";"500,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Natrium oksalat";"2000,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Natrium sub carbonate";"500,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Natrium sulfat";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Nipagin";"3200,00";"gr";"Rak Besi + Rak Stok (Kayu Putih)";"Padat";\N;"2024-08-14 15:21:40"
+"Nipasol";"2500,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Norit";"2300,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Ortho phosphoric acid 99%";"300,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"p-Anisidine";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Parafin solid";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"PCT";"2100,00";"gr";"Rak Besi + Rak Stok (Kayu Putih)";"Padat";\N;"2024-08-14 15:21:40"
+"PEG";"3000,00";"gr";"Rak Besi + Rak Stok (Kayu Putih)";"Padat";\N;"2024-08-14 15:21:40"
+"PGA";"1000,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"PGS";"1000,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Phenolphthalein (Indikator PP)";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Phloroglucinol";"105,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Piridoksin";"770,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Potassium acetate";"1000,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Potassium bichromate";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Potassium bromate";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Potassium Dicromate";"750,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Potassium dyhidrogen phosphate";"2650,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Potassium iodida";"1200,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Povidon";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Prokain HCl";"2000,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"PVP";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Resorcinol";"100,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Saccharum Lactis";"14000,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Sakarin";"400,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Silica gel";"1200,00";"gr";"Rak Besi + Rak Stok (Kayu Putih)";"Padat";\N;"2024-08-14 15:21:40"
+"SLS Powder";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Sodium acetate anhydrous";"1200,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Sodium carbonate";"450,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Sodium nitrite p.a smart lab";"500,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Sodium nitroprusside dihydrate";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Sukrosa";"2250,00";"gr";"Rak Besi + Rak Stok (Kayu Putih)";"Padat";\N;"2024-08-14 15:21:40"
+"Sulfur praeciptatum";"1700,00";"gr";"Rak Besi + Rak Stok (Kayu Putih)";"Padat";\N;"2024-08-14 15:21:40"
+"Talk";"8750,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Teophylin";"100,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Tetra";"0,00";"gr";"(Kosong)";"Padat";\N;"2024-08-14 15:21:40"
+"Tetrakain HCl";"1000,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Tetrasiklin";"1500,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Tragakan";"1750,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"Urea";"200,00";"gr";"Rak Besi";"Padat";\N;"2024-08-14 15:21:40"
+"1-Naftol";"995,00";"kg";"(Kosong)";"Cair";\N;"2024-08-14 16:47:56"
+"Alkohol 96%";"4,00";"";"-";"Cair";\N;"2024-04-08 13:08:10"
+"Alkohol 98%";"3,00";"";"-";"Cair";\N;"2024-04-08 12:47:30"
+"Amil alkohol";"6,00";"";"-";"Cair";\N;"2024-04-05 05:44:13"
+"Amoniak";"2899,00";"";"Rak Besi + Rak Besi Stok";"Cair";\N;"2024-04-06 12:22:16"
+"Amonium cair";"95,00";"";"Rak Besi";"Cair";\N;"2024-03-31 13:21:15"
+"Amonium hydroxide";"2000,00";"";"Rak Besi";"Cair";\N;"2024-02-01 07:27:01"
+"Amonium oxalat";"1000,00";"";"Rak Besi";"Cair";\N;\N
+"Anisi oil";"6,00";"";"-";"Cair";\N;"2024-04-05 05:44:50"
+"Aqua pro injeksi";"9,00";"";"-";"Cair";\N;"2024-04-05 05:45:08"
+"Aquadest";"0,00";"";"-";"Cair";\N;\N
+"Asam Asetat 6%";"250,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Asam asetat anhidrat";"0,00";"";"-";"Cair";\N;\N
+"Asam asetat glasial";"800,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Asam asetik anhidrat";"0,00";"";"-";"Cair";\N;\N
+"Asam formic (CHOOH)";"0,00";"";"-";"Cair";\N;\N
+"Asam fosfat";"1000,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Asam Nitrat";"1000,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Aseton p.a";"1500,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Aseton teknis";"2800,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Benzalkonium";"2900,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Benzen";"0,00";"";"-";"Cair";\N;\N
+"Ca(OH)2 40%";"1000,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Citrate saline";"300,00";"";"Rak Besi + Rak Besi Stok";"Cair";\N;\N
+"Diazo B";"500,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Dietil eter";"0,00";"";"-";"Cair";\N;\N
+"Dragendorff";"150,00";"";"Rak Besi + Rak Besi Stok";"Cair";\N;\N
+"Eosin 2%";"0,00";"";"-";"Cair";\N;\N
+"Etanol 96%";"5000,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Eter";"400,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Ethylene";"500,00";"";"Rak Besi + Rak Besi Stok";"Cair";\N;\N
+"Etil asetat";"5950,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Etil Eter";"800,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Fehling A";"1300,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Fehling B";"2000,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Fenol";"1000,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Formalin";"7000,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Fuchsin";"0,00";"";"-";"Cair";\N;\N
+"Fuhsin";"0,00";"";"-";"Cair";\N;\N
+"Gentian violet";"100,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Giemsa";"0,00";"";"-";"Cair";\N;\N
+"Gliserin";"3500,00";"";"Rak Besi + Rak Besi Stok";"Cair";\N;\N
+"Gliserin/gliserol";"14700,00";"";"Rak Besi Stok";"Cair";\N;\N
+"H2SO4";"9000,00";"";"Rak Besi Stok";"Cair";\N;\N
+"HCl";"3000,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Hemoglobin C";"500,00";"";"Rak Besi Stok";"Cair";\N;\N
+"HNO3";"4000,00";"";"Rak Besi Stok";"Cair";\N;\N
+"I-Butanol";"0,00";"";"-";"Cair";\N;\N
+"Isopropyl Myristate";"6700,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Karbopol";"1000,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Kloroform";"0,00";"";"-";"Cair";\N;\N
+"Lactophenol cotton blue";"0,00";"";"-";"Cair";\N;\N
+"LB";"0,00";"";"-";"Cair";\N;\N
+"Lugol";"0,00";"";"-";"Cair";\N;\N
+"Malachite green oxalate";"0,00";"";"-";"Cair";\N;\N
+"Mayer";"0,00";"";"-";"Cair";\N;\N
+"Metanol p.a";"0,00";"";"-";"Cair";\N;\N
+"Metanol teknis";"4000,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Metil Etil Keton";"1000,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Metil salisilat";"3000,00";"";"Rak Besi Stok";"Cair";\N;\N
+"N-Heksan";"0,00";"";"-";"Cair";\N;\N
+"NaCl fis";"1000,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Ol. Anisi";"1200,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Ol. Arachidisi";"1000,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Ol. Cesami";"1400,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Ol. Cinnamomi";"2750,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Ol. Citrus";"1000,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Ol. Coconut";"3500,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Ol. Cocos";"250,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Ol. Iecoris Aseli";"4200,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Ol. Menthae";"4000,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Ol. Olivarum";"2000,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Ol. Olive";"750,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Ol. Ricini";"1400,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Ol. Rosemary";"500,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Parafin liquid";"13000,00";"";"Rak Besi + Rak Besi Stok";"Cair";\N;\N
+"PEG 1000";"4000,00";"";"Rak Besi + Rak Besi Stok";"Cair";\N;\N
+"PEG 400";"2200,00";"";"Rak Besi + Rak Besi Stok";"Cair";\N;\N
+"PEG 600";"1000,00";"";"Rak Besi + Rak Besi Stok";"Cair";\N;\N
+"Potasium alum";"0,00";"";"-";"Cair";\N;\N
+"PPC";"0,00";"";"-";"Cair";\N;\N
+"Propilen glikol";"16200,00";"";"Rak Besi + Rak Besi Stok";"Cair";\N;\N
+"Rees ecker";"0,00";"";"-";"Cair";\N;\N
+"SASA";"1000,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Sirup simplex";"0,00";"";"-";"Cair";\N;\N
+"Sorbitol";"4050,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Sorbitol 70%";"0,00";"";"-";"Cair";\N;\N
+"Span 20";"0,00";"";"-";"Cair";\N;\N
+"Span 80";"12800,00";"";"Rak Besi + Rak Besi Stok";"Cair";\N;\N
+"Spiritus";"12000,00";"";"Rak Besi Stok";"Cair";\N;\N
+"Tapol";"500,00";"";"Rak Besi Stok";"Cair";\N;\N
+"TCA 10%";"0,00";"";"-";"Cair";\N;\N
+"TEA";"9500,00";"";"Rak Besi + Rak Besi Stok";"Cair";\N;\N
+"Turk";"300,00";"";"Rak Besi + Rak Besi Stok";"Cair";\N;\N
+"Tween 60";"1000,00";"";"Rak Besi + Rak Besi Stok";"Cair";\N;\N
+"Tween 80";"5700,00";"";"Rak Besi + Rak Besi Stok";"Cair";\N;\N
+"Wagner";"2960,00";"";"Rak Besi + Rak Besi Stok";"Cair";\N;"2024-03-31 15:26:28"
+"a1";"3,00";"pcs";"Rak Besi";"Alat";"2024-04-16 23:44:42";"2024-08-14 14:29:18"
+"a";"1,00";"ml";"Rak Besi";"Alat";"2024-08-14 14:01:28";"2024-08-14 14:01:28"

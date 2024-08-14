@@ -1,5 +1,5 @@
 <script>
-    $('#form-updateAlat{{ $alat->id }}').on('submit', function(event) {
+    $('#form-updateCair{{ $cair->id }}').on('submit', function(event) {
         event.preventDefault(); // Prevent the default form submission
 
         Swal.fire({
@@ -13,13 +13,13 @@
         });
     });
 
-    $('#destroyAlat{{ $alat->id }}').on('click', function(event) {
+    $('#destroyCair{{ $cair->id }}').on('click', function(event) {
         event.preventDefault();
 
         var href = $(this).attr('href');
 
         Swal.fire({
-            title: "Hapus {{ $alat->nama }}?",
+            title: "Hapus {{ $cair->nama }}?",
             text: "Tidak dapat dikembalikan!",
             icon: "warning",
             showCancelButton: true,

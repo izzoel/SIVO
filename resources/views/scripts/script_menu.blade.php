@@ -1,28 +1,4 @@
 <script>
-    // ############ Simpan Cari Data  ################
-    $('.dt-search input[type="search"]').val('{{ $cari }}');
-    $('.dt-search input[type="search"]').trigger('input');
-
-    $('.dt-search input[type="search"]').on('input', function() {
-        inputValue = $(this).val();
-    });
-
-    $('.modal').on('shown.bs.modal', function() {
-        $(this).find('#cari').val(inputValue);
-    });
-
-    $(document).on('click', '.navbar-nav .nav-link', function() {
-        $.ajax({
-            url: "{{ route('purge-cari') }}",
-            type: 'POST',
-            data: {
-                _token: '{{ csrf_token() }}'
-            }
-        });
-    });
-    // 
-
-
     $('#tabel_history').DataTable({
         language: {
             "lengthMenu": "Tampilkan _MENU_ baris per halaman",
@@ -96,10 +72,7 @@
         }
     });
 
-
-
-
-    $('#submit_button').on('click', function(event) {
+    $('#form_submit').on('submit', function(event) {
         event.preventDefault();
 
         Swal.fire({
@@ -108,79 +81,6 @@
             icon: "success",
             showConfirmButton: false,
         })
-        $("#form_submit").submit();
+        $(this).unbind('submit').submit();
     });
-
-
-
-
-    function submitBahan() {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-
-        let token = $("meta[name='_token']").attr("content");
-        let nama = $("#nama").val();
-        let jenis = $('select[name=jenis] option').filter(':selected').val()
-        let stok = $("#stok").val();
-        let lokasi = $('select[name=lokasi] option').filter(':selected').val()
-        data = {
-            _token: token,
-            nama: nama,
-            jenis: jenis,
-            stok: stok,
-            lokasi: lokasi
-        };
-
-        $.ajax({
-            url: "{{ route('store-bahan') }}",
-            method: 'post',
-            data: data,
-            success: function(data) {
-                // alert('berhasil');
-                $('#modal_bahan').modal('hide');
-                location.reload();
-
-            },
-            error: function(data) {
-                alert('gagal');
-            },
-        });
-
-    }
-
-    function importBahan() {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            enctype: 'multipart/form-data'
-        });
-
-
-        let token = $("meta[name='_token']").attr("content");
-        let excel = $("#import_excel").val();
-
-        data = {
-            _token: token,
-            excel: excel,
-        };
-
-        $.ajax({
-            url: "{{ route('import-bahan') }}",
-            method: 'post',
-            data: data,
-            success: function(data) {
-                $('#modal_bahan').modal('hide');
-                location.reload();
-
-            },
-            error: function(data) {
-                alert('gagal');
-            },
-        });
-    }
 </script>

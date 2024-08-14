@@ -9,7 +9,9 @@ class Transaksi extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id_bahan',
+        'nama',
+        'jenis',
+        'stok',
         'jumlah_ambil',
         'jumlah_kembali',
         'id_mahasiswa',
@@ -19,7 +21,8 @@ class Transaksi extends Model
 
     public function bahan()
     {
-        return $this->belongsTo(Bahan::class, 'id_bahan');
+        // return $this->belongsTo(Bahan::class, 'id_bahan');
+        // return $this->belongsTo(Bahan::class, 'id_bahan');
     }
 
     public function mahasiswa()
