@@ -56,31 +56,41 @@
                 </div>
             </form>
 
-            <form id="form_submit2" action="{{ route('store-kerusakan') }}" method="POST" style="display: none">
+            <form id="form-storeKerusakan" action="{{ route('store-kerusakan') }}" method="POST" style="display: none">
                 @csrf
                 <div class="modal-body">
                     <div class="mt-3" id="input">
                         <div class="mb-3">
                             <label for="nama" class="form-label">Nama Alat</label>
-                            <input type="text" class="form-control" id="nama" name="nama" placeholder="...">
+                            <input type="text" class="form-control" id="nama" name="nama" placeholder="..."
+                                required>
                         </div>
                         <div class="mb-3">
                             <label for="lokasi" class="form-label">Lokasi</label>
-                            <input type="text" class="form-control" id="lokasi" name="lokasi" placeholder="...">
+                            {{-- <input type="text" class="form-control" id="lokasi" name="lokasi" placeholder="..."> --}}
+                            <select class="form-select" id="lokasi" name="lokasi" required>
+                                <option value="" disabled selected>-- Pilih Lokasi --</option>
+                                @foreach ($laboratoriums as $laboratorium)
+                                    <option value="{{ $laboratorium->laboratorium }}">{{ $laboratorium->laboratorium }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="mb-3">
                             <label for="kondisi" class="form-label">Kondisi</label>
-                            <input type="text" class="form-control" id="kondisi" name="kondisi" placeholder="...">
+                            <input type="text" class="form-control" id="kondisi" name="kondisi" placeholder="..."
+                                required>
                         </div>
                         <div class="mb-3">
                             <label for="status" class="form-label">Status</label>
-                            <input type="text" class="form-control" id="status" name="status" placeholder="...">
+                            <input type="text" class="form-control" id="status" name="status" placeholder="..."
+                                required>
                         </div>
                     </div>
                 </div>
 
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-sm" id="submit_button">Simpan</button>
+                    <button type="submit" class="btn btn-primary btn-sm" id="storeKerusakan">Simpan</button>
                 </div>
             </form>
 

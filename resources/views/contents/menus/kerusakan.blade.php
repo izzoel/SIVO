@@ -6,7 +6,7 @@
                 <th class="col-2">Lokasi</th>
                 <th class="col-2">Kondisi</th>
                 <th class="col-2">Status</th>
-                <th class="col-3">Aksi</th>
+                <th class="col-3 text-align: center;">Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -19,10 +19,13 @@
                     <td>
 
                         <button type="button" class="btn btn-warning btn-sm button-kerusakan me-3" data-bs-toggle="modal"
-                            data-bs-target="#kerusakan{{ $kerusakan->id }}">
+                            data-bs-target="#updateKerusakan{{ $kerusakan->id }}">
                             <i class='bx bx-edit-alt'></i> Edit
                         </button>
-
+                        <a class="btn btn-danger btn-sm" href="{{ route('destroy-kerusakan', $kerusakan->id) }}"
+                            id="destroyKerusakan{{ $kerusakan->id }}" role="button">
+                            <i class="bx bx-trash"></i>
+                        </a>
                     </td>
                 </tr>
             @endforeach
@@ -31,7 +34,7 @@
     </table>
 
     @foreach ($kerusakans as $kerusakan)
-        <div class="modal fade modal-alat" id="kerusakan{{ $kerusakan->id }}" tabindex="-1">
+        <div class="modal fade modal-alat" id="updateKerusakan{{ $kerusakan->id }}" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -40,7 +43,8 @@
                         </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="{{ route('update-kerusakan', $kerusakan->id) }}" method="POST">
+                    <form id="form-updateKerusakan{{ $kerusakan->id }}"
+                        action="{{ route('update-kerusakan', $kerusakan->id) }}" method="POST">
                         @csrf
                         <div class="modal-body">
                             <table class="table">
@@ -77,7 +81,8 @@
 
 
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+                            <button type="submit" class="btn btn-primary btn-sm"
+                                id="updateKerusakan{{ $kerusakan->id }}">Simpan</button>
                         </div>
                     </form>
                 </div>

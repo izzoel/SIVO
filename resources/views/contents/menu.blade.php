@@ -102,6 +102,14 @@
     @include('scripts.script_datatable')
     @include('scripts.script_menu')
 
+    @foreach ($alats as $alat)
+        @include('scripts.script_alat')
+    @endforeach
+
+    @foreach ($kerusakans as $kerusakan)
+        @include('scripts.script_kerusakan')
+    @endforeach
+
     @foreach ($satuans as $satuan)
         @include('scripts.script_satuan')
     @endforeach
@@ -113,6 +121,8 @@
     @foreach ($laboratoriums as $laboratorium)
         @include('scripts.script_laboratorium')
     @endforeach
+
+
 
 
 </body>

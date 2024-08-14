@@ -29,7 +29,6 @@ class SatuanController extends Controller
     public function store(Request $request)
     {
         $create = [
-            // 'nama' => $request->nama,
             'satuan' => $request->satuan,
         ];
 

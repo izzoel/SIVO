@@ -15,35 +15,8 @@ use Illuminate\Support\Facades\Auth;
 
 class MenuController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-
-    public function show()
+    private function bankData()
     {
         $nim = session('nim');
         $nama = session('nama');
@@ -52,101 +25,70 @@ class MenuController extends Controller
         $cari = session('cari');
 
         $cairs = Bahan::where('jenis', 'Cair')->get();
-        // $padats = Bahan::where('jenis', 'Padat')->get();
-        // $alats = Bahan::where('jenis', 'Alat')->get();
-        // $kerusakans = Kerusakan::all();
+        $padats = Bahan::where('jenis', 'Padat')->get();
+        $alats = Bahan::where('jenis', 'Alat')->get();
+
+        $kerusakans = Kerusakan::all();
+        $satuans = Satuan::all();
+        $lokasis = Lokasi::all();
+        $laboratoriums = Laboratorium::all();
+
         $historys = Transaksi::where('id_mahasiswa', $nim)->get();
         $history_admins = Transaksi::all();
-        $rekaps = Transaksi::selectRaw('id_bahan, MONTH(tanggal) as bulan, SUM(jumlah_ambil) as ambil,SUM(jumlah_kembali) as kembali, keperluan')
+        $rekaps = Transaksi::selectRaw('id_bahan, MONTH(tanggal) as bulan, SUM(jumlah_ambil) as ambil, SUM(jumlah_kembali) as kembali, keperluan')
             ->groupBy('id_bahan', 'bulan', 'keperluan')
             ->get();
-        $title = "cair";
-        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'cairs',  'historys', 'history_admins', 'rekaps', 'title', 'cari', 'lokasis'));
+
+
+
+        return compact('nim', 'nama', 'prodi', 'keperluan', 'cari', 'cairs', 'padats', 'alats',  'kerusakans', 'satuans', 'lokasis', 'laboratoriums', 'historys', 'history_admins', 'rekaps');
+    }
+    public function show()
+    {
+        // $nim = session('nim');
+        // $nama = session('nama');
+        // $prodi = session('prodi');
+        // $keperluan = session('keperluan');
+        // $cari = session('cari');
+
+        // $kerusakans = Kerusakan::all();
+        // $cairs = Bahan::where('jenis', 'Cair')->get();
+        // $historys = Transaksi::where('id_mahasiswa', $nim)->get();
+        // $history_admins = Transaksi::all();
+        // $rekaps = Transaksi::selectRaw('id_bahan, MONTH(tanggal) as bulan, SUM(jumlah_ambil) as ambil,SUM(jumlah_kembali) as kembali, keperluan')
+        //     ->groupBy('id_bahan', 'bulan', 'keperluan')
+        //     ->get();
+        // $title = "cair";
+        // return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'kerusakans', 'cairs',  'historys', 'history_admins', 'rekaps', 'title', 'cari', 'lokasis'));
         // return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'cairs', 'padats', 'alats', 'kerusakans', 'historys', 'history_admins', 'rekaps', 'title'));
     }
     public function showCair()
     {
-        $nim = session('nim');
-        $nama = session('nama');
-        $prodi = session('prodi');
-        $keperluan = session('keperluan');
-        $cari = session('cari');
+        $data = $this->bankData();
+        $data['title'] = "cair";
 
-        $cairs = Bahan::where('jenis', 'Cair')->get();
-        $historys = Transaksi::where('id_mahasiswa', $nim)->get();
-        $history_admins = Transaksi::all();
-        $rekaps = Transaksi::selectRaw('id_bahan, MONTH(tanggal) as bulan, SUM(jumlah_ambil) as ambil,SUM(jumlah_kembali) as kembali, keperluan')
-            ->groupBy('id_bahan', 'bulan', 'keperluan')
-            ->get();
-        $title = "cair";
-        $satuans = Satuan::all();
-        $lokasis = Lokasi::all();
-        $laboratoriums = Laboratorium::all();
-
-        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'cairs',  'historys', 'history_admins', 'rekaps', 'title', 'cari', 'satuans', 'lokasis', 'laboratoriums'));
+        return view('contents.menu', $data);
     }
     public function showPadat()
     {
-        $nim = session('nim');
-        $nama = session('nama');
-        $prodi = session('prodi');
-        $keperluan = session('keperluan');
-        $cari = session('cari');
+        $data = $this->bankData();
+        $data['title'] = "padat";
 
-        $padats = Bahan::where('jenis', 'Padat')->get();
-        $historys = Transaksi::where('id_mahasiswa', $nim)->get();
-        $history_admins = Transaksi::all();
-        $rekaps = Transaksi::selectRaw('id_bahan, MONTH(tanggal) as bulan, SUM(jumlah_ambil) as ambil,SUM(jumlah_kembali) as kembali, keperluan')
-            ->groupBy('id_bahan', 'bulan', 'keperluan')
-            ->get();
-        $title = "padat";
-        $satuans = Satuan::all();
-        $lokasis = Lokasi::all();
-        $laboratoriums = Laboratorium::all();
-
-        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'padats',  'historys', 'history_admins', 'rekaps', 'title', 'cari', 'satuans', 'lokasis', 'laboratoriums'));
+        return view('contents.menu', $data);
     }
     public function showAlat()
     {
-        $nim = session('nim');
-        $nama = session('nama');
-        $prodi = session('prodi');
-        $keperluan = session('keperluan');
-        $cari = session('cari');
+        $data = $this->bankData();
+        $data['title'] = "alat";
 
-        $alats = Bahan::where('jenis', 'Alat')->get();
-        $historys = Transaksi::where('id_mahasiswa', $nim)->get();
-        $history_admins = Transaksi::all();
-        $rekaps = Transaksi::selectRaw('id_bahan, MONTH(tanggal) as bulan, SUM(jumlah_ambil) as ambil,SUM(jumlah_kembali) as kembali, keperluan')
-            ->groupBy('id_bahan', 'bulan', 'keperluan')
-            ->get();
-        $title = "alat";
-        $satuans = Satuan::all();
-        $lokasis = Lokasi::all();
-        $laboratoriums = Laboratorium::all();
-
-        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'alats',  'historys', 'history_admins', 'rekaps', 'title', 'cari', 'satuans', 'lokasis', 'laboratoriums'));
+        return view('contents.menu', $data);
     }
     public function showKerusakan()
     {
-        $nim = session('nim');
-        $nama = session('nama');
-        $prodi = session('prodi');
-        $keperluan = session('keperluan');
-        $cari = session('cari');
+        $data = $this->bankData();
+        $data['title'] = "kerusakan";
 
-        $kerusakans = Kerusakan::all();
-        $historys = Transaksi::where('id_mahasiswa', $nim)->get();
-        $history_admins = Transaksi::all();
-        $rekaps = Transaksi::selectRaw('id_bahan, MONTH(tanggal) as bulan, SUM(jumlah_ambil) as ambil,SUM(jumlah_kembali) as kembali, keperluan')
-            ->groupBy('id_bahan', 'bulan', 'keperluan')
-            ->get();
-        $title = "kerusakan";
-        $satuans = Satuan::all();
-        $lokasis = Lokasi::all();
-        $laboratoriums = Laboratorium::all();
-
-        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'kerusakans',  'historys', 'history_admins', 'rekaps', 'title', 'cari', 'satuans', 'lokasis', 'laboratoriums'));
+        return view('contents.menu', $data);
     }
 
     /**
@@ -175,93 +117,38 @@ class MenuController extends Controller
 
     public function purge(Request $request)
     {
-        // Purge the specific session key
         $request->session()->forget('cari');
 
-        // Optionally, return a response
         return response()->json(['message' => 'Session key "cari" purged successfully']);
     }
 
     public function setting()
     {
-        $nim = session('nim');
-        $nama = session('nama');
-        $prodi = session('prodi');
-        $keperluan = session('keperluan');
-        $cari = session('cari');
+        $data = $this->bankData();
+        $data['title'] = "setting";
 
-        $historys = Transaksi::where('id_mahasiswa', $nim)->get();
-        $history_admins = Transaksi::all();
-        $rekaps = Transaksi::selectRaw('id_bahan, MONTH(tanggal) as bulan, SUM(jumlah_ambil) as ambil,SUM(jumlah_kembali) as kembali, keperluan')
-            ->groupBy('id_bahan', 'bulan', 'keperluan')
-            ->get();
-        $title = "setting";
-        $satuans = Satuan::all();
-        $lokasis = Lokasi::all();
-        $laboratoriums = Laboratorium::all();
-
-        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'historys', 'history_admins', 'rekaps', 'title', 'cari', 'satuans', 'lokasis', 'laboratoriums'));
+        return view('contents.menu', $data);
     }
     public function settingSatuan()
     {
-        $nim = session('nim');
-        $nama = session('nama');
-        $prodi = session('prodi');
-        $keperluan = session('keperluan');
-        $cari = session('cari');
+        $data = $this->bankData();
+        $data['title'] = "satuan";
 
-        $historys = Transaksi::where('id_mahasiswa', $nim)->get();
-        $history_admins = Transaksi::all();
-        $rekaps = Transaksi::selectRaw('id_bahan, MONTH(tanggal) as bulan, SUM(jumlah_ambil) as ambil,SUM(jumlah_kembali) as kembali, keperluan')
-            ->groupBy('id_bahan', 'bulan', 'keperluan')
-            ->get();
-        $title = "satuan";
-        $satuans = Satuan::all();
-        $lokasis = Lokasi::all();
-        $laboratoriums = Laboratorium::all();
-
-        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'historys', 'history_admins', 'rekaps', 'title', 'cari', 'satuans', 'lokasis', 'laboratoriums'));
+        return view('contents.menu', $data);
     }
     public function settingLokasi()
     {
-        $nim = session('nim');
-        $nama = session('nama');
-        $prodi = session('prodi');
-        $keperluan = session('keperluan');
-        $cari = session('cari');
+        $data = $this->bankData();
+        $data['title'] = "lokasi";
 
-        $historys = Transaksi::where('id_mahasiswa', $nim)->get();
-        $history_admins = Transaksi::all();
-        $rekaps = Transaksi::selectRaw('id_bahan, MONTH(tanggal) as bulan, SUM(jumlah_ambil) as ambil,SUM(jumlah_kembali) as kembali, keperluan')
-            ->groupBy('id_bahan', 'bulan', 'keperluan')
-            ->get();
-        $title = "lokasi";
-        $satuans = Satuan::all();
-        $lokasis = Lokasi::all();
-        $laboratoriums = Laboratorium::all();
-
-        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'historys', 'history_admins', 'rekaps', 'title', 'cari', 'satuans', 'lokasis', 'laboratoriums'));
+        return view('contents.menu', $data);
     }
     public function settingLaboratorium()
     {
-        $nim = session('nim');
-        $nama = session('nama');
-        $prodi = session('prodi');
-        $keperluan = session('keperluan');
-        $cari = session('cari');
+        $data = $this->bankData();
+        $data['title'] = "laboratorium";
 
-        $historys = Transaksi::where('id_mahasiswa', $nim)->get();
-        $history_admins = Transaksi::all();
-        $rekaps = Transaksi::selectRaw('id_bahan, MONTH(tanggal) as bulan, SUM(jumlah_ambil) as ambil,SUM(jumlah_kembali) as kembali, keperluan')
-            ->groupBy('id_bahan', 'bulan', 'keperluan')
-            ->get();
-        $title = "laboratorium";
-        $satuans = Satuan::all();
-        $lokasis = Lokasi::all();
-        $laboratoriums = Laboratorium::all();
-
-
-        return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'historys', 'history_admins', 'rekaps', 'title', 'cari', 'satuans', 'lokasis', 'laboratoriums'));
+        return view('contents.menu', $data);
     }
 
     function landing()

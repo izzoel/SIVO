@@ -17,14 +17,20 @@
                     <td>
                         <button type="button" class="btn btn-warning btn-sm button-alat me-3" data-bs-toggle="modal"
                             data-bs-target="#take_alat{{ $alat->id }}" {{ $alat->stok <= 0 ? 'disabled' : '' }}>
-                            <i class="bx bxs-donate-blood"></i>Ambil
+                            <i class="bx bxs-donate-blood"></i> Ambil
                         </button>
 
-                        <button type="button" class="btn btn-success btn-sm button-alat"
+                        <button type="button" class="btn btn-success btn-sm button-alat me-3"
                             data-item-id="{{ $alat->id }}" data-jenis="{{ $alat->jenis }}" data-bs-toggle="modal"
                             data-bs-target="#put_alat{{ $alat->id }}">
-                            <i class="bx bxs-archive-in"></i>Setor
+                            <i class="bx bxs-archive-in"></i> Setor
                         </button>
+
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
+                            data-bs-target="#setting_alat{{ $alat->id }}">
+                            <i class='bx bx-cog'></i>
+                        </button>
+
                     </td>
                 </tr>
             @endforeach
@@ -134,6 +140,69 @@
                             <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="setting_alat{{ $alat->id }}" tabindex="-1" data-bs-keyboard="false">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            <a class="btn btn-warning">
+                                <i class='bx bx-cog'></i><b> Edit</b>
+                            </a>
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <form id="form-updateAlat{{ $alat->id }}" action="{{ route('update-alat', $alat->id) }}"
+                        method="POST">
+                        @method('PUT')
+                        @csrf
+                        <div class="modal-body">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>Nama</td>
+                                        <td>:</td>
+                                        <td>
+                                            <input type="text" class="form-control" placeholder="..."
+                                                name="namaEdit" value="{{ $alat->nama }}" required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Stok</td>
+                                        <td>:</td>
+                                        <td>
+                                            <input type="text" class="form-control" placeholder="..."
+                                                name="stokEdit" value="{{ $alat->stok }}" required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lokasi</td>
+                                        <td>:</td>
+                                        <td>
+                                            <select class="form-select" id="lokasi" name="lokasiEdit" required>
+                                                <option value="" disabled selected>-- Pilih Lokasi --</option>
+                                                @foreach ($lokasis as $lokasi)
+                                                    <option value="{{ $lokasi->lokasi }}">
+                                                        {{ $lokasi->lokasi }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary btn-sm"
+                                id="updateAlat{{ $alat->id }}">Simpan</button>
+                        </div>
+                    </form>
+
                 </div>
             </div>
         </div>

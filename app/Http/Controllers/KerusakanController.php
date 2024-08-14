@@ -28,8 +28,17 @@ class KerusakanController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $reques)
+    public function store(Request $request)
     {
+        $create = [
+            'nama' => $request->nama,
+            'lokasi' => $request->lokasi,
+            'kondisi' => $request->kondisi,
+            'status' => $request->status,
+        ];
+
+        Kerusakan::create($create);
+        return back();
     }
 
     public function import(Request $request)
@@ -77,8 +86,9 @@ class KerusakanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Kerusakan $kerusakan)
+    public function destroy($id)
     {
-        //
+        Kerusakan::destroy($id);
+        return back();
     }
 }

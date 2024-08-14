@@ -72,6 +72,18 @@ class BahanController extends Controller
         return response()->json($alats);
     }
 
+    public function updateAlat(Request $request, $id)
+    {
+        $data = [
+            'nama' => $request->input('namaEdit'),
+            'stok' => $request->input('stokEdit'),
+            'lokasi' => $request->input('lokasiEdit'),
+        ];
+
+        Bahan::find($id)->update($data);
+        return back();
+    }
+
     public function storeTake(Request $request)
     {
         $stok = Bahan::where('id', $request->id_bahan)->value('stok');

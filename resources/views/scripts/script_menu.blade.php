@@ -79,8 +79,9 @@
     });
     $('#input_kerusakan, #import_kerusakan').on('change', function() {
         $('#form_import2').toggle('fast');
-        $('#form_submit2').toggle('fast');
+        $('#form-storeKerusakan').toggle('fast');
     });
+
 
     $("#jenis").change(function() {
         var jenis = $(this).val();
@@ -157,7 +158,6 @@
             method: 'post',
             data: data,
             success: function(data) {
-                // alert('berhasil');
                 $('#modal_bahan').modal('hide');
                 location.reload();
 
@@ -166,6 +166,5 @@
                 alert('gagal');
             },
         });
-
     }
 </script>

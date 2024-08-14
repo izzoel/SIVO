@@ -74,8 +74,8 @@
 
                         <div class="mb-3">
                             <label for="stok" class="form-label">Stok
-                                <a type="button" href="{{ route('setting-satuan') }}" class="btn btn-sm ms-0 p-0"><i
-                                        class='bx bx-cog text-primary'></i>
+                                <a type="button" href="{{ route('setting-satuan') }}" class="btn btn-sm ms-0 p-0">
+                                    <i class='bx bx-cog text-primary'></i>
                                 </a>
                             </label>
                             <div class="input-group mb-3">
