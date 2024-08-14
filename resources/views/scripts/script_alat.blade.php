@@ -1,25 +1,9 @@
 <script>
-    $('#form-updateAlat{{ $alat->id }}').on('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
+    // function hapus() {
+    $("#swal").on("click", function() {
 
         Swal.fire({
-            title: "Tersimpan!",
-            text: "Sukses",
-            icon: "success",
-            showConfirmButton: false,
-            timer: 800, // Close the alert after 1.5 seconds
-        }).then(() => {
-            $(this).unbind('submit').submit();
-        });
-    });
-
-    $('#destroyAlat{{ $alat->id }}').on('click', function(event) {
-        event.preventDefault();
-
-        var href = $(this).attr('href');
-
-        Swal.fire({
-            title: "Hapus {{ $alat->nama }}?",
+            title: "Hapus Data?",
             text: "Tidak dapat dikembalikan!",
             icon: "warning",
             showCancelButton: true,
@@ -34,8 +18,9 @@
                     icon: "success",
                     showConfirmButton: false,
                 });
-                window.location.href = href;
+                // Perform the deletion or redirect here
             }
         });
     });
+    // }
 </script>

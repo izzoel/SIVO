@@ -10,8 +10,8 @@
     });
 
     $('.modal').on('shown.bs.modal', function() {
-        $(this).find('#cari').val(inputValue);
-        // console.log(inputValue);
+        // $(this).find('#cari').val(inputValue);
+        console.log('modal');
     });
 
     $('.navbar-nav .nav-link').on('click', function() {
