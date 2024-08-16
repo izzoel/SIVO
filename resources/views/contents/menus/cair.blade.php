@@ -15,20 +15,18 @@
                     <td>{{ $cair->stok . ' ' . $cair->satuan }}</td>
                     <td>{{ $cair->lokasi }}</td>
                     <td>
-                        <button type="button" class="btn btn-warning btn-sm button-padat me-3" data-bs-toggle="modal"
-                            data-bs-target="#take_cair{{ $cair->id }}" {{ $cair->stok <= 0 ? 'disabled' : '' }}>
+
+                        <!-- Trigger Button -->
+                        <button type="button" class="btn btn-warning btn-sm ambilModal me-3" data-id="{{ $cair->id }}" {{ $cair->stok <= 0 ? 'disabled' : '' }}>
                             <i class="bx bxs-donate-blood"></i> Ambil
                         </button>
 
-                        <button type="button" class="btn btn-success btn-sm button-alat me-3"
-                            data-item-id="{{ $cair->id }}" data-jenis="{{ $cair->jenis }}" data-bs-toggle="modal"
-                            data-bs-target="#put_cair{{ $cair->id }}">
+                        <button type="button" class="btn btn-success btn-sm setorModal me-3" data-id="{{ $cair->id }}">
                             <i class="bx bxs-archive-in"></i> Setor
                         </button>
 
                         @auth
-                            <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#setting_cair{{ $cair->id }}">
+                            <button type="button" class="btn btn-secondary btn-sm settingModal" data-id="{{ $cair->id }}">
                                 <i class='bx bx-cog'></i>
                             </button>
                         @endauth
@@ -38,5 +36,4 @@
 
         </tbody>
     </table>
-
 </div>

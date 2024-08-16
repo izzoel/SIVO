@@ -35,8 +35,7 @@
             </div>
             <div class="modal-body">
 
-                <table id="tabel_rekap" class="table table-striped table-bordered"
-                    style="width:100%; text-align: center;">
+                <table id="tabel_rekap" class="table table-striped table-bordered" style="width:100%; text-align: center;">
                     <thead>
                         <tr>
                             <th style="text-align: center; vertical-align: middle;" rowspan="2">Tanggal</th>

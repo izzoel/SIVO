@@ -30,15 +30,27 @@ Route::post('/logbook', [MenuController::class, 'logbook'])->name('logbook');
 
 Route::post('/login', [MenuController::class, 'login'])->name('login');
 
+
+
 Route::get('/cair', [BahanController::class, 'showCair'])->name('show-cair');
 Route::get('/padat', [BahanController::class, 'showPadat'])->name('show-padat');
 Route::get('/alat', [BahanController::class, 'showAlat'])->name('show-alat');
 
-Route::post('/take/{jenis}/{id}', [BahanController::class, 'storeTake'])->name('store_take');
-Route::post('/put/{jenis}/{id}', [BahanController::class, 'storePut'])->name('store_put');
+Route::get('/bahan/{jenis}', [BahanController::class, 'showBahan'])->name('show-bahan');
+Route::get('/setting/{jenis}', [BahanController::class, 'showSetting'])->name('show-setting');
+Route::post('/take', [BahanController::class, 'take'])->name('take');
+Route::post('/put', [BahanController::class, 'put'])->name('put');
+Route::post('/set', [BahanController::class, 'set'])->name('set');
 
-Route::get('/menu/', [MenuController::class, 'show'])->name('show-menu');
-Route::post('/menu', [MenuController::class, 'show'])->name('show-menu');
+
+
+Route::get('/transaksi', [TransaksiController::class, 'show'])->name('show-transaksi');
+Route::get('/history', [TransaksiController::class, 'show'])->name('show-history');
+
+Route::post('/purge/cari', [MenuController::class, 'purge'])->name('purge-cari');
+
+// Route::get('/menu/', [MenuController::class, 'show'])->name('show-menu');
+// Route::post('/menu', [MenuController::class, 'show'])->name('show-menu');
 
 Route::post('/store/{jenis}', [BahanController::class, 'store'])->name('store-bahan');
 
@@ -59,12 +71,8 @@ Route::post('/menu/kerusakan/store', [KerusakanController::class, 'store'])->nam
 Route::put('/menu/kerusakan/update/{id}', [KerusakanController::class, 'update'])->name('update-kerusakan');
 Route::get('/menu/kerusakan/destroy/{id}', [KerusakanController::class, 'destroy'])->name('destroy-kerusakan');
 
-Route::get('/transaksi', [TransaksiController::class, 'show'])->name('show-transaksi');
-Route::get('/history', [TransaksiController::class, 'show'])->name('show-history');
 
-Route::post('/purge/cari', [MenuController::class, 'purge'])->name('purge-cari');
-
-Route::get('/setting/', [MenuController::class, 'setting'])->name('show-setting');
+// Route::get('/setting/', [MenuController::class, 'setting'])->name('show-setting');
 
 Route::get('/setting/satuan/', [MenuController::class, 'settingSatuan'])->name('setting-satuan');
 Route::post('/setting/satuan/store', [SatuanController::class, 'store'])->name('store-satuan');

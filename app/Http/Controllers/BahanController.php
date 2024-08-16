@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Alat;
 use App\Models\Cair;
 use App\Models\User;
 use App\Models\Bahan;
 use App\Models\Padat;
+use App\Models\Lokasi;
+use App\Models\Satuan;
 use App\Models\Mahasiswa;
 use App\Models\Transaksi;
 use App\Imports\AlatSheet;
@@ -87,57 +90,187 @@ class BahanController extends Controller
         $cairs = Cair::where('jenis', 'Cair')->get();
         return response()->json($cairs);
     }
+
     public function showPadat()
     {
         $padats = Bahan::where('jenis', 'Padat')->get();
         return response()->json($padats);
     }
+
     public function showAlat()
     {
         $alats = Alat::where('jenis', 'Alat')->get();
         return response()->json($alats);
     }
 
-    public function updateCair(Request $request, $id)
+    public function showBahan(Request $request, $jenis)
     {
-        $data = [
-            'nama' => $request->input('namaEdit'),
-            'stok' => $request->input('stokEdit'),
-            'satuan' => $request->input('satuanEdit'),
-            'lokasi' => $request->input('lokasiEdit'),
-        ];
+        $id = $request->query('id');
 
-        Cair::find($id)->update($data);
-        return back();
-    }
-    public function updatePadat(Request $request, $id)
-    {
-        $data = [
-            'nama' => $request->input('namaEdit'),
-            'stok' => $request->input('stokEdit'),
-            'satuan' => $request->input('satuanEdit'),
-            'lokasi' => $request->input('lokasiEdit'),
-        ];
+        if ($jenis == 'cair') {
+            $bahan = Cair::find($id);
+        } elseif ($jenis == 'padat') {
+            $bahan = Padat::find($id);
+        } elseif ($jenis == 'alat') {
+            $bahan = Alat::find($id);
+        }
 
-        Padat::find($id)->update($data);
-        return back();
-    }
-    public function updateAlat(Request $request, $id)
-    {
-        $data = [
-            'nama' => $request->input('namaEdit'),
-            'stok' => $request->input('stokEdit'),
-            'satuan' => $request->input('satuanEdit'),
-            'lokasi' => $request->input('lokasiEdit'),
-        ];
-
-        Alat::find($id)->update($data);
-        return back();
+        return response()->json($bahan);
     }
 
-    public function storeTake(Request $request, $jenis, $id)
+    public function showSetting(Request $request, $jenis)
     {
+        $id = $request->query('id');
 
+        if ($jenis == 'cair') {
+            $bahan = Cair::find($id);
+        } elseif ($jenis == 'padat') {
+            $bahan = Padat::find($id);
+        } elseif ($jenis == 'alat') {
+            $bahan = Alat::find($id);
+        }
+
+        $satuan = Satuan::orderBy('satuan', 'asc')->get();
+        $lokasi = Lokasi::orderBy('lokasi', 'asc')->get();
+
+        return response()->json(['bahan' => $bahan, 'satuan' => $satuan, 'lokasi' => $lokasi]);
+    }
+
+    public function put(Request $request)
+    {
+        $id = $request->input('id');
+        $setor = $request->input('setor');
+        $jenis = $request->input('jenis');
+        $tanggal = Carbon::now();
+
+        if ($jenis == 'cair') {
+            $bahan = Cair::find($id);
+        } elseif ($jenis == 'padat') {
+            $bahan = Padat::find($id);
+        } elseif ($jenis == 'alat') {
+            $bahan = Alat::find($id);
+        }
+
+        $nama = $bahan->nama;
+        $stok = $bahan->stok;
+        $lokasi = $bahan->lokasi;
+
+        $model = [
+            'stok' => $stok + $setor,
+            'lokasi' => ($stok - $setor <= 0) ? '-' : $lokasi
+        ];
+
+        $history_tanggal = Transaksi::whereDate('tanggal', '>=', substr($tanggal, 0, 10) . ' 00:00:00')
+            ->whereDate('tanggal', '<=', substr($tanggal, 0, 10) . ' 23:59:59')->where('nama', $nama)->where('keperluan', session('keperluan'))
+            ->get();
+
+        if ($history_tanggal->isEmpty()) {
+            $create = [
+                'nama' => $nama,
+                'jenis' => ucfirst($jenis),
+                'stok' => $stok,
+                'jumlah_ambil' => 0,
+                'jumlah_kembali' => $setor,
+                'id_mahasiswa' => session('nim'),
+                'tanggal' => $tanggal,
+                'keperluan' => session('keperluan')
+            ];
+
+            Transaksi::create($create);
+        } else {
+            $history_setor = $history_tanggal->first()->jumlah_kembali;
+            $update = [
+                'jumlah_kembali' => $history_setor + $setor,
+                'tanggal' => $tanggal
+            ];
+
+            Transaksi::where('nama', $history_tanggal->pluck('nama'))->where('keperluan', $history_tanggal->pluck('keperluan'))->update($update);
+        }
+
+        $bahan->update($model);
+    }
+    public function take(Request $request)
+    {
+        $id = $request->input('id');
+        $ambil = $request->input('ambil');
+        $jenis = $request->input('jenis');
+        $tanggal = Carbon::now();
+
+        if ($jenis == 'cair') {
+            $bahan = Cair::find($id);
+        } elseif ($jenis == 'padat') {
+            $bahan = Padat::find($id);
+        } elseif ($jenis == 'alat') {
+            $bahan = Alat::find($id);
+        }
+
+        $nama = $bahan->nama;
+        $stok = $bahan->stok;
+        $lokasi = $bahan->lokasi;
+
+        $model = [
+            'stok' => max(0, $stok - $ambil),
+            'lokasi' => ($stok - $ambil <= 0) ? '-' : $lokasi
+        ];
+
+        $history_tanggal = Transaksi::whereDate('tanggal', '>=', substr($tanggal, 0, 10) . ' 00:00:00')
+            ->whereDate('tanggal', '<=', substr($tanggal, 0, 10) . ' 23:59:59')->where('nama', $nama)->where('keperluan', session('keperluan'))
+            ->get();
+
+        if ($history_tanggal->isEmpty()) {
+            $create = [
+                'nama' => $nama,
+                'jenis' => ucfirst($jenis),
+                'stok' => $stok,
+                'jumlah_ambil' => $ambil,
+                'jumlah_kembali' => 0,
+                'id_mahasiswa' => session('nim'),
+                'tanggal' => $tanggal,
+                'keperluan' => session('keperluan')
+            ];
+
+            Transaksi::create($create);
+        } else {
+            $history_ambil = $history_tanggal->first()->jumlah_ambil;
+            $update = [
+                'jumlah_ambil' => $history_ambil + $ambil,
+                'tanggal' => $tanggal
+            ];
+            Transaksi::where('nama', $history_tanggal->pluck('nama')->first())->where('keperluan', $history_tanggal->pluck('keperluan')->first())->update($update);
+        }
+        $bahan->update($model);
+    }
+
+    public function set(Request $request)
+    {
+        $id = $request->input('id');
+        $nama = $request->input('namaEdit');
+        $stok = $request->input('stokEdit');
+        $satuan = $request->input('satuanEdit');
+        $lokasi = $request->input('lokasiEdit');
+        $jenis = $request->input('jenis');
+
+        if ($jenis == 'cair') {
+            $bahan = Cair::find($id);
+        } elseif ($jenis == 'padat') {
+            $bahan = Padat::find($id);
+        } elseif ($jenis == 'alat') {
+            $bahan = Alat::find($id);
+        }
+
+        $model = [
+            'nama' => $nama,
+            'stok' => $stok,
+            'satuan' => $satuan,
+            'lokasi' => $lokasi
+        ];
+
+        $bahan->update($model);
+    }
+
+    public function storeTake(Request $request)
+    {
+        dd($request->all());
         Session::put('tab', $request->tab);
         Session::put('cari', $request->cari);
 
@@ -150,6 +283,7 @@ class BahanController extends Controller
         }
 
         $stok = $bahan->value('stok');
+
 
         $model = [
             'stok' => max(0, $stok - $request->ambil),

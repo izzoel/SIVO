@@ -1,5 +1,6 @@
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- Favicons -->
     <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
     <link href="{{ asset('assets/img/sivo.png') }}" rel="sivo">
