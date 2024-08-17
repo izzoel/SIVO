@@ -3,13 +3,13 @@
         <img src="https://raw.githubusercontent.com/izzoel/SIVO/8fbef2e19239b8f38350428e9569c2c322a143b5/public/assets/img/sivo.png" width="100" alt="SIVO Logo">
     </a>
     <br>
-    <strong>SIVO | Sistem Informasi Inventaris Deposit</strong>
+    <strong>SIVO | Sistem Informasi Inventaris Depo</strong>
 </p>
 
 
 ## Tentang SIVO
 
-SIVO merupakan singkatan dari "Sistem Informasi Inventaris Deposit" yang bertujuan untuk mempermudah proses inventarisasi barang dan pengecekan bahan di Depo Alat Bahan Universitas Borneo Lestari.
+SIVO merupakan singkatan dari "Sistem Informasi Inventaris Depo" yang bertujuan untuk mempermudah proses inventarisasi barang dan pengecekan bahan di Depo Alat Bahan Universitas Borneo Lestari.
 
 Fitur utama SIVO meliputi:
 
