@@ -3,7 +3,7 @@
         $(document).on('click', '.ambilModal', function() {
             var id = $(this).data('id');
             var segment = "{{ route('show-bahan', request()->segment(2)) }}";
-            // alert(segment);
+
             $.ajax({
                 url: segment,
                 type: 'GET',
@@ -12,15 +12,14 @@
                 },
                 dataType: 'json',
                 success: function(data) {
-                    // console.log(data);
-                    // alert(data[0]);
                     if (data.nama) {
                         $('#labelTakeNama').text(data.nama);
                         $('#labelTakeStok').text(data.stok);
                         $('#labelTakeLokasi').text(data.lokasi);
                         $('#labelTakeSatuan').text(data.satuan);
 
-                        $("#submit-form").submit(function() {
+                        $("#submit-form").submit(function(event) {
+                            event.preventDefault();
                             let route = "{{ route('take') }}";
                             let token = "{{ csrf_token() }}";
                             let id = data.id;
@@ -37,7 +36,15 @@
                                 type: 'POST',
                                 data: data,
                                 success: function(postData) {
-                                    location.reload(true);
+                                    Swal.fire({
+                                        title: "Tersimpan!",
+                                        text: "Sukses",
+                                        icon: "success",
+                                        showConfirmButton: false,
+                                        timer: 800
+                                    }).then((result) => {
+                                        location.reload(true);
+                                    })
                                 },
                                 error: function(xhr, status, error) {
                                     console.error(xhr.responseText);
@@ -67,7 +74,7 @@
         $(document).on('click', '.setorModal', function() {
             var id = $(this).data('id');
             var segment = "{{ route('show-bahan', request()->segment(2)) }}";
-            // alert(segment);
+
             $.ajax({
                 url: segment,
                 type: 'GET',
@@ -82,7 +89,8 @@
                         $('#labelPutLokasi').text(data.lokasi);
                         $('#labelPutSatuan').text(data.satuan);
 
-                        $("#submit-put").submit(function() {
+                        $("#submit-put").submit(function(event) {
+                            event.preventDefault();
                             let route = "{{ route('put') }}";
                             let token = "{{ csrf_token() }}";
                             let id = data.id;
@@ -100,7 +108,15 @@
                                 type: 'POST',
                                 data: data,
                                 success: function(postData) {
-                                    location.reload(true);
+                                    Swal.fire({
+                                        title: "Tersimpan!",
+                                        text: "Sukses",
+                                        icon: "success",
+                                        showConfirmButton: false,
+                                        timer: 800
+                                    }).then((result) => {
+                                        location.reload(true);
+                                    })
                                 },
                                 error: function(xhr, status, error) {
                                     console.error(xhr.responseText);
@@ -129,10 +145,8 @@
 
         $(document).on('click', '.settingModal', function() {
             var id = $(this).data('id');
-            let segment = "{{ route('show-setting', request()->segment(2)) }}";
-            // alert(segment);
-            // console.log(segment);
-
+            dataSettingId = $(this).data('id');
+            let segment = "{{ route('modal-setting', request()->segment(2)) }}";
             $.ajax({
                 url: segment,
                 type: 'GET',
@@ -176,7 +190,9 @@
                             }
                         });
 
-                        $("#submit-setting").submit(function() {
+                        $("#submit-setting").submit(function(event) {
+                            event.preventDefault();
+
                             let route = "{{ route('set') }}";
                             let token = "{{ csrf_token() }}";
                             let id = data.bahan.id;
@@ -185,6 +201,7 @@
                             let satuanEdit = $('#labelSettingSatuan').val();
                             let lokasiEdit = $('#labelSettingLokasi').val();
                             let jenis = "{{ request()->segment(2) }}";
+
                             data = {
                                 _token: token,
                                 id: id,
@@ -200,7 +217,15 @@
                                 type: 'POST',
                                 data: data,
                                 success: function(postData) {
-                                    location.reload(true);
+                                    Swal.fire({
+                                        title: "Tersimpan!",
+                                        text: "Sukses",
+                                        icon: "success",
+                                        showConfirmButton: false,
+                                        timer: 800
+                                    }).then((result) => {
+                                        location.reload(true);
+                                    })
                                 },
                                 error: function(xhr, status, error) {
                                     console.error(xhr.responseText);
@@ -210,7 +235,11 @@
                                     $('#modalSetting').modal('show');
                                 }
                             });
+
+
                         });
+
+
 
                     } else {
                         $('#labelSettingNama').text('No Name Available');
@@ -224,5 +253,109 @@
                 }
             });
         });
+
+        cek = "{{ request()->segment(2) }}";
+
+        if (cek !== 'kerusakan') {
+            $("#destroyButton").on("click", function(event) {
+                event.preventDefault();
+                let jenis = "{{ request()->segment(2) }}";
+                alert(dataSettingId);
+                Swal.fire({
+                    title: "Hapus Data?",
+                    text: "Tidak dapat dikembalikan!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yap, hapus!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: "{{ route('destroy') }}",
+                            type: 'POST',
+                            data: {
+                                _token: "{{ csrf_token() }}",
+                                id: dataSettingId,
+                                jenis: jenis
+                            },
+                            success: function(postData) {
+                                Swal.fire({
+                                    title: "Terhapus!",
+                                    text: "Data berhasil dihapus.",
+                                    icon: "success",
+                                    showConfirmButton: false,
+                                    timer: 800
+                                }).then((result) => {
+                                    localStorage.removeItem('datatableSearchValue');
+                                    location.reload(true);
+                                });
+                            },
+                            error: function(xhr, status, error) {
+                                console.error(xhr.responseText);
+                                $('#modalSetting .modal-body').html(
+                                    '<p>Error loading content</p>'
+                                );
+                                $('#modalSetting').modal('show');
+                            }
+                        })
+
+                    }
+                });
+            });
+        } else {
+            $(document).on('click', '#destroyButton[data-id]', function() {
+                var dataId = $(this).attr('data-id');
+                event.preventDefault();
+                let jenis = "{{ request()->segment(2) }}";
+                Swal.fire({
+                    title: "Hapus Data?",
+                    text: "Tidak dapat dikembalikan!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yap, hapus!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+
+                        $.ajax({
+                            url: "{{ route('destroy') }}",
+                            type: 'POST',
+                            data: {
+                                _token: "{{ csrf_token() }}",
+                                id: dataId,
+                                jenis: jenis
+                            },
+                            success: function(postData) {
+                                Swal.fire({
+                                    title: "Terhapus!",
+                                    text: "Data berhasil dihapus.",
+                                    icon: "success",
+                                    showConfirmButton: false,
+                                    timer: 800
+                                }).then((result) => {
+                                    localStorage.removeItem('datatableSearchValue');
+                                    location.reload(true);
+                                });
+                            },
+                            error: function(xhr, status, error) {
+                                console.error(xhr.responseText);
+                                $('#modalSetting .modal-body').html(
+                                    '<p>Error loading content</p>'
+                                );
+                                $('#modalSetting').modal('show');
+                            }
+                        })
+
+                    }
+                });
+            });
+
+
+
+
+        }
+
     });
 </script>

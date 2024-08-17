@@ -15,19 +15,16 @@
                     <td>{{ $alat->stok . ' ' . $alat->satuan }}</td>
                     <td>{{ $alat->lokasi }}</td>
                     <td>
-                        <button type="button" class="btn btn-warning btn-sm button-alat me-3" data-bs-toggle="modal"
-                            data-bs-target="#take_alat{{ $alat->id }}" {{ $alat->stok <= 0 ? 'disabled' : '' }}>
+                        <button type="button" class="btn btn-warning btn-sm ambilModal me-3" data-id="{{ $alat->id }}" {{ $alat->stok <= 0 ? 'disabled' : '' }}>
                             <i class="bx bxs-donate-blood"></i> Ambil
                         </button>
 
-                        <button type="button" class="btn btn-success btn-sm button-alat me-3"
-                            data-item-id="{{ $alat->id }}" data-jenis="{{ $alat->jenis }}" data-bs-toggle="modal"
-                            data-bs-target="#put_alat{{ $alat->id }}">
+                        <button type="button" class="btn btn-success btn-sm setorModal me-3" data-id="{{ $alat->id }}">
                             <i class="bx bxs-archive-in"></i> Setor
                         </button>
+
                         @auth
-                            <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#setting_alat{{ $alat->id }}">
+                            <button type="button" class="btn btn-secondary btn-sm settingModal" data-id="{{ $alat->id }}">
                                 <i class='bx bx-cog'></i>
                             </button>
                         @endauth

@@ -15,20 +15,16 @@
                     <td>{{ $padat->stok . ' ' . $padat->satuan }}</td>
                     <td>{{ $padat->lokasi }}</td>
                     <td>
-                        <button type="button" class="btn btn-warning btn-sm button-padat me-3" data-bs-toggle="modal"
-                            data-bs-target="#take_padat{{ $padat->id }}" {{ $padat->stok <= 0 ? 'disabled' : '' }}>
+                        <button type="button" class="btn btn-warning btn-sm ambilModal me-3" data-id="{{ $padat->id }}" {{ $padat->stok <= 0 ? 'disabled' : '' }}>
                             <i class="bx bxs-donate-blood"></i> Ambil
                         </button>
 
-                        <button type="button" class="btn btn-success btn-sm button-padat me-3"
-                            data-item-id="{{ $padat->id }}" data-jenis="{{ $padat->jenis }}" data-bs-toggle="modal"
-                            data-bs-target="#put_padat{{ $padat->id }}">
+                        <button type="button" class="btn btn-success btn-sm setorModal me-3" data-id="{{ $padat->id }}">
                             <i class="bx bxs-archive-in"></i> Setor
                         </button>
 
                         @auth
-                            <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#setting_padat{{ $padat->id }}">
+                            <button type="button" class="btn btn-secondary btn-sm settingModal" data-id="{{ $padat->id }}">
                                 <i class='bx bx-cog'></i>
                             </button>
                         @endauth

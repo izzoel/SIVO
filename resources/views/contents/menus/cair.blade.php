@@ -15,8 +15,6 @@
                     <td>{{ $cair->stok . ' ' . $cair->satuan }}</td>
                     <td>{{ $cair->lokasi }}</td>
                     <td>
-
-                        <!-- Trigger Button -->
                         <button type="button" class="btn btn-warning btn-sm ambilModal me-3" data-id="{{ $cair->id }}" {{ $cair->stok <= 0 ? 'disabled' : '' }}>
                             <i class="bx bxs-donate-blood"></i> Ambil
                         </button>

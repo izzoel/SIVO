@@ -10,6 +10,7 @@ use App\Models\Bahan;
 use App\Models\Padat;
 use App\Models\Lokasi;
 use App\Models\Satuan;
+use App\Models\Kerusakan;
 use App\Models\Mahasiswa;
 use App\Models\Transaksi;
 use App\Imports\AlatSheet;
@@ -65,11 +66,6 @@ class BahanController extends Controller
         return back();
     }
 
-    // public function import(Request $request)
-    // {
-    //     Excel::import(new FirstSheet, $request->file('excel'));
-    //     return back();
-    // }
     public function import(Request $request, $jenis)
     {
         if ($jenis == 'cair') {
@@ -268,111 +264,6 @@ class BahanController extends Controller
         $bahan->update($model);
     }
 
-    public function storeTake(Request $request)
-    {
-        dd($request->all());
-        Session::put('tab', $request->tab);
-        Session::put('cari', $request->cari);
-
-        if ($jenis == 'cair') {
-            $bahan = Cair::where('id', $id);
-        } elseif ($jenis == 'padat') {
-            $bahan = Padat::where('id', $id);
-        } elseif ($jenis == 'alat') {
-            $bahan = Alat::where('id', $id);
-        }
-
-        $stok = $bahan->value('stok');
-
-
-        $model = [
-            'stok' => max(0, $stok - $request->ambil),
-            'lokasi' => ($stok - $request->ambil <= 0) ? '-' : $bahan->value('lokasi')
-        ];
-
-        $history_tanggal = Transaksi::whereDate('tanggal', '>=', substr($request->tanggal, 0, 10) . ' 00:00:00')
-            ->whereDate('tanggal', '<=', substr($request->tanggal, 0, 10) . ' 23:59:59')->where('nama', $bahan->value('nama'))->where('keperluan', session('keperluan'))
-            ->get();
-
-        if ($history_tanggal->isEmpty()) {
-            $create = [
-                'nama' => $bahan->value('nama'),
-                'jenis' => $bahan->value('jenis'),
-                'stok' => $stok,
-                'jumlah_ambil' => $request->ambil,
-                'jumlah_kembali' => $request->kembali,
-                'id_mahasiswa' => session('nim'),
-                'tanggal' => $request->tanggal,
-                'keperluan' => session('keperluan')
-            ];
-
-            Transaksi::create($create);
-        } else {
-            $jumlah_ambil = $history_tanggal->first()->jumlah_ambil;
-            $update = [
-                'jumlah_ambil' => $jumlah_ambil + $request->ambil,
-                'tanggal' => $request->tanggal
-            ];
-            Transaksi::where('nama', $history_tanggal->pluck('nama')->first())->where('keperluan', $history_tanggal->pluck('keperluan')->first())->update($update);
-        }
-
-        $bahan->update($model);
-
-        return back();
-    }
-    public function storePut(Request $request, $jenis, $id)
-    {
-        Session::put('tab', $request->input('tab'));
-        Session::put('cari', $request->input('cari'));
-
-        if ($jenis == 'cair') {
-            $bahan = Cair::where('id', $id);
-        } elseif ($jenis == 'padat') {
-            $bahan = Padat::where('id', $id);
-        } elseif ($jenis == 'alat') {
-            $bahan = Alat::where('id', $id);
-        }
-
-        $stok = $bahan->value('stok');
-        $model = [
-            'stok' => $stok + $request->kembali,
-            'lokasi' => ($stok - $request->kembali <= 0) ? '-' : $bahan->value('lokasi')
-        ];
-
-        $history_tanggal = Transaksi::whereDate('tanggal', '>=', substr($request->tanggal, 0, 10) . ' 00:00:00')
-            ->whereDate('tanggal', '<=', substr($request->tanggal, 0, 10) . ' 23:59:59')->where('nama', $bahan->value('nama'))->where('keperluan', session('keperluan'))
-            ->get();
-
-        if ($history_tanggal->isEmpty()) {
-            $create = [
-                'nama' => $bahan->value('nama'),
-                'jenis' => $bahan->value('jenis'),
-                'stok' => $stok,
-                'jumlah_ambil' => $request->ambil,
-                'jumlah_kembali' => $request->kembali,
-                'id_mahasiswa' => session('nim'),
-                'tanggal' => $request->tanggal,
-                'keperluan' => session('keperluan')
-            ];
-            Transaksi::create($create);
-        } else {
-            $jumlah_kembali = $history_tanggal->first()->jumlah_kembali;
-            $update = [
-                'jumlah_kembali' => $jumlah_kembali + $request->kembali,
-                'tanggal' => $request->tanggal
-            ];
-
-            Transaksi::where('nama', $history_tanggal->pluck('nama'))->where('keperluan', $history_tanggal->pluck('keperluan'))->update($update);
-        }
-
-
-        // dd($history_tanggal);
-
-        $bahan->update($model);
-
-        return back();
-    }
-
     /**
      * Show the form for editing the specified resource.
      */
@@ -393,28 +284,21 @@ class BahanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(bahan $bahan)
+    public function destroy(Request $request, bahan $bahan)
     {
-        //
-    }
+        $id = $request->input('id');
+        $jenis = $request->input('jenis');
 
-    public function destroyCair($id)
-    {
-        Cair::destroy($id);
+        if ($jenis == 'cair') {
+            Cair::destroy($id);
+        } elseif ($jenis == 'padat') {
+            Padat::destroy($id);
+        } elseif ($jenis == 'alat') {
+            Alat::destroy($id);
+        } elseif ($jenis == 'kerusakan') {
+            Kerusakan::destroy($id);
+        }
+
         Transaksi::destroy($id);
-        return back();
-    }
-    public function destroyPadat($id)
-    {
-        Alat::destroy($id);
-        Transaksi::destroy($id);
-        return back();
-    }
-    public function destroyAlat($id)
-    {
-        $nama = Alat::find($id)->value('nama');
-        Transaksi::where('nama', $nama)->delete();
-        Alat::destroy($id);
-        return back();
     }
 }

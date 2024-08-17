@@ -17,13 +17,11 @@
                     <td>{{ $kerusakan->kondisi }}</td>
                     <td>{{ $kerusakan->status }}</td>
                     <td>
-
-                        <button type="button" class="btn btn-warning btn-sm button-kerusakan me-3" data-bs-toggle="modal"
-                            data-bs-target="#updateKerusakan{{ $kerusakan->id }}">
+                        <button type="button" class="btn btn-warning btn-sm button-kerusakan me-3" data-bs-toggle="modal" data-bs-target="#updateKerusakan{{ $kerusakan->id }}">
                             <i class='bx bx-edit-alt'></i> Edit
                         </button>
-                        <a class="btn btn-danger btn-sm" href="{{ route('destroy-kerusakan', $kerusakan->id) }}"
-                            id="destroyKerusakan{{ $kerusakan->id }}" role="button">
+
+                        <a class="btn btn-danger btn-sm btn-destroy hapusKerusakan" data-id="{{ $kerusakan->id }}" id="destroyButton" role="button">
                             <i class="bx bx-trash"></i>
                         </a>
                     </td>
@@ -43,8 +41,7 @@
                         </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form id="form-updateKerusakan{{ $kerusakan->id }}"
-                        action="{{ route('update-kerusakan', $kerusakan->id) }}" method="POST">
+                    <form id="form-updateKerusakan{{ $kerusakan->id }}" action="{{ route('update-kerusakan', $kerusakan->id) }}" method="POST">
                         @csrf
                         <div class="modal-body">
                             <table class="table">
@@ -52,23 +49,19 @@
                                     <tr>
                                         <div class="mb-3">
                                             <label for="nama" class="form-label">Nama Kerusakan</label>
-                                            <input type="text" class="form-control" id="nama" name="nama"
-                                                placeholder="..." value="{{ $kerusakan->nama }}">
+                                            <input type="text" class="form-control" id="nama" name="nama" placeholder="..." value="{{ $kerusakan->nama }}">
                                         </div>
                                         <div class="mb-3">
                                             <label for="lokasi" class="form-label">Lokasi</label>
-                                            <input type="text" class="form-control" id="lokasi" name="lokasi"
-                                                placeholder="..." value="{{ $kerusakan->lokasi }}">
+                                            <input type="text" class="form-control" id="lokasi" name="lokasi" placeholder="..." value="{{ $kerusakan->lokasi }}">
                                         </div>
                                         <div class="mb-3">
                                             <label for="kondisi" class="form-label">Kondisi</label>
-                                            <input type="text" class="form-control" id="kondisi" name="kondisi"
-                                                placeholder="..." value="{{ $kerusakan->kondisi }}">
+                                            <input type="text" class="form-control" id="kondisi" name="kondisi" placeholder="..." value="{{ $kerusakan->kondisi }}">
                                         </div>
                                         <div class="mb-3">
                                             <label for="status" class="form-label">Status</label>
-                                            <input type="text" class="form-control" id="status" name="status"
-                                                placeholder="..." value="{{ $kerusakan->status }}">
+                                            <input type="text" class="form-control" id="status" name="status" placeholder="..." value="{{ $kerusakan->status }}">
                                         </div>
 
                                 </tbody>
@@ -81,8 +74,7 @@
 
 
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary btn-sm"
-                                id="updateKerusakan{{ $kerusakan->id }}">Simpan</button>
+                            <button type="submit" class="btn btn-primary btn-sm" id="updateKerusakan{{ $kerusakan->id }}">Simpan</button>
                         </div>
                     </form>
                 </div>

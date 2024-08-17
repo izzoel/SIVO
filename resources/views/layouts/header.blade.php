@@ -6,10 +6,8 @@
     @endif
     <div class="d-flex flex-column">
         <div class="profile text-center">
-            <img src="{{ asset('/avatars/' . session('avatar') . '.png') }}" alt=""
-                class="img-fluid rounded-circle mx-auto d-block">
-            <h4 class="text-light"><a>{{ $nama }}</a> <a href="{{ route('logout') }}"
-                    class="btn btn-sm btn-danger"><i class="bx bx-power-off"></i></a></h4>
+            <img src="{{ asset('/avatars/' . session('avatar') . '.png') }}" alt="" class="img-fluid rounded-circle mx-auto d-block">
+            <h4 class="text-light"><a>{{ $nama }}</a> <a href="{{ route('logout') }}" class="btn btn-sm btn-danger"><i class="bx bx-power-off"></i></a></h4>
             <span
                 class="badge rounded-pill  {{ $keperluan === 'Praktikum' ? 'bg-primary' : ($keperluan === 'Penelitian' ? 'bg-success' : 'bg-danger') }}">{{ $keperluan }}</span>
         </div>
@@ -22,8 +20,7 @@
             <div class="text-white p-3 pb-1" disabled><span>:</span></div>
         </div>
         <div class="col-md-auto">
-            <div class="text-white p-3 pb-1" disabled> <span class="badge rounded-pill"
-                    style="background-color: chocolate">{{ session('nim') }}</span></div>
+            <div class="text-white p-3 pb-1" disabled> <span class="badge rounded-pill" style="background-color: chocolate">{{ session('nim') }}</span></div>
         </div>
     </div>
     <div class="row pe-4 pb-4">
@@ -34,22 +31,29 @@
             <div class="text-white p-3" disabled><span>:</span></div>
         </div>
         <div class="col-md-auto">
-            <div class="text-white p-3" disabled><span
-                    class="badge rounded-pill bg-success">{{ session('prodi') }}</span></div>
+            <div class="text-white p-3" disabled><span class="badge rounded-pill bg-success">{{ session('prodi') }}</span></div>
         </div>
     </div>
 
     <div class="card">
         <div class="card-header">
-
             <div class="btn-group btn-group-sm" role="group">
-                <span class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#modal_history"><i
-                        class='bx bx-history'></i><b> History</b></span>
+                <span class="btn btn-sm btn-warning">
+                    <a type="button" data-bs-toggle="modal" data-bs-target="#modal_history" style="font-size: .8rem">
+                        <i class='bx bx-history'></i><b>History</b>
+                    </a>
+                </span>
                 @auth
-                    <span class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#modal_rekap"><i
-                            class='bx bx-spreadsheet'></i><b> Rekap</b></span>
-                    <span class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modal_bahan"><i
-                            class='bx bxs-vial'></i><b> Bahan</b></span>
+                    <span class="btn btn-sm btn-success">
+                        <a type="button" data-bs-toggle="modal" data-bs-target="#modal_rekap" style="font-size: .8rem">
+                            <i class='bx bx-spreadsheet'></i><b> Rekap</b>
+                        </a>
+                    </span>
+                    <span class="btn btn-sm btn-primary">
+                        <a type="button" href="{{ route('show-setting') }}" class="text-white" style="font-size: .8rem">
+                            <i class='bx bx-cog'></i><b> Setting</b>
+                        </a>
+                    </span>
                 @endauth
             </div>
 

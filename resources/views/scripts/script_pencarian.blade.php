@@ -11,19 +11,11 @@
         $('.dt-search input[type="search"]').on('input', function() {
             var inputValue = $(this).val();
             localStorage.setItem('datatableSearchValue', inputValue);
-            console.log(inputValue);
         });
 
         // Clear the search value from localStorage when a nav link is clicked
         $('.navbar-nav .nav-link').on('click', function() {
             localStorage.removeItem('datatableSearchValue');
-            $.ajax({
-                url: "{{ route('purge-cari') }}",
-                type: 'POST',
-                data: {
-                    _token: '{{ csrf_token() }}'
-                }
-            });
         });
     });
 </script>
