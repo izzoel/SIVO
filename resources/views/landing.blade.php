@@ -37,11 +37,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
 
     <!-- Styles -->
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
     <!-- Or for RTL support -->
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
 
     <!-- =======================================================
   * Template Name: iPortfolio
@@ -55,26 +53,20 @@
 <body>
 
     <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
-        <div class="hero-container d-flex flex-column justify-content-center" data-aos="fade-in">
-            <h1 class=""><a href="#" class="text-white" data-bs-toggle="modal" data-bs-target="#modal_admin"
-                    style="text-decoration: none">Sistem</a>
-                Informasi Inventaris Depo</h1>
-            <p class="">Cek Persediaan <span class="typed"
-                    data-typed-items="Bahan Cair, Bahan Padat, Alat"></span></p>
+        <div class="container">
+            <div class="hero-container d-flex flex-column justify-content-center" data-aos="fade-in">
+                <h1 class=""><a href="#" class="text-white" data-bs-toggle="modal" data-bs-target="#modal_admin" style="text-decoration: none">Sistem</a>
+                    Informasi Inventaris Depo</h1>
+                <p class="">Cek Persediaan <span class="typed" data-typed-items="Bahan Cair, Bahan Padat, Alat"></span></p>
 
-            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                <div class="btn-group me-2" role="group" aria-label="First group">
-                    <a class="btn btn-lg btn-warning  d-flex justify-content-center"
-                        style="font-size: 1.5rem; padding: 1rem 2rem; align-self: center;" data-bs-toggle="modal"
-                        data-bs-target="#modal_biodata" role="button" data-aos="fade-left"><b><i
-                                class="bi bi-journal-richtext"></i> Logbook</b></a>
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group me-2" role="group" aria-label="First group">
+                        <a class="btn btn-lg btn-warning  d-flex justify-content-center" style="font-size: 1.5rem; padding: 1rem 2rem; align-self: center;" data-bs-toggle="modal"
+                            data-bs-target="#modal_biodata" role="button" data-aos="fade-left"><b><i class="bi bi-journal-richtext"></i> Logbook</b></a>
+                    </div>
                 </div>
             </div>
-
-
-
         </div>
-
     </section>
 
     @include('contents.modals.modal_biodata')
