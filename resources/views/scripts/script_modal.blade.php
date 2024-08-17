@@ -254,13 +254,118 @@
             });
         });
 
-        cek = "{{ request()->segment(2) }}";
+        $(document).on('click', '.settingMenuModal', function() {
+            var id = $(this).data('id');
+            var set = '{{ request()->segment(3) }}';
 
-        if (cek !== 'kerusakan') {
+            let segment = "{{ route('get-setting', request()->segment(3)) }}";
+            $.ajax({
+                url: segment,
+                type: 'GET',
+                data: {
+                    id: id,
+                    set: set
+                },
+                dataType: 'json',
+                success: function(data) {
+                    if (set == 'satuan') {
+                        $('#inputEdit').val(data.satuan);
+                    } else if (set == 'lokasi') {
+                        $('#inputEdit').val(data.lokasi);
+                    } else if (set == 'laboratorium') {
+                        $('#inputEdit').val(data.laboratorium);
+                    }
+
+                    $("#submit-menu-setting").submit(function(event) {
+                        event.preventDefault();
+                        let route = "{{ route('update-setting', request()->segment(3) ?? request()->segment(2)) }}";
+                        let token = "{{ csrf_token() }}";
+                        let edit = $('#inputEdit').val();
+
+                        data = {
+                            _token: token,
+                            id: id,
+                            set: set,
+                            edit: edit
+                        }
+
+                        $.ajax({
+                            url: route,
+                            type: 'POST',
+                            data: data,
+                            success: function(postData) {
+                                Swal.fire({
+                                    title: "Tersimpan!",
+                                    text: "Sukses",
+                                    icon: "success",
+                                    showConfirmButton: false,
+                                    timer: 800
+                                }).then((result) => {
+                                    location.reload(true);
+                                })
+                            },
+                            error: function(xhr, status, error) {
+                                console.error(xhr.responseText);
+                                $('#modalMenuSetting .modal-body').html('<p>Error loading content</p>');
+                                $('#modalMenuSetting').modal('show');
+                            }
+                        })
+                    });
+
+                    $('#modalMenuSetting').modal('show');
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                    $('#modalMenuSetting .modal-body').html('<p>Error loading content</p>');
+                    $('#modalMenuSetting').modal('show');
+                }
+            });
+        });
+
+
+        cek = "{{ request()->segment(2) }}";
+        if (cek === 'setting') {
+            $(document).on("click", "#destroyButton", function(event) {
+                event.preventDefault();
+                let setId = $(this).attr('data-id');
+                let jenis = "{{ request()->segment(3) }}";
+                Swal.fire({
+                    title: "Hapus Data?",
+                    text: "Tidak dapat dikembalikan!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yap, hapus!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: "{{ route('destroy') }}",
+                            type: 'POST',
+                            data: {
+                                _token: "{{ csrf_token() }}",
+                                id: setId,
+                                jenis: jenis
+                            },
+                            success: function(postData) {
+                                Swal.fire({
+                                    title: "Terhapus!",
+                                    text: "Data berhasil dihapus.",
+                                    icon: "success",
+                                    showConfirmButton: false,
+                                    timer: 800
+                                }).then((result) => {
+                                    localStorage.removeItem('datatableSearchValue');
+                                    location.reload(true);
+                                });
+                            },
+                        })
+                    }
+                });
+            });
+        } else if (cek !== 'kerusakan') {
             $("#destroyButton").on("click", function(event) {
                 event.preventDefault();
-                let jenis = "{{ request()->segment(2) }}";
-                alert(dataSettingId);
                 Swal.fire({
                     title: "Hapus Data?",
                     text: "Tidak dapat dikembalikan!",
@@ -277,7 +382,7 @@
                             data: {
                                 _token: "{{ csrf_token() }}",
                                 id: dataSettingId,
-                                jenis: jenis
+                                jenis: cek
                             },
                             success: function(postData) {
                                 Swal.fire({
@@ -305,8 +410,8 @@
             });
         } else {
             $(document).on('click', '#destroyButton[data-id]', function() {
-                var dataId = $(this).attr('data-id');
                 event.preventDefault();
+                var dataId = $(this).attr('data-id');
                 let jenis = "{{ request()->segment(2) }}";
                 Swal.fire({
                     title: "Hapus Data?",
@@ -351,10 +456,6 @@
                     }
                 });
             });
-
-
-
-
         }
 
     });

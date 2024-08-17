@@ -2,7 +2,7 @@
     <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);"
         aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('show-setting') }}">Setting</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('show-setting', request()->segment(2)) }}">Setting</a></li>
             <li class="breadcrumb-item active" aria-current="page">satuan</li>
         </ol>
     </nav>
@@ -22,12 +22,11 @@
                         <tr>
                             <td style="text-align: center;">{{ $satuan->satuan }}</td>
                             <td>
-                                <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#edit_satuan{{ $satuan->id }}">
-                                    <i class="bx bx-pencil"></i>
+                                <button type="button" class="btn btn-warning btn-sm settingMenuModal me-3" data-id="{{ $satuan->id }}">
+                                    <i class='bx bx-pencil'></i><b> Edit</b>
                                 </button>
-                                <a class="btn btn-danger btn-sm" href="{{ route('destroy-satuan', $satuan->id) }}"
-                                    id="destroySatuan{{ $satuan->id }}" role="button">
+
+                                <a class="btn btn-danger btn-sm btn-destroy" data-id="{{ $satuan->id }}" id="destroyButton" role="button">
                                     <i class="bx bx-trash"></i>
                                 </a>
                             </td>

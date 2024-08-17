@@ -23,13 +23,11 @@
                         <tr>
                             <td style="text-align: left;">{{ $lokasi->lokasi }}</td>
                             <td>
-                                <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#edit_lokasi{{ $lokasi->id }}">
-                                    <i class="bx bx-pencil"></i>
+                                <button type="button" class="btn btn-warning btn-sm settingMenuModal me-3" data-id="{{ $lokasi->id }}">
+                                    <i class='bx bx-pencil'></i><b> Edit</b>
                                 </button>
 
-                                <a class="btn btn-danger btn-sm" id="destroyLokasi{{ $lokasi->id }}"
-                                    href="{{ route('destroy-lokasi', $lokasi->id) }}" role="button">
+                                <a class="btn btn-danger btn-sm btn-destroy" data-id="{{ $lokasi->id }}" id="destroyButton" role="button">
                                     <i class="bx bx-trash"></i>
                                 </a>
                             </td>

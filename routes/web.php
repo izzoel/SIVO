@@ -31,10 +31,12 @@ Route::post('/logbook', [MenuController::class, 'logbook'])->name('logbook');
 Route::post('/login', [MenuController::class, 'login'])->name('login');
 
 
-
-Route::get('/cair', [BahanController::class, 'showCair'])->name('show-cair');
-Route::get('/padat', [BahanController::class, 'showPadat'])->name('show-padat');
-Route::get('/alat', [BahanController::class, 'showAlat'])->name('show-alat');
+Route::get('/menu/cair', [MenuController::class, 'showCair'])->name('menu-cair');
+Route::get('/menu/padat', [MenuController::class, 'showPadat'])->name('menu-padat');
+Route::get('/menu/alat', [MenuController::class, 'showAlat'])->name('menu-alat');
+Route::get('/menu/kerusakan', [MenuController::class, 'showKerusakan'])->name('menu-kerusakan');
+Route::post('/menu/kerusakan/store', [KerusakanController::class, 'store'])->name('store-kerusakan');
+Route::put('/menu/kerusakan/update/{id}', [KerusakanController::class, 'update'])->name('update-kerusakan');
 
 Route::get('/bahan/{jenis}', [BahanController::class, 'showBahan'])->name('show-bahan');
 Route::get('/setting/{jenis}', [BahanController::class, 'showSetting'])->name('modal-setting');
@@ -49,32 +51,18 @@ Route::get('/transaksi', [TransaksiController::class, 'show'])->name('show-trans
 Route::get('/history', [TransaksiController::class, 'show'])->name('show-history');
 Route::get('/menu/setting', [MenuController::class, 'setting'])->name('show-setting');
 
-Route::post('/purge/cari', [MenuController::class, 'purge'])->name('purge-cari');
+// Route::post('/purge/cari', [MenuController::class, 'purge'])->name('purge-cari');
 
 Route::post('/store/{jenis}', [BahanController::class, 'store'])->name('store-bahan');
 
 
-Route::get('/menu/cair', [MenuController::class, 'showCair'])->name('menu-cair');
-Route::put('/menu/cair/update/{id}', [BahanController::class, 'updateCair'])->name('update-cair');
-Route::get('/menu/cair/destroy/{id}', [BahanController::class, 'destroyCair'])->name('destroy-cair');
-
-Route::get('/menu/padat', [MenuController::class, 'showPadat'])->name('menu-padat');
-Route::put('/menu/padat/update/{id}', [BahanController::class, 'updatePadat'])->name('update-padat');
-Route::get('/menu/padat/destroy/{id}', [BahanController::class, 'destroyPadat'])->name('destroy-padat');
-
-Route::get('/menu/alat', [MenuController::class, 'showAlat'])->name('menu-alat');
-Route::put('/menu/alat/update/{id}', [BahanController::class, 'updateAlat'])->name('update-alat');
-Route::get('/menu/alat/destroy/{id}', [BahanController::class, 'destroyAlat'])->name('destroy-alat');
-
-Route::get('/menu/kerusakan', [MenuController::class, 'showKerusakan'])->name('menu-kerusakan');
-Route::post('/menu/kerusakan/store', [KerusakanController::class, 'store'])->name('store-kerusakan');
-Route::put('/menu/kerusakan/update/{id}', [KerusakanController::class, 'update'])->name('update-kerusakan');
-Route::get('/menu/kerusakan/destroy/{id}', [KerusakanController::class, 'destroy'])->name('destroy-kerusakan');
-
-
 // Route::get('/setting/', [MenuController::class, 'setting'])->name('show-setting');
 
-Route::get('/setting/satuan/', [MenuController::class, 'settingSatuan'])->name('setting-satuan');
+Route::get('/menu/setting/{jenis}', [MenuController::class, 'setting'])->name('setting');
+Route::get('/up', [BahanController::class, 'getSetting'])->name('get-setting');
+Route::post('/up/{setting}', [BahanController::class, 'updateSetting'])->name('update-setting');
+// Route::get('/menu/setting/{jenis}', [MenuController::class, 'settingSatuan'])->name('setting-satuan');
+
 Route::post('/setting/satuan/store', [SatuanController::class, 'store'])->name('store-satuan');
 Route::put('/setting/satuan/update/{id}', [SatuanController::class, 'update'])->name('update-satuan');
 Route::get('/setting/satuan/destroy/{id}', [SatuanController::class, 'destroy'])->name('destroy-satuan');

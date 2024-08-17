@@ -21,7 +21,7 @@
                             <i class='bx bx-edit-alt'></i> Edit
                         </button>
 
-                        <a class="btn btn-danger btn-sm btn-destroy hapusKerusakan" data-id="{{ $kerusakan->id }}" id="destroyButton" role="button">
+                        <a class="btn btn-danger btn-sm btn-destroy" data-id="{{ $kerusakan->id }}" id="destroyButton" role="button">
                             <i class="bx bx-trash"></i>
                         </a>
                     </td>

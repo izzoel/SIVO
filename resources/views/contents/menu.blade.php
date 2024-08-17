@@ -18,27 +18,30 @@
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('menu-cair') }}">
-                            <span class="p-2 pr-4 pl-4 rounded" style="{{ $title == 'cair' ? 'background-color:#0d6efd;color:#FFFFFF;' : 'color: #0d6efd !important;' }}"
+                            <span class="p-2 pr-4 pl-4 rounded"
+                                style="{{ request()->segment(2) == 'cair' ? 'background-color:#0d6efd;color:#FFFFFF;' : 'color: #0d6efd !important;' }}"
                                 onmouseover="this.style.backgroundColor='#0d6efd';this.style.color='#FFFFFF';"
-                                onmouseout="{{ $title == 'cair' ? 'this.style.backgroundColor="#0d6efd";this.style.color="#FFFFFF";' : 'this.style.backgroundColor="transparent";this.style.color="#0d6efd"; this.style.border="none";' }}">
+                                onmouseout="{{ request()->segment(2) == 'cair' ? 'this.style.backgroundColor="#0d6efd";this.style.color="#FFFFFF";' : 'this.style.backgroundColor="transparent";this.style.color="#0d6efd"; this.style.border="none";' }}">
                                 Bahan Cair
                             </span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('menu-padat') }}">
-                            <span class="p-2 pr-4 pl-4 rounded" style="{{ $title == 'padat' ? 'background-color:#0d6efd;color:#FFFFFF;' : 'color: #0d6efd !important;' }}"
+                            <span class="p-2 pr-4 pl-4 rounded"
+                                style="{{ request()->segment(2) == 'padat' ? 'background-color:#0d6efd;color:#FFFFFF;' : 'color: #0d6efd !important;' }}"
                                 onmouseover="this.style.backgroundColor='#0d6efd';this.style.color='#FFFFFF';"
-                                onmouseout="{{ $title == 'padat' ? 'this.style.backgroundColor="#0d6efd";this.style.color="#FFFFFF";' : 'this.style.backgroundColor="transparent";this.style.color="#0d6efd"; this.style.border="none";' }}">
+                                onmouseout="{{ request()->segment(2) == 'padat' ? 'this.style.backgroundColor="#0d6efd";this.style.color="#FFFFFF";' : 'this.style.backgroundColor="transparent";this.style.color="#0d6efd"; this.style.border="none";' }}">
                                 Bahan Padat
                             </span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('menu-alat') }}">
-                            <span class="p-2 pr-4 pl-4 rounded" style="{{ $title == 'alat' ? 'background-color:#0d6efd;color:#FFFFFF;' : 'color: #0d6efd !important;' }}"
+                            <span class="p-2 pr-4 pl-4 rounded"
+                                style="{{ request()->segment(2) == 'alat' ? 'background-color:#0d6efd;color:#FFFFFF;' : 'color: #0d6efd !important;' }}"
                                 onmouseover="this.style.backgroundColor='#0d6efd';this.style.color='#FFFFFF';"
-                                onmouseout="{{ $title == 'alat' ? 'this.style.backgroundColor="#0d6efd";this.style.color="#FFFFFF";' : 'this.style.backgroundColor="transparent";this.style.color="#0d6efd"; this.style.border="none";' }}">
+                                onmouseout="{{ request()->segment(2) == 'alat' ? 'this.style.backgroundColor="#0d6efd";this.style.color="#FFFFFF";' : 'this.style.backgroundColor="transparent";this.style.color="#0d6efd"; this.style.border="none";' }}">
                                 Alat
                             </span>
                         </a>
@@ -46,9 +49,10 @@
                     @auth
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('menu-kerusakan') }}">
-                                <span class="p-2 pr-4 pl-4 rounded" style="{{ $title == 'kerusakan' ? 'background-color:#0d6efd;color:#FFFFFF;' : 'color: #0d6efd !important;' }}"
+                                <span class="p-2 pr-4 pl-4 rounded"
+                                    style="{{ request()->segment(2) == 'kerusakan' ? 'background-color:#0d6efd;color:#FFFFFF;' : 'color: #0d6efd !important;' }}"
                                     onmouseover="this.style.backgroundColor='#0d6efd';this.style.color='#FFFFFF';"
-                                    onmouseout="{{ $title == 'kerusakan' ? 'this.style.backgroundColor="#0d6efd";this.style.color="#FFFFFF";' : 'this.style.backgroundColor="transparent";this.style.color="#0d6efd"; this.style.border="none";' }}">
+                                    onmouseout="{{ request()->segment(2) == 'kerusakan' ? 'this.style.backgroundColor="#0d6efd";this.style.color="#FFFFFF";' : 'this.style.backgroundColor="transparent";this.style.color="#0d6efd"; this.style.border="none";' }}">
                                     Kerusakan Alat
                                 </span>
                             </a>
@@ -56,139 +60,24 @@
                     @endauth
                 </ul>
             </div>
-            @auth
-                {{-- <span class="navbar-text me-3">
-                    <a type="button" href="{{ route('show-setting') }}" class="btn m-0 p-0" style="font-size: 1.8rem;color:#0d6efd;" onmouseover="this.style.color='#232425';"
-                        onmouseout="this.style.color='#0d6efd';">
-                        <i class='bx bx-cog'></i>
-                    </a>
-                </span> --}}
-            @endauth
         </nav>
 
-        @if ($title == 'cair')
+        @if (request()->segment(2) == 'cair')
             @include('contents.menus.cair')
-        @elseif($title == 'padat')
+        @elseif(request()->segment(2) == 'padat')
             @include('contents.menus.padat')
-        @elseif($title == 'alat')
+        @elseif(request()->segment(2) == 'alat')
             @include('contents.menus.alat')
-        @elseif($title == 'kerusakan')
+        @elseif(request()->segment(2) == 'kerusakan')
             @include('contents.menus.kerusakan')
-            {{-- @elseif($title == 'setting')
-            @include('contents.settings.setting') --}}
-        @elseif($title == 'satuan')
+        @elseif(request()->segment(3) == 'satuan')
             @include('contents.settings.satuan')
-            {{-- @foreach ($satuans as $satuan)
-                <div class="modal fade" id="edit_satuan{{ $satuan->id }}" tabindex="-1" data-bs-keyboard="false">
-                    <div class="modal-dialog modal-sm">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">
-                                    <a class="btn btn-warning">
-                                        <i class='bx bx-pencil'></i><b> Edit Satuan</b>
-                                    </a>
-                                </h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                            </div>
-
-                            <form id="form-updateSatuan{{ $satuan->id }}" action="{{ route('update-satuan', $satuan->id) }}" method="POST">
-                                @method('PUT')
-                                @csrf
-                                <div class="modal-body">
-                                    <div class="mb-3">
-                                        <label for="satuanEdit" class="form-label">Satuan</label>
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control" placeholder="..." name="satuanEdit" value="{{ $satuan->satuan }}" required>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary btn-sm" id="updateSatuan{{ $satuan->id }}">Simpan</button>
-                                </div>
-                            </form>
-
-                        </div>
-                    </div>
-                </div>
-            @endforeach --}}
-        @elseif($title == 'lokasi')
+        @elseif(request()->segment(3) == 'lokasi')
             @include('contents.settings.lokasi')
-            {{-- @foreach ($lokasis as $lokasi)
-                <div class="modal fade" id="edit_lokasi{{ $lokasi->id }}" tabindex="-1" data-bs-keyboard="false">
-                    <div class="modal-dialog modal-sm">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">
-                                    <a class="btn btn-warning">
-                                        <i class='bx bx-pencil'></i><b> Edit lokasi</b>
-                                    </a>
-                                </h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                            </div>
-
-                            <form id="form-updateLokasi{{ $lokasi->id }}" action="{{ route('update-lokasi', $lokasi->id) }}" method="POST">
-                                @method('PUT')
-                                @csrf
-                                <div class="modal-body">
-                                    <div class="mb-3">
-                                        <label for="lokasiEdit" class="form-label">
-                                            Lokasi
-                                        </label>
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control" placeholder="..." name="lokasiEdit" value="{{ $lokasi->lokasi }}" required>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary btn-sm" id="updateLokasi{{ $lokasi->id }}">Simpan</button>
-                                </div>
-                            </form>
-
-                        </div>
-                    </div>
-                </div>
-            @endforeach --}}
-        @elseif($title == 'laboratorium')
+        @elseif(request()->segment(3) == 'laboratorium')
             @include('contents.settings.laboratorium')
-            {{-- @foreach ($laboratoriums as $laboratorium)
-                <div class="modal fade" id="edit_laboratorium{{ $laboratorium->id }}" tabindex="-1" data-bs-keyboard="false">
-                    <div class="modal-dialog modal-sm">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">
-                                    <a class="btn btn-warning">
-                                        <i class='bx bx-pencil'></i><b> Edit laboratorium</b>
-                                    </a>
-                                </h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                            </div>
-
-                            <form id="form-updateLaboratorium{{ $laboratorium->id }}" action="{{ route('update-laboratorium', $laboratorium->id) }}" method="POST">
-                                @method('PUT')
-                                @csrf
-                                <div class="modal-body">
-                                    <div class="mb-3">
-                                        <label for="laboratoriumEdit" class="form-label">
-                                            Laboratorium
-                                        </label>
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control" placeholder="..." name="laboratoriumEdit" value="{{ $laboratorium->laboratorium }}"
-                                                required>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary btn-sm" id="updateLaboratorium{{ $laboratorium->id }}">Simpan</button>
-                                </div>
-                            </form>
-
-                        </div>
-                    </div>
-                </div>
-            @endforeach --}}
+        @elseif(request()->segment(2) == 'setting')
+            @include('contents.settings.setting')
         @endif
 
         <div class="modal fade" id="modalTake" tabindex="-1">
@@ -344,6 +233,48 @@
                             </div>
                         </div>
 
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modalMenuSetting" tabindex="-1">
+            <div class="modal-dialog" style="width: 30%">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            <a class="btn btn-warning">
+                                <i class='bx bx-cog'></i><b> Edit</b>
+                            </a>
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <form id="submit-menu-setting">
+                        <div class="modal-body">
+                            <div class="container mb-4 ps-0 pe-0">
+                                <div class="row mb-2">
+                                    <div class="col">{{ request()->segment(3) }}</div>
+                                    <div class="col-auto">:</div>
+                                    <div class="col-8">
+                                        <input type="text" class="form-control" placeholder="..." name="edit" id="inputEdit" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer d-flex">
+                            <div class="me-auto p-2">
+                                <a class="btn btn-danger btn-sm btn-destroy" id="destroyButton" role="button">
+                                    <i class="bx bx-trash"></i>
+                                </a>
+                            </div>
+                            <div class="p-2">
+                                <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+                            </div>
+                        </div>
 
                     </form>
 

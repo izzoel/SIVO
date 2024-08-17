@@ -44,51 +44,25 @@ class MenuController extends Controller
 
         return compact('nim', 'nama', 'prodi', 'keperluan', 'cari', 'cairs', 'padats', 'alats',  'kerusakans', 'satuans', 'lokasis', 'laboratoriums', 'historys', 'history_admins', 'rekaps');
     }
-    public function show()
-    {
-        // $nim = session('nim');
-        // $nama = session('nama');
-        // $prodi = session('prodi');
-        // $keperluan = session('keperluan');
-        // $cari = session('cari');
-
-        // $kerusakans = Kerusakan::all();
-        // $cairs = Bahan::where('jenis', 'Cair')->get();
-        // $historys = Transaksi::where('id_mahasiswa', $nim)->get();
-        // $history_admins = Transaksi::all();
-        // $rekaps = Transaksi::selectRaw('id_bahan, MONTH(tanggal) as bulan, SUM(jumlah_ambil) as ambil,SUM(jumlah_kembali) as kembali, keperluan')
-        //     ->groupBy('id_bahan', 'bulan', 'keperluan')
-        //     ->get();
-        // $title = "cair";
-        // return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'kerusakans', 'cairs',  'historys', 'history_admins', 'rekaps', 'title', 'cari', 'lokasis'));
-        // return view('contents.menu', compact('nim', 'nama', 'prodi', 'keperluan', 'cairs', 'padats', 'alats', 'kerusakans', 'historys', 'history_admins', 'rekaps', 'title'));
-    }
+    public function show() {}
     public function showCair()
     {
         $data = $this->bankData();
-        $data['title'] = "cair";
-
         return view('contents.menu', $data);
     }
     public function showPadat()
     {
         $data = $this->bankData();
-        $data['title'] = "padat";
-
         return view('contents.menu', $data);
     }
     public function showAlat()
     {
         $data = $this->bankData();
-        $data['title'] = "alat";
-
         return view('contents.menu', $data);
     }
     public function showKerusakan()
     {
         $data = $this->bankData();
-        $data['title'] = "kerusakan";
-
         return view('contents.menu', $data);
     }
 
@@ -119,24 +93,17 @@ class MenuController extends Controller
     public function purge(Request $request)
     {
         $request->session()->forget('cari');
-
         return response()->json(['message' => 'Session key "cari" purged successfully']);
     }
 
     public function setting()
     {
         $data = $this->bankData();
-        $data['title'] = "setting";
+        // $data['title'] = "setting";
 
         return view('contents.menu', $data);
     }
-    public function settingSatuan()
-    {
-        $data = $this->bankData();
-        $data['title'] = "satuan";
 
-        return view('contents.menu', $data);
-    }
     public function settingLokasi()
     {
         $data = $this->bankData();

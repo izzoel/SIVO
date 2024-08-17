@@ -31,8 +31,7 @@
                 </div>
             </div>
 
-            <form id="form_import" action="{{ route('import-bahan', $title) }}" method="POST"
-                enctype="multipart/form-data">
+            <form id="form_import" action="{{ route('import-bahan', request()->segment(2)) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <div class="mt-3" id="import">
@@ -55,7 +54,7 @@
                 </div>
             </form>
 
-            <form id="form_submit" action="{{ route('store-bahan', $title) }}" method="POST" style="display: none">
+            <form id="form_submit" action="{{ route('store-bahan', request()->segment(2)) }}" method="POST" style="display: none">
                 @csrf
                 <div class="modal-body">
                     <div class="mt-3" id="input">
@@ -75,16 +74,14 @@
 
                         <div class="mb-3">
                             <label for="stok" class="form-label">Stok
-                                <a type="button" href="{{ route('setting-satuan') }}" class="btn btn-sm ms-0 p-0">
+                                <a type="button" href="{{ route('setting', 'satuan') }}" class="btn btn-sm ms-0 p-0">
                                     <i class='bx bx-cog text-primary'></i>
                                 </a>
                             </label>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" style="width: 5rem !important" id="stok"
-                                    placeholder="..." - oninput="this.value = this.value.replace(/[^0-9]/g, '');"
-                                    name="stok" required>
-                                <select class="form-select" style="border-radius: 0 4px 4px 0;" id="satuan"
-                                    name="satuan" required>
+                                <input type="text" class="form-control" style="width: 5rem !important" id="stok" placeholder="..." -
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '');" name="stok" required>
+                                <select class="form-select" style="border-radius: 0 4px 4px 0;" id="satuan" name="satuan" required>
                                     <option value="" disabled selected>...</option>
                                     @foreach ($satuans as $satuan)
                                         <option value="{{ $satuan->satuan }}">{{ $satuan->satuan }}</option>
@@ -95,8 +92,7 @@
 
                         <div class="mb-1">
                             <label for="lokasi" class="form-label">Lokasi
-                                <a type="button" href="{{ route('setting-lokasi') }}" class="btn btn-sm ms-0 p-0"><i
-                                        class='bx bx-cog text-primary'></i>
+                                <a type="button" href="{{ route('setting-lokasi') }}" class="btn btn-sm ms-0 p-0"><i class='bx bx-cog text-primary'></i>
                                 </a>
                             </label>
                             <select class="form-select" id="lokasi" name="lokasi" required>

@@ -17,6 +17,7 @@ use App\Imports\AlatSheet;
 use App\Imports\CairSheet;
 use App\Imports\FirstSheet;
 use App\Imports\PadatSheet;
+use App\Models\Laboratorium;
 use Illuminate\Http\Request;
 use App\Imports\BahanImports;
 use Illuminate\Support\Facades\Auth;
@@ -62,7 +63,6 @@ class BahanController extends Controller
             Alat::create($create);
         }
 
-        // Bahan::create($create);
         return back();
     }
 
@@ -264,6 +264,43 @@ class BahanController extends Controller
         $bahan->update($model);
     }
 
+    public function getSetting(Request $request)
+    {
+        $id = $request->input('id');
+        $set = $request->input('set');
+
+        if ($set == 'satuan') {
+            $setting = Satuan::find($id);
+        } elseif ($set == 'lokasi') {
+            $setting = Lokasi::find($id);
+        } elseif ($set == 'laboratorium') {
+            $setting = Laboratorium::find($id);
+        }
+
+        return response()->json($setting);
+    }
+
+    public function updateSetting(Request $request)
+    {
+        $id = $request->input('id');
+        $set = $request->input('set');
+        $edit = $request->input('edit');
+
+        if ($set == 'satuan') {
+            $setting = Satuan::find($id);
+        } elseif ($set == 'lokasi') {
+            $setting = Lokasi::find($id);
+        } elseif ($set == 'laboratorium') {
+            $setting = Laboratorium::find($id);
+        }
+
+        $model = [
+            $set => $edit,
+        ];
+
+        $setting->update($model);
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
@@ -297,6 +334,12 @@ class BahanController extends Controller
             Alat::destroy($id);
         } elseif ($jenis == 'kerusakan') {
             Kerusakan::destroy($id);
+        } elseif ($jenis == 'satuan') {
+            Satuan::destroy($id);
+        } elseif ($jenis == 'lokasi') {
+            Lokasi::destroy($id);
+        } elseif ($jenis == 'laboratorium') {
+            Laboratorium::destroy($id);
         }
 
         Transaksi::destroy($id);
