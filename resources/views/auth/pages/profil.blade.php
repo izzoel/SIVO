@@ -131,7 +131,7 @@
                                     </button>
                                 </div>
                                 <div class="card-text">
-                                    <form action="" method="POST}}">
+                                    <form action="" method="POST">
                                         @csrf
                                         @method('PUT')
                                         <div class="d-flex align-items-start align-items-sm-center gap-4">

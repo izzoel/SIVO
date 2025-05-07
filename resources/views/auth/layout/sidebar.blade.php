@@ -37,7 +37,7 @@
          </li>
 
          <li class="menu-header small text-uppercase">
-             <span class="menu-header-text">Menu Utama</span>
+             <span class="menu-header-text">Menu Persediaan</span>
          </li>
          <!-- Menu Utama -->
 
