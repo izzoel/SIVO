@@ -229,14 +229,21 @@
               }
           });
       });
+$(document).on("click", ".D_B_padat", function() {
+    let id = $(this).data("id").split('-').pop();
 
-      $(".D_B_padat").click(function() {
-          let id = $(this).data("id").split('-').pop();
-
-          $(".modalDelete").attr("id", "M_D_padat-" + id);
-          $("#M_D_padat-" + id).modal('show');
-          $("#D_route").attr('action', "/data/padat/destroy/" + id);
-      })
+    $(".modalDelete").attr("id", "M_D_padat-" + id);
+    $("#M_D_padat-" + id).modal('show');
+    $("#D_route").attr('action', "/data/padat/destroy/" + id);
+});
+      
+     //$(".D_B_padat").click(function() {
+//    let id = $(this).data("id").split('-').pop();
+//
+ //         $(".modalDelete").attr("id", "M_D_padat-" + id);
+  //        $("#M_D_padat-" + id).modal('show');
+//          $("#D_route").attr('action', "/data/padat/destroy/" + id);
+ //     })
 
       $(document).on('click', '.U_B_laboratorium', function() {
           let id = $(this).data("id").split('-').pop();
