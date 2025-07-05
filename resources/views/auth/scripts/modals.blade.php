@@ -230,7 +230,7 @@
           });
       });
 
-      $(".D_B_padat").click(function() {
+      $(document).on('click', '.D_B_padat', function() {
           let id = $(this).data("id").split('-').pop();
 
           $(".modalDelete").attr("id", "M_D_padat-" + id);
