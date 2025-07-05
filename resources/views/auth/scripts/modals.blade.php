@@ -39,7 +39,7 @@
           });
       });
 
-      $(".D_B_mahasiswa").click(function() {
+      $(document).on("click", ".D_B_mahasiswa", function() {
           let nim = $(this).data("nim");
 
           $(".modalDelete").attr("id", "M_D_mahasiswa-" + nim);
@@ -62,7 +62,7 @@
           });
       });
 
-      $(".D_B_kerusakan").click(function() {
+      $(document).on("click", ".D_B_kerusakan", function() {
           let id = $(this).data("id").split('-').pop();
 
           $(".modalDelete").attr("id", "M_D_kerusakan-" + id);
@@ -103,6 +103,7 @@
               }
           });
       });
+
       $(document).on('click', '.U_A_alat', function() {
           let id = $(this).data("id").split('-').pop();
           $(".modalAmbil").attr("id", "M_A_alat-" + id);
@@ -124,6 +125,7 @@
               }
           });
       });
+
       $(document).on('click', '.U_K_alat', function() {
           let id = $(this).data("id").split('-').pop();
           $(".modalKembali").attr("id", "M_K_alat-" + id);
@@ -146,7 +148,7 @@
           });
       });
 
-      $(".D_B_alat").click(function() {
+      $(document).on("click", ".D_B_alat", function() {
           let id = $(this).data("id").split('-').pop();
 
           $(".modalDelete").attr("id", "M_D_alat-" + id);
@@ -188,7 +190,7 @@
           });
       });
 
-      $(".D_B_cair").click(function() {
+      $(document).on("click", ".D_B_cair", function() {
           let id = $(this).data("id").split('-').pop();
 
           $(".modalDelete").attr("id", "M_D_cair-" + id);
@@ -229,6 +231,7 @@
               }
           });
       });
+
       $(document).on("click", ".D_B_padat", function() {
           let id = $(this).data("id").split('-').pop();
 
@@ -258,7 +261,7 @@
           });
       });
 
-      $(".D_B_laboratorium").click(function() {
+      $(document).on("click", ".D_B_laboratorium", function() {
           let id = $(this).data("id").split('-').pop();
 
           $(".modalDelete").attr("id", "M_D_laboratorium-" + id);
@@ -287,7 +290,7 @@
           });
       });
 
-      $(".D_B_lokasi").click(function() {
+      $(document).on('click', '.D_B_lokasi', function() {
           let id = $(this).data("id").split('-').pop();
 
           $(".modalDelete").attr("id", "M_D_lokasi-" + id);
@@ -316,7 +319,7 @@
           });
       });
 
-      $(".D_B_satuan").click(function() {
+      $(document).on('click', '.D_B_satuan', function() {
           let id = $(this).data("id").split('-').pop();
 
           $(".modalDelete").attr("id", "M_D_satuan-" + id);
