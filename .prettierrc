@@ -1,0 +1,7 @@
+{
+    "plugins": ["prettier-plugin-blade"],
+    "printWidth": 180,
+    "tabWidth": 4,
+    "singleQuote": true,
+    "bracketSameLine": false
+}
