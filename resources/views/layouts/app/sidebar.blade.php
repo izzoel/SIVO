@@ -8,77 +8,105 @@
 </head>
 
 <body class="min-h-screen bg-white dark:bg-zinc-800">
-    @php
-        $statusChanges = collect();
-
-        if (\Illuminate\Support\Facades\Schema::hasTable('kerusakan_status_changes')) {
-            $statusChanges = \App\Models\KerusakanStatusChange::query()
-                ->with([
-                    'kerusakan:id,id_persediaan,id_laboratorium,kondisi',
-                    'kerusakan.persediaan:id,nama',
-                    'kerusakan.laboratorium:id,nama',
-                    'statusLama:id,nama,warna',
-                    'statusBaru:id,nama,warna',
-                    'user:id,name',
-                ])
-                ->latest()
-                ->limit(8)
-                ->get();
-        }
-    @endphp
-
-    <flux:sidebar sticky collapsible="mobile" class="border-r border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
+    <flux:sidebar
+        sticky
+        collapsible="mobile"
+        class="border-r border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900"
+        x-data="{
+            sidebarSearch: '',
+            matches(text) {
+                return this.sidebarSearch.trim() === '' || text.toLowerCase().includes(this.sidebarSearch.trim().toLowerCase())
+            },
+            hasResults() {
+                return [
+                    'dashboard',
+                    'persediaan alat cair gas padat',
+                    'laporan kerusakan alat',
+                    'settings laboratorium satuan',
+                    'akun profile security appearance',
+                    'help'
+                ].some((item) => this.matches(item))
+            },
+        }"
+    >
         <flux:sidebar.header>
             <x-app-logo :sidebar="true" href="{{ route('dashboard') }}" wire:navigate />
             <flux:sidebar.collapse class="lg:hidden" />
         </flux:sidebar.header>
 
-        <flux:sidebar.search placeholder="{{ __('Search...') }}" />
+        <div class="px-2">
+            <div
+                class="flex h-10 w-full items-center gap-3 rounded-lg border border-zinc-200 bg-white px-3 py-2 text-zinc-700 shadow-sm transition focus-within:border-lime-500 focus-within:ring-2 focus-within:ring-lime-500/20 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 dark:focus-within:border-lime-400 dark:focus-within:ring-lime-400/20 in-data-flux-sidebar-collapsed-desktop:hidden"
+            >
+                <flux:icon.magnifying-glass class="size-4 text-zinc-500 dark:text-zinc-400" />
+
+                <input
+                    x-model="sidebarSearch"
+                    type="search"
+                    placeholder="{{ __('Search...') }}"
+                    class="min-w-0 flex-1 border-0 bg-transparent p-0 text-sm font-medium text-zinc-800 placeholder-zinc-400 outline-none ring-0 focus:ring-0 dark:text-zinc-100 dark:placeholder-zinc-500"
+                />
+
+                <button
+                    x-show="sidebarSearch"
+                    x-on:click="sidebarSearch = ''"
+                    type="button"
+                    class="rounded-md p-1 text-zinc-500 transition hover:bg-zinc-100 hover:text-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-700 dark:hover:text-zinc-100"
+                    aria-label="{{ __('Clear search') }}"
+                >
+                    <flux:icon.x-mark class="size-4" />
+                </button>
+            </div>
+        </div>
 
         <flux:sidebar.nav class="space-y-2">
-            <flux:sidebar.item wire:navigate icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')"> {{ __('Dashboard') }} </flux:sidebar.item>
+            <flux:sidebar.item x-show="matches('dashboard')" wire:navigate icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')"> {{ __('Dashboard') }} </flux:sidebar.item>
 
-            <flux:sidebar.group expandable heading="{{ __('Persediaan') }}" class="grid">
-                <flux:sidebar.item wire:navigate icon="wrench-screwdriver" :href="route('persediaan.alat')" :current="request()->routeIs('persediaan.alat')">
+            <flux:sidebar.group x-show="matches('persediaan alat cair gas padat')" expandable heading="{{ __('Persediaan') }}" class="grid">
+                <flux:sidebar.item x-show="matches('persediaan alat')" wire:navigate icon="wrench-screwdriver" :href="route('persediaan.alat')" :current="request()->routeIs('persediaan.alat')">
                     {{ __('Alat') }}
                 </flux:sidebar.item>
-                <flux:sidebar.item wire:navigate icon="beaker" :href="route('persediaan.cair')" :current="request()->routeIs('persediaan.cair')">
+                <flux:sidebar.item x-show="matches('persediaan cair bahan cair')" wire:navigate icon="beaker" :href="route('persediaan.cair')" :current="request()->routeIs('persediaan.cair')">
                     {{ __('Cair') }}
                 </flux:sidebar.item>
-                <flux:sidebar.item wire:navigate icon="cloud" :href="route('persediaan.gas')" :current="request()->routeIs('persediaan.gas')"> {{ __('Gas') }} </flux:sidebar.item>
-                <flux:sidebar.item wire:navigate icon="archive-box" :href="route('persediaan.padat')" :current="request()->routeIs('persediaan.padat')">
+                <flux:sidebar.item x-show="matches('persediaan gas')" wire:navigate icon="cloud" :href="route('persediaan.gas')" :current="request()->routeIs('persediaan.gas')"> {{ __('Gas') }} </flux:sidebar.item>
+                <flux:sidebar.item x-show="matches('persediaan padat bahan padat')" wire:navigate icon="archive-box" :href="route('persediaan.padat')" :current="request()->routeIs('persediaan.padat')">
                     {{ __('Padat') }}
                 </flux:sidebar.item>
             </flux:sidebar.group>
 
-            <flux:sidebar.group expandable heading="{{ __('Laporan') }}" class="grid">
-                <flux:sidebar.item wire:navigate icon="document-text" :href="route('laporan.kerusakan')" :current="request()->routeIs('laporan.kerusakan')">
+            <flux:sidebar.group x-show="matches('laporan kerusakan alat')" expandable heading="{{ __('Laporan') }}" class="grid">
+                <flux:sidebar.item x-show="matches('laporan kerusakan alat')" wire:navigate icon="document-text" :href="route('laporan.kerusakan')" :current="request()->routeIs('laporan.kerusakan')">
                     {{ __('Kerusakan Alat') }}
                 </flux:sidebar.item>
             </flux:sidebar.group>
 
-            <flux:sidebar.group expandable heading="{{ __('Settings') }}" class="grid">
-                <flux:sidebar.item wire:navigate icon="home-modern" :href="route('setting.laboratorium')" :current="request()->routeIs('setting.laboratorium')">
+            <flux:sidebar.group x-show="matches('settings laboratorium satuan')" expandable heading="{{ __('Settings') }}" class="grid">
+                <flux:sidebar.item x-show="matches('settings laboratorium lab')" wire:navigate icon="home-modern" :href="route('setting.laboratorium')" :current="request()->routeIs('setting.laboratorium')">
                     {{ __('Laboratorium') }}
                 </flux:sidebar.item>
-                <flux:sidebar.item wire:navigate icon="tag" :href="route('setting.satuan')" :current="request()->routeIs('setting.satuan')"> {{ __('Satuan') }} </flux:sidebar.item>
+                <flux:sidebar.item x-show="matches('settings satuan')" wire:navigate icon="tag" :href="route('setting.satuan')" :current="request()->routeIs('setting.satuan')"> {{ __('Satuan') }} </flux:sidebar.item>
             </flux:sidebar.group>
 
-            <flux:sidebar.group expandable heading="{{ __('Akun') }}" class="grid">
-                <flux:sidebar.item wire:navigate icon="user" :href="route('profile.edit')" :current="request()->routeIs('profile.edit')"> {{ __('Profile') }} </flux:sidebar.item>
-                <flux:sidebar.item wire:navigate icon="shield-check" :href="route('security.edit')" :current="request()->routeIs('security.edit')">
+            <flux:sidebar.group x-show="matches('akun profile security appearance')" expandable heading="{{ __('Akun') }}" class="grid">
+                <flux:sidebar.item x-show="matches('akun profile profil')" wire:navigate icon="user" :href="route('profile.edit')" :current="request()->routeIs('profile.edit')"> {{ __('Profile') }} </flux:sidebar.item>
+                <flux:sidebar.item x-show="matches('akun security keamanan')" wire:navigate icon="shield-check" :href="route('security.edit')" :current="request()->routeIs('security.edit')">
                     {{ __('Security') }}
                 </flux:sidebar.item>
-                <flux:sidebar.item wire:navigate icon="swatch" :href="route('appearance.edit')" :current="request()->routeIs('appearance.edit')">
+                <flux:sidebar.item x-show="matches('akun appearance tampilan')" wire:navigate icon="swatch" :href="route('appearance.edit')" :current="request()->routeIs('appearance.edit')">
                     {{ __('Appearance') }}
                 </flux:sidebar.item>
             </flux:sidebar.group>
+
+            <div x-show="! hasResults()" class="px-3 py-4 text-sm text-zinc-500 dark:text-zinc-400">
+                {{ __('Menu tidak ditemukan.') }}
+            </div>
         </flux:sidebar.nav>
 
         <flux:sidebar.spacer />
 
         <flux:sidebar.nav>
-            <flux:sidebar.item icon="information-circle" href="#"> {{ __('Help') }} </flux:sidebar.item>
+            <flux:sidebar.item x-show="matches('help bantuan')" icon="information-circle" href="#"> {{ __('Help') }} </flux:sidebar.item>
         </flux:sidebar.nav>
     </flux:sidebar>
 
@@ -99,50 +127,7 @@
 
             <flux:spacer />
 
-            <flux:dropdown position="top" align="end">
-                <flux:button variant="ghost" square class="relative">
-                    <flux:icon name="bell" />
-
-                    @if ($statusChanges->isNotEmpty())
-                        <span
-                            class="absolute -end-1 -top-1 flex min-h-4 min-w-4 items-center justify-center rounded-full bg-red-600 px-1 text-[10px] font-medium leading-none text-white"
-                        >
-                            {{ $statusChanges->count() }}
-                        </span>
-                    @endif
-                </flux:button>
-
-                <flux:menu class="w-80">
-                    <div class="px-2 py-1.5">
-                        <flux:heading size="sm">{{ __('Perubahan status kerusakan alat') }}</flux:heading>
-                        <flux:text class="mt-1 text-xs">{{ __('Aktivitas status terbaru') }}</flux:text>
-                    </div>
-
-                    <flux:menu.separator />
-
-                    @forelse ($statusChanges as $change)
-                        <flux:menu.item :href="route('laporan.kerusakan')" wire:navigate>
-                            <div class="grid gap-1 text-start">
-                                <div class="font-medium">{{ $change->kerusakan?->persediaan?->nama ?? __('Alat tidak ditemukan') }}</div>
-
-                                <div class="text-xs text-zinc-500 dark:text-zinc-400">
-                                    {{ $change->statusLama?->nama ?? __('Belum ada status') }}
-                                    <span aria-hidden="true">-></span>
-                                    {{ $change->statusBaru?->nama ?? __('Status baru') }}
-                                </div>
-
-                                <div class="text-xs text-zinc-400 dark:text-zinc-500">
-                                    {{ $change->user?->name ?? __('Sistem') }}
-                                    <span aria-hidden="true">-</span>
-                                    {{ $change->created_at?->diffForHumans() }}
-                                </div>
-                            </div>
-                        </flux:menu.item>
-                    @empty
-                        <div class="px-2 py-3 text-sm text-zinc-500 dark:text-zinc-400">{{ __('Belum ada perubahan status kerusakan alat.') }}</div>
-                    @endforelse
-                </flux:menu>
-            </flux:dropdown>
+            <livewire:pages::notification-dropdown />
 
             <flux:dropdown position="top" align="start">
                 <flux:profile :initials="auth()->user()->initials()" />
