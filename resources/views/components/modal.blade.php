@@ -1,5 +1,5 @@
 <div>
-    @props(['name', 'mode' => '', 'title' => '', 'description' => '', 'maxWidth' => '2xl', 'color' => '', 'klik' => ''])
+    @props (['name', 'mode' => '', 'title' => '', 'description' => '', 'maxWidth' => '2xl', 'color' => '', 'klik' => ''])
 
     <flux:modal :dismissible="false" :name="$name" class="w-full max-w-{{ $maxWidth }}">
         <div class="space-y-6">
@@ -23,25 +23,15 @@
             <div class="flex">
                 <flux:spacer />
                 @if ($mode === 'tambah')
-                    <flux:button wire:click="{{ $klik }}" type="submit" variant="primary">
-                        Simpan
-                    </flux:button>
+                    <flux:button wire:click="{{ $klik }}" type="submit" variant="primary"> Simpan </flux:button>
                 @elseif ($mode === 'ubah')
-                    <flux:button wire:click="{{ $klik }}" type="submit" variant="primary" color="amber">
-                        Ubah
-                    </flux:button>
+                    <flux:button wire:click="{{ $klik }}" type="submit" variant="primary" color="amber"> Ubah </flux:button>
                 @elseif ($mode === 'hapus')
-                    <flux:button wire:click="{{ $klik }}" type="submit" variant="danger">
-                        Hapus
-                    </flux:button>
+                    <flux:button wire:click="{{ $klik }}" type="submit" variant="danger"> Hapus </flux:button>
                 @elseif ($mode === 'import')
-                    <flux:button wire:click="{{ $klik }}" type="submit" variant="primary" color="indigo">
-                        Import
-                    </flux:button>
+                    <flux:button wire:click="{{ $klik }}" type="submit" variant="primary" color="indigo"> Import </flux:button>
                 @endif
-
             </div>
         </div>
     </flux:modal>
-
 </div>
