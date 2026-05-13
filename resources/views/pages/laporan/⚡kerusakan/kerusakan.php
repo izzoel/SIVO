@@ -226,6 +226,8 @@ $status = StatusKerusakan::where('id', $this->id_status)->first();
                 'status_baru' => $this->id_status,
                 'user_id' => auth()->id(),
             ]);
+
+            $this->dispatch('notification-updated');
         }
 
         $this->editId = null;
