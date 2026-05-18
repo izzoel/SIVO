@@ -128,8 +128,18 @@
         <flux:sidebar.spacer />
 
         <flux:sidebar.nav>
-            <flux:sidebar.item x-show="matches('help bantuan')" icon="information-circle" href="#"> {{ __('Help') }} </flux:sidebar.item>
+            <div class="mt-4 px-3 text-xs text-zinc-500 dark:text-zinc-400">
+                <div class="font-semibold tracking-wide">Depositori Lab v3.0.0</div>
+
+                <div class="mt-1">
+                    @
+                    <a href="https://zetware.id" target="_blank" class="text-primary-500 hover:underline"> 2026<i>(zetware.id)</i></a>
+                </div>
+            </div>
         </flux:sidebar.nav>
+        {{-- <flux:sidebar.nav>
+            <flux:sidebar.item x-show="matches('help bantuan')" icon="information-circle" href="#"> {{ __('Help') }} </flux:sidebar.item>
+        </flux:sidebar.nav> --}}
     </flux:sidebar>
 
     <flux:header class="block! border-b border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-900 lg:bg-zinc-50">
