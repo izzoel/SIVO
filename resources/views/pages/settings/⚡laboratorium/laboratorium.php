@@ -153,6 +153,7 @@ new class extends Component {
                 'deskripsi' => $item['deskripsi'] ?? null,
                 'gambar' => $item['gambar'] ?? null,
                 'id_laboran' => $item['id_laboran'] ?? null,
+                'warna' => $item['warna'] ?? null,
                 ]
             );
         }
