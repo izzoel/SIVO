@@ -10,7 +10,11 @@ class Laboratorium extends Model
 
     protected $fillable = [
         'nama',
+        'fakultas',
         'gedung',
+        'deskripsi',
+        'gambar',
+        'id_laboran',
         'warna'
     ];
 }

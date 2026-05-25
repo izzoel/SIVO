@@ -5,6 +5,7 @@ use App\Models\Lokasi;
 use App\Support\ColorHelper;
 use Flux\Flux;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Http;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -49,6 +50,11 @@ new class extends Component {
         ];
     }
 
+    public function mount()
+    {
+        $this->syncLaboratorium();
+    }
+
     public function sort($column)
     {
         if ($this->sortBy === $column) {
@@ -81,47 +87,77 @@ new class extends Component {
         $sortBy = in_array($this->sortBy, ['nama', 'gedung'], true) ? $this->sortBy : 'nama';
 
         return Laboratorium::query()
-            ->when($this->filterGedung, function ($query) {
-                $query->where('gedung', $this->filterGedung);
-            })
-            ->when($this->search, function ($query) {
-                $query->where(function ($subQuery) {
-                    $subQuery->where('nama', 'like', '%' . $this->search . '%')->orWhere('gedung', 'like', '%' . $this->search . '%');
-                });
-            })
-            ->orderBy($sortBy, $this->sortDirection)
-            ->paginate();
+        ->when($this->filterGedung, function ($query) {
+            $query->where('gedung', $this->filterGedung);
+        })
+        ->when($this->search, function ($query) {
+            $query->where(function ($subQuery) {
+                $subQuery->where('nama', 'like', '%' . $this->search . '%')->orWhere('gedung', 'like', '%' . $this->search . '%');
+            });
+        })
+        ->orderBy($sortBy, $this->sortDirection)
+        ->paginate();
     }
 
     #[Computed]
     public function gedungs()
     {
         return Laboratorium::query()
-            ->whereNotNull('gedung')
-            ->where('gedung', '!=', '')
-            ->select('gedung')
-            ->distinct()
-            ->orderBy('gedung')
-            ->pluck('gedung');
+        ->whereNotNull('gedung')
+        ->where('gedung', '!=', '')
+        ->select('gedung')
+        ->distinct()
+        ->orderBy('gedung')
+        ->pluck('gedung');
     }
 
- #[Computed]
+    #[Computed]
     public function lokasis()
     {
         $sortBy = in_array($this->sortBy, ['nama', 'id_laboratorium'], true) ? $this->sortBy : 'nama';
 
         return Lokasi::query()
-            ->with('laboratorium')
-            ->when($this->filterLaboratorium, function ($query) {
-                $query->where('id_laboratorium', $this->filterLaboratorium);
-            })
-            ->when($this->search, function ($query) {
-                $query->where(function ($subQuery) {
-                    $subQuery->where('nama', 'like', '%' . $this->search . '%');
-                });
-            })
-            ->orderBy($sortBy, $this->sortDirection)
-            ->paginate();
+        ->with('laboratorium')
+        ->when($this->filterLaboratorium, function ($query) {
+            $query->where('id_laboratorium', $this->filterLaboratorium);
+        })
+        ->when($this->search, function ($query) {
+            $query->where(function ($subQuery) {
+                $subQuery->where('nama', 'like', '%' . $this->search . '%');
+            });
+        })
+        ->orderBy($sortBy, $this->sortDirection)
+        ->paginate();
+    }
+
+    public function syncLaboratorium()
+    {
+        $response = Http::timeout(30)->get(env('API_LAMDA'));
+
+        if (!$response->successful()) {
+            session()->flash('error', 'Gagal mengambil data API');
+            return;
+        }
+
+        $data = $response->json('data');
+        // dd($data);
+        foreach ($data as $item)
+            {
+            Laboratorium::updateOrCreate([
+                'id' => $item['id']
+            ],
+            [
+                'nama' => $item['nama'] ?? null,
+                'fakultas' => $item['fakultas'] ?? null,
+                'gedung' => $item['gedung'] ?? null,
+                'deskripsi' => $item['deskripsi'] ?? null,
+                'gambar' => $item['gambar'] ?? null,
+                'id_laboran' => $item['id_laboran'] ?? null,
+                ]
+            );
+        }
+
+        session()->flash('success', 'Data laboratorium berhasil disinkronkan');
     }
 
     public function ubah($id)
